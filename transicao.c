@@ -64,5 +64,15 @@ void transicao(int *epilepsia){
             refresh();
         }
     }
+    for(int i=0;i<LINES;i++)
+    {
+        for(int j=0;j<COLS;j++)
+        {
+            wattron(stdscr,COLOR_PAIR(20));
+            mvprintw(i,j,"   ");
+            wattroff(stdscr,COLOR_PAIR(20));
+            refresh();
+        }
+    }
     napms(200);}
 }
