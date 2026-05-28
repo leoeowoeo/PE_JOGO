@@ -1,6 +1,6 @@
 #include <ncurses.h>
 
-int prova_complexa(int *cor) 
+int prova_complexa(int *cor,int *acertos) 
 {
     initscr();
     curs_set(0);
@@ -21,7 +21,6 @@ int prova_complexa(int *cor)
     int tecla = 0, i, j;
     int marcar = 0;
     int marcar_confirmacao = 0; 
-    int acerto=0;
     int certeza=0;
     int confirmando = 0; 
     int resposta_dada = 0;
@@ -364,17 +363,17 @@ int prova_complexa(int *cor)
     }
 
     
-    acerto = 0; 
+    *acertos = 0; 
     for(i=0;i<5;i++)
     {
         if(resposta[i]==respostacerta[i])
-            acerto++;
+            (*acertos)++;
     }
     
     werase(prova_complexa);
     
     
-    mvwprintw(prova_complexa, 7, 5, "Acertos: %d", acerto);
+    mvwprintw(prova_complexa, 7, 5, "Acertos: %d", *acertos);
     wrefresh(prova_complexa);
     
     nodelay(prova_complexa, FALSE);
@@ -384,7 +383,4 @@ int prova_complexa(int *cor)
 
     delwin(prova_complexa);
     endwin();
-    
-    
-    return acerto;
 }

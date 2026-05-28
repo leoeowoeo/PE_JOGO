@@ -3,13 +3,13 @@
 #include "jogos.h"
     #define COR_CIANO          1
     #define COR_CINZAESCURO    2
-    #define COR_VERDEFOLHA    3
+    #define COR_VERDEFOLHA     3
     #define COR_VERDECOBRA    10
 
 
 int cobra(int *cor,int *jogarcelular){
 
-        if(cor==1)
+        if(*cor==1)
     {
 
         start_color();
@@ -24,10 +24,9 @@ int cobra(int *cor,int *jogarcelular){
         init_color(COR_VERDECOBRA, 233, 800, 460);
 
 
-    init_pair(2, COR_CINZAESCURO,-1);
-    init_pair(3, COR_VERDEFOLHA,-1);
-    init_pair(4, COR_VERDECOBRA,-1);
-    init_pair(5, COLOR_RED, -1); 
+    init_pair(22, COR_VERDEFOLHA,-1);
+    init_pair(21, COR_VERDECOBRA,-1);
+    init_pair(4, COLOR_RED, -1); 
 }
     curs_set(0);
     WINDOW *cobra = newwin(LINES, COLS, 0, 0);
@@ -118,31 +117,31 @@ int cobra(int *cor,int *jogarcelular){
             cont = 0;
         }
         cont++;
-        if(cor==1) wattron(cobra, COLOR_PAIR(3));
+        if(*cor==1) wattron(cobra, COLOR_PAIR(21));
             mvwprintw(cobra, maçãy-1, maçãx, "~");
-        if(cor==1) wattroff(cobra, COLOR_PAIR(3));
+        if(*cor==1) wattroff(cobra, COLOR_PAIR(21));
         for (i = 0; i <= score+3; i++) {
             
             if (i == 0)
             {
-                if(cor==1) wattron(cobra, COLOR_PAIR(4));
+                if(*cor==1) wattron(cobra, COLOR_PAIR(21));
                 mvwprintw(cobra, cobraY[i], cobraX[i], "0");
-                if(cor==1) wattroff(cobra, COLOR_PAIR(4));
+                if(*cor==1) wattroff(cobra, COLOR_PAIR(21));
             }
             else 
             {
-                if(cor==1) wattron(cobra, COLOR_PAIR(4));
+                if(*cor==1) wattron(cobra, COLOR_PAIR(21));
                 mvwprintw(cobra, cobraY[i], cobraX[i], "o");
-                if(cor==1) wattroff(cobra, COLOR_PAIR(4));
+                if(*cor==1) wattroff(cobra, COLOR_PAIR(21));
             }
     
         }
         //----------------------
         
         //mecanica
-        if(cor==1) wattron(cobra, COLOR_PAIR(5));
+        if(*cor==1) wattron(cobra, COLOR_PAIR(4));
         mvwprintw(cobra, maçãy, maçãx, "()");
-        if(cor==1) wattroff(cobra, COLOR_PAIR(5));
+        if(*cor==1) wattroff(cobra, COLOR_PAIR(4));
         
         if(cobrax == maçãx && cobray == maçãy) {   
             maçãpegar=1;

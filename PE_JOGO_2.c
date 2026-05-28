@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <time.h>
 
-#define TARGET_FRAME_MS 30 // teste pra commit
+    #define TARGET_FRAME_MS 30 // teste pra commit
     #define VERMELHO
     #define COR_MARROM         8
     #define COR_JANELA         9
@@ -38,10 +38,11 @@ int main()
     int livropickup=0, livroX=celularX+17, livroY=celularY,abrindolivro=0;
     int livro1=0,livro2=0,livro3=0,estudando=0;
     int jogarcelular=0;
+    int acertos=0;
 
     //seleção
     int interagirCel=0,interagirEst=0,interagirArm=0,interagirJan=0,interagirCam=0;
-    int selecaocor=4,tecla_selecao,interage=1,cor=1,par=0;
+    int selecaocor=4,tecla_selecao,interage=0,cor=1,par=0;
     int quest=0;
     int jogarcelular5=0,encararespelho=0,dormircama=0,jogartodosjogos=0,ler1jogar3=0,ler3dormir=0,ler3jogatodos=0;
     char *quests[8]=
@@ -59,7 +60,7 @@ int main()
     char *olhos[10]={"##","@@", "**","$$","vv","><","XX","OO","00","oo"};
     char *faces[5] = {"(  )", "[  ]", "{  }", "<  >","d  b"};
     char *pernas[4] = {"/|","|\\","<v", "v>"};
-    int selecao_olhos=7,selecao_face=0,selecao_pernas=0;
+    int selecao_olhos=9,selecao_face=0,selecao_pernas=0;
     //movimento
     int passo=0,vira=0;
     //acontecimentos periódicos
@@ -180,7 +181,7 @@ int main()
     napms(4000);
     erase();*/
     transicao(&epilepsia);
-    quest=dialogoMae(&maexinga);;
+    //quest=dialogoMae(&maexinga);;
 
     }
     // não botei um refresh aqui, pq eu posso botar varios printw e dps dar um refresh em tudo
@@ -627,7 +628,7 @@ int main()
             {
                 if(abrindolivro==1)
                 {
-                    abrirlivro();
+                    abrirlivro(&livro1,&livro2,&livro3);
                     abrindolivro=0;
                     werase(stdscr);
                 }
@@ -810,7 +811,7 @@ int main()
                                         {   
                                             mvprintw(y,x-3,"[I]%s",faces[selecao_face]);              //printar o rosto de costar
                                             if(passo%2==0)mvprintw(y+1,x+1,"%s",pernas[selecao_pernas]);//perna no passo par
-                                            else          mvprintw(y+1,x+1,"%s",pernas[selecao_pernas-1]);
+                                            else          mvprintw(y+1,x+1,"%s",pernas[selecao_pernas+1]);
                                         }
 
 
@@ -1391,29 +1392,28 @@ if(atividade_sono>5&&estudo>=3)// se ele não dormiu mas estudou ele faz a prova
 {
     //cair_no_sono();
     //dialogoprovacs();
-    prova_cansado_simples(&cor);
+    prova_cansado_simples(&cor,&acertos);
 }
-
 
 if (atividade_sono<=5&&estudo>=3)// se ele dormiu e estudou ele faz a prova descansado e sabendo (prova simples)
 {
     //dormir();
     //dialogoprovas();
-    prova_simples(&cor);
+    prova_simples(&cor,&acertos);
 }
 
 if (atividade_sono>5&&estudo<3)//se ele nao dormiu e não estudou ele faz a prova descansado e burro  (prova cansado complexa)
 {
     //cair_no_sono();
     //dialogoprovacc();
-    prova_cansado_complexa(&cor);
+    prova_cansado_complexa(&cor,&acertos);
 }
 if (atividade_sono<=5&&estudo<3)// se ele dormiu mas não estudou ele faz a prova descansado e burro (prova complexa)
 {
     
     //dormir();
     //dialogoprovac();
-    prova_complexa(&cor);
+    prova_complexa(&cor,&acertos);
 }
     endwin();// fecha a janela
     return 0;

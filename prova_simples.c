@@ -1,6 +1,6 @@
 #include <ncurses.h>
 
-int prova_simples(int *cor){
+int prova_simples(int *cor, int *acertos){
     initscr();
     curs_set(0);
     WINDOW *prova_simples = newwin(LINES, COLS, 0, 0);
@@ -20,7 +20,6 @@ int prova_simples(int *cor){
     int tecla = 0, i, j;
     int marcar = 0;
     int marcar_confirmacao = 0; 
-    int acerto=0;
     int certeza=0;
     int confirmando = 0; 
     int resposta_dada = 0;
@@ -317,15 +316,15 @@ int prova_simples(int *cor){
         }
     }
 
-    acerto = 0;
+    *acertos = 0;
     for(i=0;i<5;i++)
     {
         if(resposta[i]==respostacerta[i])
-            acerto++;
+            (*acertos)++;
     }
     
     werase(prova_simples);
-    mvwprintw(prova_simples, 7, 5, "Acertos: %d", acerto);
+    mvwprintw(prova_simples, 7, 5, "Acertos: %d", *acertos);
     wrefresh(prova_simples);
     
     nodelay(prova_simples, FALSE);
@@ -333,7 +332,6 @@ int prova_simples(int *cor){
 
     delwin(prova_simples);
     endwin();
-    return acerto;
 }
 /*
 Gabarito

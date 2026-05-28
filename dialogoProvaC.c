@@ -1,7 +1,7 @@
 #include<ncurses.h>
+#include"jogos.h"
 
-
-int dialogoprovac()
+void dialogoprovac()
 {
     int Xall=(COLS/2)-57, Yall=3;
     int tecla=0, x=22+Xall, y=10+Yall;
@@ -144,5 +144,4 @@ int dialogoprovac()
     linha_atual++;
     slow_mvwprintw(stdscr, "Podem virar as provas...", linha_atual, Xall);
     refresh(); napms(4000);
-    return 0;
 }

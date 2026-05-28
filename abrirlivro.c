@@ -1,5 +1,5 @@
 #include <ncurses.h>
-void abrirlivro()
+void abrirlivro(int *livro1,int *livro2,int *livro3)
 {
         curs_set(0);
 
@@ -7,7 +7,7 @@ void abrirlivro()
         int Xall=(COLS/2)-40, Yall=3;
         int livroY = Yall+8, livroX = Xall+35;
         int ganhou=0;
-
+if(*livro1==1&&*livro2==0&&*livro3==0){
 
             werase(stdscr);// Limpa a janela para desenhar o olho
             mvwprintw(stdscr, livroY++,     livroX-20,"     ______ ");
@@ -29,46 +29,58 @@ void abrirlivro()
             mvwprintw(stdscr, livroY++,     livroX-20,"|_____|/"    );
             wrefresh(stdscr);
             napms(60);
+
+            
+            
                 livroY = 8+Yall;
             werase(stdscr);// Limpa a janela para desenhar o olho fechando
-            mvwprintw(stdscr, livroY++,     livroX-20,                  "____");
-                    mvwprintw(stdscr, livroY++,     livroX-20,"       ,-'  ,-|  ");
+            mvwprintw(stdscr, livroY++,     livroX-11,                  "____ ");
+                    mvwprintw(stdscr, livroY++,     livroX-20,"       ,-'  ,-|");
                     mvwprintw(stdscr, livroY++,     livroX-20,"   _,-'_,--'  |");
                     mvwprintw(stdscr, livroY++,     livroX-20,",-'_,-'       |");
-                    mvwprintw(stdscr, livroY++,     livroX-20,"|   |         |       ");
-                    mvwprintw(stdscr, livroY++,     livroX-20,"|fun|         |   ");
-                    mvwprintw(stdscr, livroY++,     livroX-20,"|da |    ,    |       ");
+                    mvwprintw(stdscr, livroY++,     livroX-20,"|   |         |");
+                    mvwprintw(stdscr, livroY++,     livroX-20,"|fun|         |");
+                    mvwprintw(stdscr, livroY++,     livroX-20,"|da |    ,    |");
                     mvwprintw(stdscr, livroY++,     livroX-20,"|mat|   /|    |");
-                    mvwprintw(stdscr, livroY++,     livroX-20,"|ele|    |    |           ");
-                    mvwprintw(stdscr, livroY++,     livroX-20,"|ent|    |    |   ");
+                    mvwprintw(stdscr, livroY++,     livroX-20,"|ele|    |    |");
+                    mvwprintw(stdscr, livroY++,     livroX-20,"|ent|    |    |");
                     mvwprintw(stdscr, livroY++,     livroX-20,"| 1 |    |    |");
                     mvwprintw(stdscr, livroY++,     livroX-20,"|   |         |");
                     mvwprintw(stdscr, livroY++,     livroX-20,"|   |         |");
-                    mvwprintw(stdscr, livroY++,     livroX-20,"|   |       ,-'     ");
-                    mvwprintw(stdscr, livroY++,     livroX-20,"|   |    ,-'            ");
-                    mvwprintw(stdscr, livroY++,     livroX-20,"|___| ,-'               ");
+                    mvwprintw(stdscr, livroY++,     livroX-20,"|   |       ,-'");
+                    mvwprintw(stdscr, livroY++,     livroX-20,"|   |    ,-'   ");
+                    mvwprintw(stdscr, livroY++,     livroX-20,"|___| ,-'      ");
+            wrefresh(stdscr);   
+
+
+                    
                 livroY = 8+Yall;
+            
             napms(105);
-            mvwprintw(stdscr, livroY++,     livroX-20,"              __,,  ");
+            werase(stdscr);
+            mvwprintw(stdscr, livroY++,     livroX-20,"              __,,");
             mvwprintw(stdscr, livroY++,     livroX-20,"     ___,--'''__,|");
-            mvwprintw(stdscr, livroY++,     livroX-20,"_,--'___---'''   |   ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"|   |            |       ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"|fun|            |   ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"|da |     _,     |       ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"|mat|    / |     |   ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"|ele|      |     |           ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"|ent|      |     |   ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"_,--'___---'''   |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|   |            |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|fun|            |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|da |     _,     |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|mat|    / |     |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|ele|      |     |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|ent|      |     |");
             mvwprintw(stdscr, livroY++,     livroX-20,"| 1 |      |     |");
             mvwprintw(stdscr, livroY++,     livroX-20,"|   |            |");
-            mvwprintw(stdscr, livroY++,     livroX-20,"|   |            |          ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"|   |           _|   ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"|   |    __,--''          ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"|___|,--'           ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|   |            |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|   |           _|");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|   |    __,--''  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|___|,--'         ");
             wrefresh(stdscr);
             napms(105); // Espera 2 segundos
+
+
+
                 livroY = 8+Yall;
                 werase(stdscr);
-            mvwprintw(stdscr, livroY++,     livroX-20," ____________________");
+            mvwprintw(stdscr, livroY++,     livroX-20," ____________________ ");
             mvwprintw(stdscr, livroY++,     livroX-20,"|                    |");    
             mvwprintw(stdscr, livroY++,     livroX-20,"|                    |"); 
             mvwprintw(stdscr, livroY++,     livroX-20,"|                    |"); 
@@ -83,101 +95,487 @@ void abrirlivro()
             mvwprintw(stdscr, livroY++,     livroX-20,"|____________________|");
             wrefresh(stdscr);
             napms(105);
+
+
+
                 livroY = 8+Yall;
                 werase(stdscr);// Limpa a janela para desenhar o olho
-            mvwprintw(stdscr, livroY++,     livroX-20," ___________________   ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"|    ''---..,_,.-=:;|    ");   
-            mvwprintw(stdscr, livroY++,     livroX-20,"|            ||||||||    ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"|            ||||||||    ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"|     ,      ||||||||    ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"|    /|      ||||||||    ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"|     |      ||||||||    ");                 
-            mvwprintw(stdscr, livroY++,     livroX-20,"|     |      ||||||||    ");       
-            mvwprintw(stdscr, livroY++,     livroX-20,"|     |      ||||||||    ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"|            ||||||||    ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"|            ||||||||    ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"|            ||||||||  ");
+            mvwprintw(stdscr, livroY++,     livroX-20," ___________________ ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|    ''---..,_,.-=:;|");   
+            mvwprintw(stdscr, livroY++,     livroX-20,"|            ||||||||");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|            ||||||||");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|     ,      ||||||||");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|    /|      ||||||||");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|     |      ||||||||");                 
+            mvwprintw(stdscr, livroY++,     livroX-20,"|     |      ||||||||");       
+            mvwprintw(stdscr, livroY++,     livroX-20,"|     |      ||||||||");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|            ||||||||");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|            ||||||||");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|            ||||||||");
             mvwprintw(stdscr, livroY++,     livroX-20,"|___         ||||||||");
             mvwprintw(stdscr, livroY++,     livroX-20,"    ''---..,|;:-=\"' ");
             wrefresh(stdscr);
             napms(55);
+
+
+            
                 livroY = 8+Yall;
             werase(stdscr);// Limpa a janela para desenhar o olho
-            mvwprintw(stdscr, livroY++,     livroX-20," ___________________");
-            mvwprintw(stdscr, livroY++,     livroX-20,"|''-=::;;_'','.\"',:;|       ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"|         || |||  |||   "); 
-            mvwprintw(stdscr, livroY++,     livroX-20,"|         || |||  |||    ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"|   ,     || |||  |||    ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"|  /|     || |||  |||       ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"|   |     || |||  |||     ");                 
-            mvwprintw(stdscr, livroY++,     livroX-20,"|   |     || |||  |||      ");       
-            mvwprintw(stdscr, livroY++,     livroX-20,"|   |     || |||  |||      ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"|         || |||  |||        ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"|         || |||  |||      ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"|         || |||  |||   ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"|_        ||,|||,_|||");
-            mvwprintw(stdscr, livroY++,     livroX-20,"''-=:..,_'' ;:'  ''");
+            mvwprintw(stdscr, livroY++,     livroX-20," ___________________  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|''-=::;;_'','.\"',:;|");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|         || |||  ||| "); 
+            mvwprintw(stdscr, livroY++,     livroX-20,"|         || |||  ||| ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|   ,     || |||  ||| ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|  /|     || |||  ||| ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|   |     || |||  ||| ");                 
+            mvwprintw(stdscr, livroY++,     livroX-20,"|   |     || |||  ||| ");       
+            mvwprintw(stdscr, livroY++,     livroX-20,"|   |     || |||  ||| ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|         || |||  ||| ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|         || |||  ||| ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|         || |||  ||| ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|_        ||,|||,_||| ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"''-=:..,_'' ;:'  ''   ");
             wrefresh(stdscr);
             napms(55);
+            
+
+            
             livroY = 8+Yall;
             werase(stdscr);// Limpa a janela para desenhar o olho fechando
-            mvwprintw(stdscr, livroY++,     livroX-20,"     ___________________");
-            mvwprintw(stdscr, livroY++,     livroX-20,"    |'-,'-,'-, '--,,'-, |  ");       
-            mvwprintw(stdscr, livroY++,     livroX-20,"    |   '-,'-,'-,  | || |  ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"    |     || | ||  | || |   ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"    | ,   || | ||  | || |  ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"    | |   || | ||  | || |     ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"    | |   || | ||  | || |   ");                 
-            mvwprintw(stdscr, livroY++,     livroX-20,"    | |   || | ||  | || | ");       
-            mvwprintw(stdscr, livroY++,     livroX-20,"    | |   || | ||  | || |    ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"    |     || | ||  | || |      ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"    |     || | ||  | || |     ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"    |     || | ||  | || |   "); 
-            mvwprintw(stdscr, livroY++,     livroX-20,"    |     || | ||._|_||_|    ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"    '-,   ||_|_||'-,:'' '   ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"    '-,; -',;'                 ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"     ___________________ ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    |'-,'-,'-, '--,,'-, |");       
+            mvwprintw(stdscr, livroY++,     livroX-20,"    |   '-,'-,'-,  | || |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    |     || | ||  | || |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    | ,   || | ||  | || |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    | |   || | ||  | || |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    | |   || | ||  | || |");                 
+            mvwprintw(stdscr, livroY++,     livroX-20,"    | |   || | ||  | || |");       
+            mvwprintw(stdscr, livroY++,     livroX-20,"    | |   || | ||  | || |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    |     || | ||  | || |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    |     || | ||  | || |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    |     || | ||  | || |"); 
+            mvwprintw(stdscr, livroY++,     livroX-20,"    |     || | ||._|_||_|");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    '-,   ||_|_||'-,:'' '");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    '-,; -',;'           ");
             wrefresh(stdscr);
             napms(105);
+
+
+            
             livroY = 8+Yall;
             werase(stdscr);// Limpa a janela para desenhar o olho fechado
 
-            mvwprintw(stdscr, livroY++,     livroX-20,"          ___,____________________");
+            mvwprintw(stdscr, livroY++,     livroX-20,"          ___,____________________   ");
             mvwprintw(stdscr, livroY++,     livroX-20," ___---'''__,|                    |  ");    
-            mvwprintw(stdscr, livroY++,     livroX-20,"|_,,--''''   |                    |     "); 
-            mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |      ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |      ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |      ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|_,,--''''   |                    |  "); 
             mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |  ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |     ");     
-            mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |      ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |      ");
             mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |  ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |     ");         
-            mvwprintw(stdscr, livroY++,     livroX-20,"|||         _|____________________|     ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"|||  __,--''                              ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"|,--'                                    ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |  ");     
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |  ");         
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||         _|____________________|  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||  __,--''                         ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|,--'                                ");
             wrefresh(stdscr);
-            napms(105); // Espera 2 
+            napms(105);  
+
+
+            
             livroY = 8+Yall;
             werase(stdscr);
-            mvwprintw(stdscr, livroY++,     livroX-20," ____________________ ____________________  ");
+            mvwprintw(stdscr, livroY++,     livroX-20," ____________________ ____________________   ");
             mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");    
             mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");
             mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");
             mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");
             mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |     ");      
-            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |      ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |      ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |      ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |      ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");      
             mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"|____________________|____________________|");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|____________________|____________________|  ");
             wrefresh(stdscr);
             livroY = 8+Yall;
             napms(100);
 }
+if(*livro1==0&&*livro2==1&&*livro3==0){
+    werase(stdscr);// Limpa a janela para desenhar o olho
+            mvwprintw(stdscr, livroY++,     livroX-20,"     ______ ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    /     /|");
+            mvwprintw(stdscr, livroY++,     livroX-20,"   /     / |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"  /     /  |"); 
+            mvwprintw(stdscr, livroY++,     livroX-20," /_____/   |"); 
+            mvwprintw(stdscr, livroY++,     livroX-20,"|     |    |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|fund.|  _ |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|da   | / '|"); 
+            mvwprintw(stdscr, livroY++,     livroX-20,"|mat. |'  ||");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|elem-| .' |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|entar| | /|");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|  2  | |/ |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|     |    |");    
+            mvwprintw(stdscr, livroY++,     livroX-20,"|     |   /" );
+            mvwprintw(stdscr, livroY++,     livroX-20,"|     |  /"  );
+            mvwprintw(stdscr, livroY++,     livroX-20,"|     | /"   );
+            mvwprintw(stdscr, livroY++,     livroX-20,"|_____|/"    );
+            wrefresh(stdscr);
+            napms(60);
 
+
+
+            livroY = 8+Yall;
+            werase(stdscr);// Limpa a janela para desenhar o olho fechando
+            mvwprintw(stdscr, livroY++,     livroX-10,                   "____  ");
+                    mvwprintw(stdscr, livroY++,     livroX-20,"       ,-'  ,-|  ");
+                    mvwprintw(stdscr, livroY++,     livroX-20,"   _,-'_,--'  |  ");
+                    mvwprintw(stdscr, livroY++,     livroX-20,",-'_,-'       |  ");
+                    mvwprintw(stdscr, livroY++,     livroX-20,"|   |         |  ");
+                    mvwprintw(stdscr, livroY++,     livroX-20,"|fun|  ,--,   |  ");
+                    mvwprintw(stdscr, livroY++,     livroX-20,"|da | '    |  |  ");
+                    mvwprintw(stdscr, livroY++,     livroX-20,"|mat|     ,/  |  ");
+                    mvwprintw(stdscr, livroY++,     livroX-20,"|ele|    /    |  ");
+                    mvwprintw(stdscr, livroY++,     livroX-20,"|ent|   /   , |  ");
+                    mvwprintw(stdscr, livroY++,     livroX-20,"| 2 |  /,--'  |  ");
+                    mvwprintw(stdscr, livroY++,     livroX-20,"|   |         |  ");
+                    mvwprintw(stdscr, livroY++,     livroX-20,"|   |         |  ");
+                    mvwprintw(stdscr, livroY++,     livroX-20,"|   |       ,-'  ");
+                    mvwprintw(stdscr, livroY++,     livroX-20,"|   |    ,-'     ");
+                    mvwprintw(stdscr, livroY++,     livroX-20,"|___| ,-'        ");
+            wrefresh(stdscr);   
+
+
+            livroY = 8+Yall;
+            napms(105);
+            werase(stdscr);
+            mvwprintw(stdscr, livroY++,     livroX-20,"              __,,");
+            mvwprintw(stdscr, livroY++,     livroX-20,"     ___,--'''__,|");
+            mvwprintw(stdscr, livroY++,     livroX-20,"_,--'___---'''   |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|   |            |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|fun|            |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|da |   ,--,     |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|mat|  '    |    |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|ele|      ,/    |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|ent|     /      |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"| 1 |    /   ,   |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|   |   /,--'    |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|   |            |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|   |           _|");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|   |    __,--''  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|___|,--'         ");
+            wrefresh(stdscr);
+            napms(105); // Espera 2 segundos
+
+
+
+                    
+            livroY = 8+Yall;
+            werase(stdscr);
+            mvwprintw(stdscr, livroY++,     livroX-20," ____________________");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |"); 
+            mvwprintw(stdscr, livroY++,     livroX-20,"|       ,-'''-.      |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|      '       |     |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|            ,-'     |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|          ,-'       |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|        ,-          |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|       /_______     |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|____________________|");
+            wrefresh(stdscr);
+            napms(105);
+            
+
+            livroY = 8+Yall;
+            werase(stdscr);// Limpa a janela para desenhar o olho
+            mvwprintw(stdscr, livroY++,     livroX-20," ___________________     ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|    ''---..,_,.-=:;|    ");   
+            mvwprintw(stdscr, livroY++,     livroX-20,"|            ||||||||    ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|            ||||||||    ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|   .,       ||||||||    ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|  /   \\    ||||||||    ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|      ,     ||||||||    ");                 
+            mvwprintw(stdscr, livroY++,     livroX-20,"|    ,'      ||||||||    ");       
+            mvwprintw(stdscr, livroY++,     livroX-20,"|  .'___     ||||||||    ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|            ||||||||    ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|            ||||||||    ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|            ||||||||    ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|___         ||||||||    ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    ''---..,|;:-=\"'     ");
+            wrefresh(stdscr);
+            napms(55);
+
+
+
+
+            livroY = 8+Yall;
+            werase(stdscr);// Limpa a janela para desenhar o olho
+            mvwprintw(stdscr, livroY++,     livroX-20," ___________________  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|''-=::;;_'','.\"',:| ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|         || |||  ||| "); 
+            mvwprintw(stdscr, livroY++,     livroX-20,"|         || |||  ||| ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|  ,.-,   || |||  ||| ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"| '    |  || |||  ||| ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|      /  || |||  ||| ");                 
+            mvwprintw(stdscr, livroY++,     livroX-20,"|   ,-'   || |||  ||| ");       
+            mvwprintw(stdscr, livroY++,     livroX-20,"|  /____  || |||  ||| ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|         || |||  ||| ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|         || |||  ||| ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|         || |||  ||| ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|_        ||,|||,_||| ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"''-=:..,_'' ;:'  ''   ");
+            wrefresh(stdscr);
+            napms(55);
+            
+            livroY = 8+Yall;
+            werase(stdscr);// Limpa a janela para desenhar o olho fechando
+            mvwprintw(stdscr, livroY++,     livroX-20,"     ___________________   ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    |'-,'-,'-, '--,,'-, |  ");       
+            mvwprintw(stdscr, livroY++,     livroX-20,"    |   '-,'-,'-,  | || |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    |     || | ||  | || |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    | ,-. || | ||  | || |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    |    ||| | ||  | || |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    |   ,'|| | ||  | || |  ");                 
+            mvwprintw(stdscr, livroY++,     livroX-20,"    | ,'  || | ||  | || |  ");       
+            mvwprintw(stdscr, livroY++,     livroX-20,"    |',,._|| | ||  | || |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    |     || | ||  | || |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    |     || | ||  | || |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    |     || | ||  | || |  "); 
+            mvwprintw(stdscr, livroY++,     livroX-20,"    |     || | ||._|_||_|  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    '-,.,.||_|_||'-,:'' '  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    '-,; -',;'             ");
+            wrefresh(stdscr);
+            napms(105);
+
+            livroY = 8+Yall;
+            werase(stdscr);// Limpa a janela para desenhar o olho fechado
+
+            mvwprintw(stdscr, livroY++,     livroX-20,"          ___,____________________   ");
+            mvwprintw(stdscr, livroY++,     livroX-20," ___---'''__,|                    |  ");    
+            mvwprintw(stdscr, livroY++,     livroX-20,"|_,,--''''   |                    |  "); 
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |  ");     
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |  ");         
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||         _|____________________|  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||  __,--''                         ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|,--'                                ");
+            wrefresh(stdscr);
+            napms(105);  
+
+            livroY = 8+Yall;
+            werase(stdscr);
+            mvwprintw(stdscr, livroY++,     livroX-20," ____________________ ____________________   ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");    
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");      
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  "); 
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|____________________|____________________|  ");
+            wrefresh(stdscr);
+            livroY = 8+Yall;
+            napms(100);
+}
+if(*livro1==0&&*livro2==0&&*livro3==1){
+            werase(stdscr); // LIMPA A JANELA PARA DESENHAR O LIVRO 3 FECHADO
+            mvwprintw(stdscr, livroY++,     livroX-20,"     ______ ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    /     /|");
+            mvwprintw(stdscr, livroY++,     livroX-20,"   /     / |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"  /     /  |"); 
+            mvwprintw(stdscr, livroY++,     livroX-20," /_____/   |"); 
+            mvwprintw(stdscr, livroY++,     livroX-20,"|     |    |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|fund.|    |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|da   |    |"); 
+            mvwprintw(stdscr, livroY++,     livroX-20,"|mat. |    |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|elem-|    |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|entar|    |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|  3  |    |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|     |    |");    
+            mvwprintw(stdscr, livroY++,     livroX-20,"|     |   /" );
+            mvwprintw(stdscr, livroY++,     livroX-20,"|     |  /"  );
+            mvwprintw(stdscr, livroY++,     livroX-20,"|     | /"   );
+            mvwprintw(stdscr, livroY++,     livroX-20,"|_____|/"    );
+            wrefresh(stdscr);
+            napms(60);
+
+            
+            livroY = 8+Yall;
+            werase(stdscr); // LIMPA A JANELA PARA DESENHAR O LIVRO 3 COMEÇANDO A ABRIR
+            mvwprintw(stdscr, livroY++,     livroX-10,          "____  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"       ,-'  ,-|  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"   _,-'_,--'  |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,",-'_,-'       |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|   |     _,  |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|fun|  ,-'  | |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|da |      _| |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|mat|   ,-' | |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|ele|      _| |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|ent|   ,-'   |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"| 3 |         |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|   |         |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|   |         |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|   |       ,-'  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|   |    ,-'     ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|___| ,-'        ");
+            wrefresh(stdscr);  
+            
+            
+
+            livroY = 8+Yall;
+            napms(105);
+            werase(stdscr);
+            mvwprintw(stdscr, livroY++,     livroX-20,"              __,,");
+            mvwprintw(stdscr, livroY++,     livroX-20,"     ___,--'''__,|");
+            mvwprintw(stdscr, livroY++,     livroX-20,"_,--'___---'''   |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|   |            |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|fun|            |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|da |    _--.-   |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|mat|         |  | ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|ele|     __--|  |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|ent|         |  | ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"| 3 |     __--'  |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|   |            |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|   |            |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|   |           _|");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|   |    __,--''  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|___|,--'         ");
+            wrefresh(stdscr);
+            napms(105); 
+
+            livroY = 8+Yall;
+            werase(stdscr); // LIMPA A JANELA PARA DESENHAR AS PÁGINAS CENTRALIZADAS COM O NÚMERO 3
+            mvwprintw(stdscr, livroY++,     livroX-20," ____________________");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |"); 
+            mvwprintw(stdscr, livroY++,     livroX-20,"|       ----.        |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|            |       |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|        ----'       |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|            |       |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|       ----'        |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|____________________|");
+            wrefresh(stdscr);
+            napms(105);
+            
+            livroY = 8+Yall;
+            werase(stdscr); // LIMPA A JANELA PARA MOSTRAR AS PÁGINAS EM TRANSIÇÃO PARA A ESQUERDA
+            mvwprintw(stdscr, livroY++,     livroX-20," ___________________     ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|    ''---..,_,.-=:;|    ");   
+            mvwprintw(stdscr, livroY++,     livroX-20,"|            ||||||||    ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|            ||||||||    ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|   '---.    ||||||||    ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|        |   ||||||||    ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|    '--,;   ||||||||    ");                 
+            mvwprintw(stdscr, livroY++,     livroX-20,"|        |   ||||||||    ");       
+            mvwprintw(stdscr, livroY++,     livroX-20,"|   '--,.|   ||||||||    ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|            ||||||||    ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|            ||||||||    ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|            ||||||||    ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|___         ||||||||    ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    ''---..,|;:-=\"'     ");
+            wrefresh(stdscr);
+            napms(55);
+
+            livroY = 8+Yall;
+            werase(stdscr); // LIMPA A JANELA PARA MOSTRAR AS PÁGINAS AINDA MAIS ABERTAS À ESQUERDA
+            mvwprintw(stdscr, livroY++,     livroX-20," ___________________  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|''-=::;;_'','.\"',:| ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|         || |||  ||| "); 
+            mvwprintw(stdscr, livroY++,     livroX-20,"|         || |||  ||| ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|  '-,.   || |||  ||| ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|      |  || |||  ||| ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|  '-,.|  || |||  ||| ");                 
+            mvwprintw(stdscr, livroY++,     livroX-20,"|      |  || |||  ||| ");       
+            mvwprintw(stdscr, livroY++,     livroX-20,"|  '-,.'  || |||  ||| ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|         || |||  ||| ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|         || |||  ||| ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|         || |||  ||| ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|_        ||,|||,_||| ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"''-=:..,_'' ;:'  ''   ");
+            wrefresh(stdscr);
+            napms(55);
+            
+            livroY = 8+Yall;
+            werase(stdscr); // LIMPA A JANELA PARA DESENHAR O LIVRO QUASE TOTALMENTE ABERTO
+            mvwprintw(stdscr, livroY++,     livroX-20,"     ___________________   ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    |'-,'-,'-, '--,,'-, |  ");       
+            mvwprintw(stdscr, livroY++,     livroX-20,"    |   '-,'-,'-,  | || |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    |     || | ||  | || |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    |'-,  || | ||  | || |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    |   | || | ||  | || |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    |'-,' || | ||  | || |  ");                 
+            mvwprintw(stdscr, livroY++,     livroX-20,"    |   | || | ||  | || |  ");       
+            mvwprintw(stdscr, livroY++,     livroX-20,"    |'-,| || | ||  | || |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    |     || | ||  | || |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    |     || | ||  | || |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    |     || | ||  | || |  "); 
+            mvwprintw(stdscr, livroY++,     livroX-20,"    |     || | ||._|_||_|  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    '-,.,.||_|_||'-,:'' '  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    '-,; -',;'             ");
+            wrefresh(stdscr);
+            napms(105);
+
+            livroY = 8+Yall;
+            werase(stdscr); // LIMPA A JANELA PARA MOSTRAR A CAPA TOTALMENTE DEITADA
+
+            mvwprintw(stdscr, livroY++,     livroX-20,"          ___,____________________   ");
+            mvwprintw(stdscr, livroY++,     livroX-20," ___---'''__,|                    |  ");    
+            mvwprintw(stdscr, livroY++,     livroX-20,"|_,,--''''   |                    |  "); 
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |  ");     
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |  ");         
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||         _|____________________|  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||  __,--''                         ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|,--'                                ");
+            wrefresh(stdscr);
+            napms(105);  
+
+            livroY = 8+Yall;
+            werase(stdscr); // LIMPA A JANELA PARA DESENHAR AS DUAS PÁGINAS EM BRANCO TOTALMENTE ABERTAS NO FINAL
+            mvwprintw(stdscr, livroY++,     livroX-20," ____________________ ____________________   ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");    
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");      
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  "); 
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|____________________|____________________|  ");
+            wrefresh(stdscr);
+            livroY = 8+Yall;
+            napms(100);
+}
+}
 /*          mvwprintw(stdscr, livroY,       livroX," ____________________ _____________________ ");
             mvwprintw(stdscr, livroY+1,     livroX,"|CAPITULO I:EQUACOES |CAPITULO II:Silogismo|");    
             mvwprintw(stdscr, livroY+2,     livroX,"|Exemplo Pratico     |Diagramas de         |");
@@ -189,7 +587,7 @@ void abrirlivro()
             mvwprintw(stdscr, livroY+8,     livroX,"|Ax - Cx = D + B     |afirmar que todo ou  |");
             mvwprintw(stdscr, livroY+9,     livroX,"|2)Evidencie x:      |nenhum elemento de A |");
             mvwprintw(stdscr, livroY+10,    livroX,"|x * (A - C) = D + B |está em C            |");
-            mvwprintw(stdscr, livroY+11,    livroX,"| x = (D + B)/(A - C)|                     |");
+            mvwprintw(stdscr, livroY+10,    livroX,"| x = (D + B)/(A - C)|                     |");
             mvwprintw(stdscr, livroY+12,    livroX,"|____________________|_____________________|"); 
 */
 /*          mvwprintw(stdscr, livroY,       livroX," ____________________ _____________________ ");
@@ -218,10 +616,197 @@ void abrirlivro()
             mvwprintw(stdscr, livroY+9,      livroX,"|                    |                     |");
             mvwprintw(stdscr, livroY+10,     livroX,"|                    | Pico:T3             |");
             mvwprintw(stdscr, livroY+11,     livroX,"|                    |                     |");
-            mvwprintw(stdscr, livroY+12,     livroX,"|____________________|_____________________|");*/
+            mvwprintw(stdscr, livroY+12,     livroX,"|____________________|_____________________|");
 
 
 
 
 
+            
+            werase(stdscr);// Limpa a janela para desenhar o olho
+            mvwprintw(stdscr, livroY++,     livroX-20,"     ______ ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    /     /|");
+            mvwprintw(stdscr, livroY++,     livroX-20,"   /     / |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"  /     /  |"); 
+            mvwprintw(stdscr, livroY++,     livroX-20," /_____/   |"); 
+            mvwprintw(stdscr, livroY++,     livroX-20,"|     |    |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|fund.|  _ |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|da   | / '|"); 
+            mvwprintw(stdscr, livroY++,     livroX-20,"|mat. |'  ||");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|elem-| .' |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|entar| | /|");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|  2  | |/ | ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|     |    |");    
+            mvwprintw(stdscr, livroY++,     livroX-20,"|     |   /" );
+            mvwprintw(stdscr, livroY++,     livroX-20,"|     |  /"  );
+            mvwprintw(stdscr, livroY++,     livroX-20,"|     | /"   );
+            mvwprintw(stdscr, livroY++,     livroX-20,"|_____|/"    );
+            wrefresh(stdscr);
+            napms(60);
 
+
+
+            livroY = 8+Yall;
+            werase(stdscr);// Limpa a janela para desenhar o olho fechando
+            mvwprintw(stdscr, livroY++,     livroX-20,                  "____");
+                    mvwprintw(stdscr, livroY++,     livroX-20,"       ,-'  ,-|  ");
+                    mvwprintw(stdscr, livroY++,     livroX-20,"   _,-'_,--'  |");
+                    mvwprintw(stdscr, livroY++,     livroX-20,",-'_,-'       |");
+                    mvwprintw(stdscr, livroY++,     livroX-20,"|   |         |  ");
+                    mvwprintw(stdscr, livroY++,     livroX-20,"|fun|  ,--,   |   ");
+                    mvwprintw(stdscr, livroY++,     livroX-20,"|da | '    |  |  ");
+                    mvwprintw(stdscr, livroY++,     livroX-20,"|mat|     ,/  |   ");
+                    mvwprintw(stdscr, livroY++,     livroX-20,"|ele|    /    |   ");
+                    mvwprintw(stdscr, livroY++,     livroX-20,"|ent|   /   , |   ");
+                    mvwprintw(stdscr, livroY++,     livroX-20,"| 2 |  /,--'  |   ");
+                    mvwprintw(stdscr, livroY++,     livroX-20,"|   |         |   ");
+                    mvwprintw(stdscr, livroY++,     livroX-20,"|   |         |   ");
+                    mvwprintw(stdscr, livroY++,     livroX-20,"|   |       ,-'   ");
+                    mvwprintw(stdscr, livroY++,     livroX-20,"|   |    ,-'      ");
+                    mvwprintw(stdscr, livroY++,     livroX-20,"|___| ,-'         ");
+
+
+            livroY = 8+Yall;
+            napms(105);
+            mvwprintw(stdscr, livroY++,     livroX-20,"              __,,  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"     ___,--'''__,|");
+            mvwprintw(stdscr, livroY++,     livroX-20,"_,--'___---'''   |   ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|   |            |       ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|fun|            |   ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|da |   ,--,     |       ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|mat|  '    |     |   ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|ele|      ,/    |           ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|ent|     /      |   ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"| 1 |    /   ,      |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|   |   /,--'     |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|   |            |          ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|   |           _|   ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|   |    __,--''          ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|___|,--'           ");
+            wrefresh(stdscr);
+            napms(105); // Espera 2 segundos
+
+
+
+                    
+            livroY = 8+Yall;
+            werase(stdscr);
+            mvwprintw(stdscr, livroY++,     livroX-20," ____________________");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |"); 
+            mvwprintw(stdscr, livroY++,     livroX-20,"|       ,-'''-.      |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|      '       |     |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|            ,-'     |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|          ,-'       |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|        ,-          |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|       /_______     |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|____________________|");
+            wrefresh(stdscr);
+            napms(105);
+            
+
+            livroY = 8+Yall;
+            werase(stdscr);// Limpa a janela para desenhar o olho
+            mvwprintw(stdscr, livroY++,     livroX-20," ___________________   ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|    ''---..,_,.-=:;|    ");   
+            mvwprintw(stdscr, livroY++,     livroX-20,"|            ||||||||    ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|            ||||||||    ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|   .,       ||||||||    ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|  /   \     ||||||||    ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|      ,     ||||||||    ");                 
+            mvwprintw(stdscr, livroY++,     livroX-20,"|    ,'      ||||||||    ");       
+            mvwprintw(stdscr, livroY++,     livroX-20,"|  .'___     ||||||||    ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|            ||||||||    ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|            ||||||||    ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|            ||||||||  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|___         ||||||||");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    ''---..,|;:-=\"' ");
+            wrefresh(stdscr);
+            napms(55);
+
+
+
+
+            livroY = 8+Yall;
+            werase(stdscr);// Limpa a janela para desenhar o olho
+            mvwprintw(stdscr, livroY++,     livroX-20," ___________________  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|''-=::;;_'','.\"',:| ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|         || |||  ||| "); 
+            mvwprintw(stdscr, livroY++,     livroX-20,"|         || |||  ||| ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|  ,.-,   || |||  ||| ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"| '    |  || |||  ||| ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|      /  || |||  ||| ");                 
+            mvwprintw(stdscr, livroY++,     livroX-20,"|   ,-'   || |||  ||| ");       
+            mvwprintw(stdscr, livroY++,     livroX-20,"|  /____  || |||  ||| ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|         || |||  ||| ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|         || |||  ||| ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|         || |||  ||| ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|_        ||,|||,_||| ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"''-=:..,_'' ;:'  ''   ");
+            wrefresh(stdscr);
+            napms(55);
+            
+            livroY = 8+Yall;
+            werase(stdscr);// Limpa a janela para desenhar o olho fechando
+            mvwprintw(stdscr, livroY++,     livroX-20,"     ___________________   ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    |'-,'-,'-, '--,,'-, |  ");       
+            mvwprintw(stdscr, livroY++,     livroX-20,"    |   '-,'-,'-,  | || |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    |     || | ||  | || |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    | ,-. || | ||  | || |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    |    ||| | ||  | || |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    |   ,'|| | ||  | || |  ");                 
+            mvwprintw(stdscr, livroY++,     livroX-20,"    | ,'  || | ||  | || |  ");       
+            mvwprintw(stdscr, livroY++,     livroX-20,"    |',,._|| | ||  | || |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    |     || | ||  | || |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    |     || | ||  | || |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    |     || | ||  | || |  "); 
+            mvwprintw(stdscr, livroY++,     livroX-20,"    |     || | ||._|_||_|  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    '-,.,.||_|_||'-,:'' '  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"    '-,; -',;'             ");
+            wrefresh(stdscr);
+            napms(105);
+
+            livroY = 8+Yall;
+            werase(stdscr);// Limpa a janela para desenhar o olho fechado
+
+            mvwprintw(stdscr, livroY++,     livroX-20,"          ___,____________________");
+            mvwprintw(stdscr, livroY++,     livroX-20," ___---'''__,|                    |  ");    
+            mvwprintw(stdscr, livroY++,     livroX-20,"|_,,--''''   |                    |     "); 
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |      ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |      ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |      ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |     ");     
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |      ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |      ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||          |                    |     ");         
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||         _|____________________|     ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|||  __,--''                              ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|,--'                                    ");
+            wrefresh(stdscr);
+            napms(105);  
+
+            livroY = 8+Yall;
+            werase(stdscr);
+            mvwprintw(stdscr, livroY++,     livroX-20," ____________________ ____________________  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");    
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");      
+        mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |   
+            mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |   ");
+            mvwprintw(stdscr, livroY++,     livroX-20,"|____________________|____________________|   ");
+            wrefresh(stdscr);
+            livroY = 8+Yall;
+            napms(100);
+            
+            */

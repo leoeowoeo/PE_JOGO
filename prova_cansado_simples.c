@@ -5,7 +5,7 @@
 // Função que substitui mvwprintw e gera o efeito de desmoronamento
 int mvwprintw_cansado(WINDOW *janela, int Yprova, int Xprova, const char *prova, int cansando);
 
-int prova_cansado_simples(int *cor)
+int prova_cansado_simples(int *cor,int *acertos)
 {
     initscr();
     start_color();
@@ -27,8 +27,6 @@ int prova_cansado_simples(int *cor)
     int tecla = 0, i=0, j;
     int marcar = 0;
     int marcar_confirmacao = 0; 
-    int acerto=0;
-    int certeza=0;
     int confirmado = 0; 
     int resposta_dada = 0;
     int resposta[5],respostacerta[5]={1,0,2,1,2};
@@ -373,15 +371,15 @@ int prova_cansado_simples(int *cor)
         }
     }
 
-    acerto = 0;
+    *acertos = 0;
     for(i=0;i<5;i++)
     {
         if(resposta[i]==respostacerta[i])
-            acerto++;
+            (*acertos)++;
     }
     
     werase(provacansado_simples);
-    mvwprintw(provacansado_simples, 0, 0, "Acertos: %d", acerto);
+    mvwprintw(provacansado_simples, 0, 0, "Acertos: %d", *acertos);
     wrefresh(provacansado_simples);
     
     nodelay(provacansado_simples, FALSE);
@@ -414,7 +412,6 @@ int mvwprintw_cansado(WINDOW *janela, int Yprova, int Xprova, const char *prova,
             
             mvwaddch(janela,Yprova, Xprova+i,prova[i]);
     }
-    return 0;
 }
 /*
 initscr = iniciar screen
