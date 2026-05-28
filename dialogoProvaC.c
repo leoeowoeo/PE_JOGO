@@ -1,4 +1,6 @@
 #include<ncurses.h>
+
+
 int dialogoprovac()
 {
     int Xall=(COLS/2)-57, Yall=3;
@@ -11,35 +13,35 @@ int dialogoprovac()
     
     // --- ALARME ---
     erase();
-    mvprintw(linha_atual, Xall, "alarme- BEEP BEEP BEEP");
+    slow_mvwprintw(stdscr, "alarme- BEEP BEEP BEEP", linha_atual, Xall);
     beep(); refresh(); napms(500);
     
     erase();
-    mvprintw(linha_atual, Xall, "alarme- BEEP BEEP BEEP");
+    slow_mvwprintw(stdscr, "alarme- BEEP BEEP BEEP", linha_atual, Xall);
     beep(); refresh(); napms(500);
     
     erase();
-    mvprintw(linha_atual, Xall, "alarme- BEEP BEEP BEEP");
+    slow_mvwprintw(stdscr, "alarme- BEEP BEEP BEEP", linha_atual, Xall);
     beep(); refresh(); napms(500);
     
     linha_atual++;
-    mvprintw(linha_atual, Xall, "Garoto- Ah, naooo, a prova");
+    slow_mvwprintw(stdscr, "Garoto- Ah, naooo, a prova", linha_atual, Xall);
     refresh(); napms(1000);
     
     linha_atual++;
-    mvprintw(linha_atual, Xall, "Garoto- preciso me arrumar");
+    slow_mvwprintw(stdscr, "Garoto- preciso me arrumar", linha_atual, Xall);
     refresh(); napms(1000);
 
     linha_atual++;
-    mvprintw(linha_atual, Xall, "Voce se arruma bem e sai do quarto, triste");
+    slow_mvwprintw(stdscr, "Voce se arruma bem e sai do quarto, triste", linha_atual, Xall);
     refresh(); napms(1500);
 
     linha_atual++;
-    mvprintw(linha_atual, Xall, "Mae- Bom dia filho, ta pro-?");
+    slow_mvwprintw(stdscr, "Mae- Bom dia filho, ta pro-?", linha_atual, Xall);
     refresh(); napms(1200);
 
     linha_atual++;
-    mvprintw(linha_atual, Xall, "Mae- nossa! Alguem morreu?");
+    slow_mvwprintw(stdscr, "Mae- nossa! Alguem morreu?", linha_atual, Xall);
     refresh(); napms(1200);
 
     linha_atual += 2;
@@ -48,11 +50,12 @@ int dialogoprovac()
 
     while (1)
     {
-        if (marcar_resposta == 0)wattron(stdscr, A_REVERSE);
+        if (marcar_resposta == 0) wattron(stdscr, A_REVERSE);
+        // Usando mvwprintw padrão no menu de escolha para evitar o efeito de digitação repetidamente ao mover as setas
         mvprintw(linha_atual, Xall + 2, "[ Eu, vou morrer hoje com essa prova... ]");
         if (marcar_resposta == 0) wattroff(stdscr, A_REVERSE);
 
-        if (marcar_resposta == 1)wattron(stdscr, A_REVERSE);
+        if (marcar_resposta == 1) wattron(stdscr, A_REVERSE);
         mvprintw(linha_atual + 1, Xall + 2, "[ an? porque??? ]");
         if (marcar_resposta == 1) wattroff(stdscr, A_REVERSE);
 
@@ -75,69 +78,71 @@ int dialogoprovac()
     if (marcar_resposta == 0)
     {
         //DEPRESSIVO
-        mvprintw(linha_atual, Xall, "Mae- Meu deus, o que foi?");
+        slow_mvwprintw(stdscr, "Mae- Meu deus, o que foi?", linha_atual, Xall);
         refresh(); napms(1200);
     }
     else
     {
         //CONFUSO
-        mvprintw(linha_atual, Xall, "Mae- porque? olha a sua cara de morte!");
+        slow_mvwprintw(stdscr, "Mae- porque? olha a sua cara de morte!", linha_atual, Xall);
         refresh(); napms(1200);
 
-            linha_atual += 2;
-        mvprintw(linha_atual, Xall, "Garoto- Ah, e porque eu tenho prova hoje");
+        linha_atual += 2;
+        slow_mvwprintw(stdscr, "Garoto- Ah, e porque eu tenho prova hoje", linha_atual, Xall);
         refresh(); napms(1200);
     }
 
     linha_atual++;
-    mvprintw(linha_atual, Xall, "Mae- Hmmm, foi dormir tarde ne?");
+    slow_mvwprintw(stdscr, "Mae- Hmmm, foi dormir tarde ne?", linha_atual, Xall);
     refresh(); napms(1200);
 
     linha_atual++;
-    mvprintw(linha_atual, Xall, "Garoto- Naoo! Eu dormi num horario bom, so nao estudei muito...");
+    slow_mvwprintw(stdscr, "Garoto- Naoo! Eu dormi num horario bom, so nao estudei muito...", linha_atual, Xall);
     refresh(); napms(1800);
 
     linha_atual++;
-    mvprintw(linha_atual, Xall, "Mae- ");
-   wattron(stdscr, A_BOLD);
-    wprintw(stdscr, "P0&&@ ");
+    slow_mvwprintw(stdscr, "Mae- ", linha_atual, Xall);
+    
+    wattron(stdscr, A_BOLD);
+    slow_mvwprintw(stdscr, "P0&&@ ", linha_atual, Xall + 6); // Xall + 6 para alinhar após o "Mae- "
     wattroff(stdscr, A_BOLD);
-    wprintw(stdscr, "sabia!");
+    
+    slow_mvwprintw(stdscr, "sabia!", linha_atual, Xall + 12); // Xall + 12 para alinhar após o "P0&&@ "
     refresh(); napms(1850);
 
     //CAFÉ
     linha_atual += 2;
-    mvprintw(linha_atual, Xall, "Voce vai tomar cafe, com tempo sobrando");
+    slow_mvwprintw(stdscr, "Voce vai tomar cafe, com tempo sobrando", linha_atual, Xall);
     refresh(); napms(2000);
 
     linha_atual++;
-    mvprintw(linha_atual, Xall, "Voce se arruma e sai para escola, triste");
+    slow_mvwprintw(stdscr, "Voce se arruma e sai para escola, triste", linha_atual, Xall);
     refresh(); napms(2500);
 
     erase();
     linha_atual = Yall; 
 
-    mvprintw(linha_atual, Xall, "Professor- A prova ta facil, a materia que a gente viu em sala");
+    slow_mvwprintw(stdscr, "Professor- A prova ta facil, a materia que a gente viu em sala", linha_atual, Xall);
     linha_atual++;
-    mvprintw(linha_atual, Xall, "e a que eu marquei para voces lerem nos livros em casa");
+    slow_mvwprintw(stdscr, "e a que eu marquei para voces lerem nos livros em casa", linha_atual, Xall);
     refresh(); napms(3500);
 
     linha_atual += 2;
-    mvprintw(linha_atual, Xall, "Professor- Pega a prova e passa pra traz");
+    slow_mvwprintw(stdscr, "Professor- Pega a prova e passa pra traz", linha_atual, Xall);
     refresh(); napms(800);
     linha_atual++;
-    mvprintw(linha_atual, Xall, "Professor- Pega a prova e passa pra traz");
+    slow_mvwprintw(stdscr, "Professor- Pega a prova e passa pra traz", linha_atual, Xall);
     refresh(); napms(800);
     linha_atual++;
-    mvprintw(linha_atual, Xall, "Professor- Pega a prova e passa pra traz...");
+    slow_mvwprintw(stdscr, "Professor- Pega a prova e passa pra traz...", linha_atual, Xall);
     refresh(); napms(1500);
 
     linha_atual += 2;
-    mvprintw(linha_atual, Xall, "Todos pegam as suas provas se arrumam e o professor diz:");
+    slow_mvwprintw(stdscr, "Todos pegam as suas provas se arrumam e o professor diz:", linha_atual, Xall);
     refresh(); napms(2000);
     
     linha_atual++;
-    mvprintw(linha_atual, Xall, "Podem virar as provas...");
+    slow_mvwprintw(stdscr, "Podem virar as provas...", linha_atual, Xall);
     refresh(); napms(4000);
     return 0;
 }
