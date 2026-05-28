@@ -1,5 +1,5 @@
 #include <ncurses.h>
-void transiScao(int *epilepsia){
+void transicao(int *epilepsia){
     if(*epilepsia==0)
     {for(int i=0;i<LINES;i++){
         for(int j=0;j<COLS;j++){

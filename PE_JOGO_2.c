@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
-#
 
 #define TARGET_FRAME_MS 30 // tempo de quadro desejado em milissegundos
     #define VERMELHO
