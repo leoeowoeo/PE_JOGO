@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <time.h>
 
-#define TARGET_FRAME_MS 30 
+#define TARGET_FRAME_MS 30 // teste pra commit
     #define VERMELHO
     #define COR_MARROM         8
     #define COR_JANELA         9
