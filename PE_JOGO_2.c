@@ -55,7 +55,7 @@ int main()
                 "Ler 3 livros e jogar todos os jogos do celular",
                 "Ler 3 livros e dormir?"
             };
-                        
+            
 
     char *olhos[10]={"##","@@", "**","$$","vv","><","XX","OO","00","oo"};
     char *faces[5] = {"(  )", "[  ]", "{  }", "<  >","d  b"};
@@ -76,7 +76,9 @@ int main()
     int maexinga=0;
     int epilepsia=0;
     // condições de inicio do ato2 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    int atividade_sono=2,estudo=3;
+    int atividade_sono=5,estudo=3;
+            //CONDIÇÕES DO ATO 3--------------------------------------------------------------------------------------------------------
+    int depoisprova=0;
 
     int iniciar=0;
     keypad(stdscr, TRUE); // ativa o teclado para usar as setas, na tela principal, que é a stdscr
@@ -191,6 +193,8 @@ int main()
 
     int maepistola=0,maepistoladef=0;
 
+    while(1){//antes/depoisprova
+
     while(1)//jogo
     {
         clock_t frame_start = clock(); // mede o tempo no começo do loop de jogo
@@ -250,7 +254,7 @@ int main()
 
 
             
-            if(celularpickup==1)
+            if(celularpickup==1&&depoisprova==0)
             {
                         mvprintw(celularY,      celularX+18, "  _______________ ");
                         mvprintw(celularY+1,    celularX+18, " | _____________ |");        
@@ -267,7 +271,7 @@ int main()
                         mvprintw(celularY+12,   celularX+18, " \\===============/");
             }
 
-            if(revistapickup==1)
+            if(revistapickup==1&&depoisprova==0)
             {       
                         mvprintw(revistay+2,    revistax+18, " |-_          __-|  ");
                         mvprintw(revistay+3,    revistax+18, " |  '--__.__-'   |  ");
@@ -335,7 +339,7 @@ int main()
             mvprintw(ybarra+1,xbarra,"|");
             mvprintw(ybarra+1,xbarra+12,"|");
             if(jogarcelular5!=5||encararespelho!=1||dormircama!=1||jogartodosjogos!=6||ler1jogar3!=4||ler3jogatodos!=4||ler3dormir!=3)
-                mvprintw(ybarra+5,xbarra,"quest:%s",quests[quest]);
+                mvprintw(ybarra+5,xbarra,"Quest: %s",quests[quest]);
 
             int espelhoy = 3+Yall, espelhox = 63+Xall;
             
@@ -348,7 +352,6 @@ int main()
                 erase();
                 atividade_sono++;
             }
-            mvprintw(LINES-10,COLS-30,"%d",encararespelho);
 
             if (x >= espelhox - 6 && x <= espelhox + 20 && y < espelhoy + 13 && vira % 2 == 1) {
             
@@ -485,7 +488,7 @@ int main()
 
             
 
-            if(celularpickup==0)
+            if(celularpickup==0&&depoisprova==0)
                     {
                         if(interagirCel==1)
                         {
@@ -986,7 +989,7 @@ for(int i=camaX-2; i<=camaX+7;i++)
         if(y>camaY&&y<camaY+5&&x>camaX-4&&x<camaX+9)
             {
                 interagirCam=1;
-                mvprintw(LINES-9, COLS-20, "dormir: F");
+                mvprintw(LINES-9, COLS-20, "Dormir: F");
                 if(tecla=='f'||tecla=='F')
                     {dormindo=1;}
             }
@@ -1041,8 +1044,10 @@ for(int i=camaX-2; i<=camaX+7;i++)
         {
             interagirJan=0;
         }
+if(depoisprova==1)
 //CELULAR
-    char *jogar[3] = {"cobrinha", "2048???", "batalha naval"};
+
+    {char *jogar[3] = {"cobrinha", "2048???", "batalha naval"};
     int escolha=0;
         if (celularpickup == 0 && y>celularY -3 && y<celularY + 3 && x >= celularX - 4 && x <= celularX + 4 && revistapickup==0) 
         {
@@ -1095,7 +1100,6 @@ for(int i=camaX-2; i<=camaX+7;i++)
                     break;
             }
         }
-        mvprintw(LINES-18,COLS-25,"jogarcelular%d",jogarcelular5);
         wrefresh(stdscr);
 
 //REVISTA
@@ -1121,7 +1125,7 @@ for(int i=camaX-2; i<=camaX+7;i++)
                 mvprintw(LINES-6, COLS-23, "Devolva o item da mao");
                 revistapickup=0;
             }
-//LIVRO
+        }
 /*)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
         ))))))))))))))))))))))))))))))))))))))
         )))))))))))))))))))))))))))))))))))))))
@@ -1370,8 +1374,8 @@ int pertoestante = ((x >= estanteX - 2 && x <= estanteX + 14) && (y >= estanteY 
         break;
     }
     if(tecla=='q')
-                break;
-    }
+        break;
+    }//while jogo
     
 
     if(iniciar==1)
@@ -1386,35 +1390,49 @@ int pertoestante = ((x >= estanteX - 2 && x <= estanteX + 14) && (y >= estanteY 
         iniciar=1;
         napms(1000);
     }
-}
+}//menu
+if(depoisprova==0)
+{
+    if(atividade_sono>5&&estudo>=3)// se ele não dormiu mas estudou ele faz a prova cansado e sabendo (prova cansado simples)
+    {
+        //cair_no_sono();
+        //dialogoprovacs();
+        prova_cansado_simples(&cor,&acertos);
+    }
 
-if(atividade_sono>5&&estudo>=3)// se ele não dormiu mas estudou ele faz a prova cansado e sabendo (prova cansado simples)
-{
-    //cair_no_sono();
-    //dialogoprovacs();
-    prova_cansado_simples(&cor,&acertos);
-}
+    if (atividade_sono<=5&&estudo>=3)// se ele dormiu e estudou ele faz a prova descansado e sabendo (prova simples)
+    {
+        //dormir();
+        //dialogoprovas();
+        prova_simples(&cor,&acertos);
+    }
 
-if (atividade_sono<=5&&estudo>=3)// se ele dormiu e estudou ele faz a prova descansado e sabendo (prova simples)
-{
-    //dormir();
-    //dialogoprovas();
-    prova_simples(&cor,&acertos);
+    if (atividade_sono>5&&estudo<3)//se ele nao dormiu e não estudou ele faz a prova descansado e burro  (prova cansado complexa)
+    {
+        //cair_no_sono();
+        //dialogoprovacc();
+        prova_cansado_complexa(&cor,&acertos);
+    }
+    if (atividade_sono<=5&&estudo<3)// se ele dormiu mas não estudou ele faz a prova descansado e burro (prova complexa)
+    {
+        
+        //dormir();
+        //dialogoprovac();
+        prova_complexa(&cor,&acertos);
+    }
 }
+//ATO III?
 
-if (atividade_sono>5&&estudo<3)//se ele nao dormiu e não estudou ele faz a prova descansado e burro  (prova cansado complexa)
+dialogodepoisprova(&acertos,&maexinga,&epilepsia);
+if(acertos<5)
 {
-    //cair_no_sono();
-    //dialogoprovacc();
-    prova_cansado_complexa(&cor,&acertos);
+    depoisprova=1;
 }
-if (atividade_sono<=5&&estudo<3)// se ele dormiu mas não estudou ele faz a prova descansado e burro (prova complexa)
-{
-    
-    //dormir();
-    //dialogoprovac();
-    prova_complexa(&cor,&acertos);
-}
+else
+    break;
+
+}//while do menu
+
     endwin();// fecha a janela
     return 0;
 }

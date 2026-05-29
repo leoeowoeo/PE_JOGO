@@ -32,7 +32,7 @@ int prova_simples(int *cor, int *acertos){
     char *questao5[5] = {"[A] Desespero = 0", "[B] Desespero = 50", "[C] Desespero = 100", "[D] O desespero nao pode ser medido in numeros decimais", "[E] Nao mensuravel"};
     
     char *confirmacao[2] = {"[S] Sim, entregar a prova", "[N] Nao, quero rever"};
-
+    werase(prova_simples);
         mvwprintw(prova_simples, Yall-1, Xall,"hmmmm");
     wrefresh(prova_simples);
     napms(1000);
@@ -41,7 +41,7 @@ int prova_simples(int *cor, int *acertos){
     wrefresh(prova_simples);
     napms(2000);
 
-        mvwprintw(prova_simples, Yall-1, Xall+13,",e dormi bem, acho que ta tudo certo então!");
+        mvwprintw(prova_simples, Yall-1, Xall+13,",e dormi bem, acho que ta tudo certo entao!");
     wrefresh(prova_simples);
     napms(2000);
     
@@ -112,14 +112,14 @@ int prova_simples(int *cor, int *acertos){
         
         // --- QUESTÃO 3 ---
         mvwprintw(prova_simples, Yprova++, Xprova, "|=================================================================================|"); 
-        mvwprintw(prova_simples, Yprova++, Xprova, "| QUESTAO 3: Se todo bixo da Rural e ansioso, e alguns ansiosos                   |"); 
+        mvwprintw(prova_simples, Yprova++, Xprova, "| QUESTAO 3: Se todo bixo da Rural eh ansioso, e alguns ansiosos                  |"); 
         mvwprintw(prova_simples, Yprova++, Xprova, "| gostam de programacao, podemos afirmar que:                                     |"); 
         mvwprintw(prova_simples, Yprova++, Xprova, "|                                                                                 |"); 
         mvwprintw(prova_simples, Yprova++, Xprova, "|---------------------------------------------------------------------------------|"); 
         mvwprintw(prova_simples, Yprova++, Xprova, "| [A] Todo bixo gosta de programacao.                                             |"); 
         mvwprintw(prova_simples, Yprova++, Xprova, "| [B] Nenhum bixo gosta de programacao.                                           |"); 
         mvwprintw(prova_simples, Yprova++, Xprova, "| [C] E possivel que algum bixo goste de programacao.                             |"); 
-        mvwprintw(prova_simples, Yprova++, Xprova, "| [D] Se bixo da rural gosta de programacao ele e ansioso                         |"); 
+        mvwprintw(prova_simples, Yprova++, Xprova, "| [D] Se bixo da rural gosta de programacao ele eh ansioso                        |"); 
         mvwprintw(prova_simples, Yprova++, Xprova, "| [E] Eu estou ansioso agora                                                      |"); 
         mvwprintw(prova_simples, Yprova++, Xprova, "|---------------------------------------------------------------------------------|"); 
         mvwprintw(prova_simples, Yprova++, Xprova, "|                                                                                 |"); 
@@ -336,8 +336,8 @@ int prova_simples(int *cor, int *acertos){
 /*
 Gabarito
 B
-B
-E
-C
 A
+C
+B
+C
 */
