@@ -89,7 +89,7 @@ int main()
     curs_set(0);
     while(1)//menu
     {
-        inicio(&selecao_olhos,&selecao_face,&selecao_pernas,&cor, &interage, &selecaocor,&iniciar,&epilepsia);
+        if(depoisprova==0) inicio(&selecao_olhos,&selecao_face,&selecao_pernas,&cor, &interage, &selecaocor,&iniciar,&epilepsia);
         if(epilepsia==1){
             mvprintw(LINES-5,5,"MODO DE EPILEPSIA");
         }
@@ -183,7 +183,7 @@ int main()
     napms(4000);
     erase();*/
     transicao(&epilepsia);
-    //quest=dialogoMae(&maexinga);;
+    quest=dialogoMae(&maexinga);;
 
     }
     // não botei um refresh aqui, pq eu posso botar varios printw e dps dar um refresh em tudo
@@ -194,9 +194,11 @@ int main()
     int maepistola=0,maepistoladef=0;
 
     while(1){//antes/depoisprova
-
+    if(atividade_sono>=4){atividade_sono=3;}
+    dormindo=0;
     while(1)//jogo
     {
+
         clock_t frame_start = clock(); // mede o tempo no começo do loop de jogo
     // Localização dos objetos IMOVEIS
         vontadedepisca++;
@@ -513,11 +515,16 @@ int main()
                         celularpickup=0;
                     }
 
-            
+        if(acertos<5&&depoisprova==1)
+        {
+            maepistoladef==0;
+            maepistola=0;
+        }
             if(maepistola>150)
                 maepistoladef=1;
             int portaY = 3+Yall, portaX = 11+Xall;
             
+        if(depoisprova==0){
             if(maepistoladef==1)
             {
                if(cor==1) wattron(stdscr,COLOR_PAIR(6));
@@ -532,7 +539,7 @@ int main()
             else
             {
                if(cor==1) wattron(stdscr,COLOR_PAIR(6));
-
+                    
                 mvprintw(portaY  , portaX+1, "                   ");
                 mvprintw(portaY+1, portaX+1, "          _______  ");
                 mvprintw(portaY+2, portaX+1, "          |     |\\ ");
@@ -561,13 +568,76 @@ int main()
                     mvprintw(portaY+5, portaX+13, "||  ");
                     }
             }
+        }
+        else if(acertos<5&&depoisprova==1){
+            if(maepistoladef==1)
+            {
+               if(cor==1) wattron(stdscr,COLOR_PAIR(6));
+                mvprintw(portaY+1, portaX+11, "_______");
+                mvprintw(portaY+2, portaX+11, "|     |");
+                mvprintw(portaY+3, portaX+11, "|     |");
+                mvprintw(portaY+4, portaX+11, "|*    |");
+                mvprintw(portaY+5, portaX+11, "|     |");
+                mvprintw(portaY+6, portaX+11, "I_____I");
+                wattroff(stdscr,COLOR_PAIR(6));
+            }
+            else
+            {
+               if(cor==1) wattron(stdscr,COLOR_PAIR(6));
+                    
+                mvprintw(portaY  , portaX+1, "                   ");
+                mvprintw(portaY+1, portaX+1, "          _______  ");
+                mvprintw(portaY+2, portaX+1, "          |     |\\ ");
+                mvprintw(portaY+3, portaX+1, "          |     | |");
+                mvprintw(portaY+4, portaX+1, "          |(00) | |");
+                mvprintw(portaY+5, portaX+1, "          | ||  |*|");
+                mvprintw(portaY+6, portaX+11,           "I_____I |");
+                mvprintw(portaY+7, portaX+18,                 "\\|");
+                wattroff(stdscr,COLOR_PAIR(6));
+
+
+                if(acertos<2)
+                {
+                    if(maexinga)
+                    {
+                    mvprintw(portaY  , portaX+1, " ________________");
+                    mvprintw(portaY+1, portaX-3, "|SEU INCOMPETENTE|");
+                    mvprintw(portaY+2, portaX-3, "|________________|");
+                    mvprintw(portaY+3, portaX+10, "\\  \\/");
+                    mvprintw(portaY+4, portaX+12, "(00) ");
+                    mvprintw(portaY+5, portaX+13, "||  ");
+                    }
+                    else
+                    {
+                        mvprintw(portaY  , portaX+1, " ________");
+                    mvprintw(portaY+1, portaX+1, "|00&!@&@C|");
+                    mvprintw(portaY+2, portaX+1, "|________|");
+                    mvprintw(portaY+3, portaX+10, "\\  \\/");
+                    mvprintw(portaY+4, portaX+12, "(00) ");
+                    mvprintw(portaY+5, portaX+13, "||  ");
+                    }
+                }
+                    else
+                    {
+                    mvprintw(portaY  , portaX-1, " ___________");
+                    mvprintw(portaY+1, portaX-1, "|vai estudar|");
+                    mvprintw(portaY+2, portaX-1, "|___________|");
+                    mvprintw(portaY+3, portaX+10, "\\  \\/");
+                    mvprintw(portaY+4, portaX+12, "(00) ");
+                    mvprintw(portaY+5, portaX+13, "||  ");
+                    }
+            }
+        }
 
             
 
             int gatoy=armarioY+13, gatox=armarioX+10;
+        if(depoisprova==0)
+        {
             mvprintw(gatoy,    gatox, "(\\   /)");
             mvprintw(gatoy+ 1, gatox, "(=*.*=)");
             mvprintw(gatoy+ 2, gatox, " (\")(\")_/");
+
             if(vontadedepisca>=300&&vontadedepisca<=390)
             {
                 meow++;
@@ -575,6 +645,7 @@ int main()
                     {mvprintw(gatoy-1,gatox+3, "MEOW");
                     meow=0;}
             }
+        }
 
             
             maepistola++;
@@ -1044,7 +1115,7 @@ for(int i=camaX-2; i<=camaX+7;i++)
         {
             interagirJan=0;
         }
-if(depoisprova==1)
+if(depoisprova==0)
 //CELULAR
 
     {char *jogar[3] = {"cobrinha", "2048???", "batalha naval"};
@@ -1361,16 +1432,29 @@ int pertoestante = ((x >= estanteX - 2 && x <= estanteX + 14) && (y >= estanteY 
     if (sleep_ms > 0) {
         napms(sleep_ms); // espera só o tempo necessário para completar o frame
     }
-
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     nodelay(stdscr, TRUE);
     if(atividade_sono>5)
     {
-        iniciar=1; 
+        iniciar=0;
         break;
     }
     if(dormindo==1)
     {
-        iniciar=1;
+        iniciar=0;
         break;
     }
     if(tecla=='q')
@@ -1378,7 +1462,7 @@ int pertoestante = ((x >= estanteX - 2 && x <= estanteX + 14) && (y >= estanteY 
     }//while jogo
     
 
-    if(iniciar==1)
+    if(iniciar==0)
     {
         break;
     }
@@ -1389,7 +1473,15 @@ int pertoestante = ((x >= estanteX - 2 && x <= estanteX + 14) && (y >= estanteY 
         refresh();
         iniciar=1;
         napms(1000);
-    }
+    }//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
 }//menu
 if(depoisprova==0)
 {
@@ -1423,7 +1515,7 @@ if(depoisprova==0)
 }
 //ATO III?
 
-dialogodepoisprova(&acertos,&maexinga,&epilepsia);
+//dialogodepoisprova(&acertos,&maexinga,&epilepsia);
 if(acertos<5)
 {
     depoisprova=1;

@@ -16,13 +16,13 @@ int dialogoMae(int *maexinga)
     linha_atual++;
     slow_mvwprintw(stdscr, "e assistindo desenho", linha_atual, Xall);
     refresh();
-    napms(4000);
+    napms(3500);
 
     linha_atual++;
     // --- MÃE CHAMA O NOME (ANIMAÇÃO PROGRESSIVA) ---
     slow_mvwprintw(stdscr, "A sua mae chama o seu nome", linha_atual, Xall);
     refresh(); 
-    napms(1500);
+    napms(1200);
 
     wattron(stdscr, A_BOLD);
     slow_mvwprintw(stdscr, "completo", linha_atual, Xall + 27);
@@ -224,7 +224,7 @@ int dialogoMae(int *maexinga)
         napms(1800);
 
         linha_atual++;
-        slow_mvwprintw(stdscr, "Mae- After fica igual um maluco conversando com aquele espelho ridiculo.", linha_atual, Xall);
+        slow_mvwprintw(stdscr, "Mae- Depois fica igual um maluco conversando com aquele espelho ridiculo.", linha_atual, Xall);
         refresh(); 
         napms(1800);
 
