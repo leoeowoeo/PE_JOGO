@@ -25,11 +25,11 @@ int prova_simples(int *cor, int *acertos){
     int resposta_dada = 0;
     int resposta[5],respostacerta[5]={1,0,2,1,2};
     
-    char *questao1[5] = {"[A] X = 3",    "[B] X = 6", "[C] X = 2", "[D] X = 8", "[E] ta ali o, achei"};
-    char *questao2[5] = {"[A] Area = 46",     "[B] Area = 50", "[C] Area = 42", "[D] Area = 34", "[E] Area = 510"};
-    char *questao3[5] = {"[A] Todo bixo gosta de programacao.", "[B] Nenhum bixo gosta de programacao.", "[C] E possivel que algum bixo goste de programacao.", "[D] Se bixo da rural gosta de programacao ele e ansioso", "[E] Eu estou ansioso agora"};
-    char *questao4[5] = {"[A] 10 elementos",  "[B] 25 elementos", "[C] 5 elementos", "[D] 20 elementos", "[E] Alguns elementos ai"};
-    char *questao5[5] = {"[A] Desespero = 0", "[B] Desespero = 50", "[C] Desespero = 100", "[D] O desespero nao pode ser medido in numeros decimais", "[E] Nao mensuravel"};
+    char *questao1[5] = {"*[A] X = 3",    "*[B] X = 6", "*[C] X = 2", "*[D] X = 8", "*[E] ta ali o, achei"};
+    char *questao2[5] = {"*[A] Area = 46",     "*[B] Area = 50", "*[C] Area = 42", "*[D] Area = 34", "*[E] Area = 510"};
+    char *questao3[5] = {"*[A] Todo bixo gosta de programacao.", "*[B] Nenhum bixo gosta de programacao.", "*[C] E possivel que algum bixo goste de programacao.", "*[D] Se bixo da rural gosta de programacao ele eh ansioso", "*[E] Eu estou ansioso agora"};
+    char *questao4[5] = {"*[A] 10 elementos",  "*[B] 25 elementos", "*[C] 5 elementos", "*[D] 20 elementos", "*[E] Alguns elementos ai"};
+    char *questao5[5] = {"*[A] Desespero = 0", "*[B] Desespero = 50", "*[C] Desespero = 100", "*[D] O desespero nao pode ser medido em numeros decimais", "*[E] Nao mensuravel"};
     
     char *confirmacao[2] = {"[S] Sim, entregar a prova", "[N] Nao, quero rever"};
     werase(prova_simples);
@@ -152,7 +152,7 @@ int prova_simples(int *cor, int *acertos){
         mvwprintw(prova_simples, Yprova++, Xprova, "| [A] Desespero = 0                                                               |"); 
         mvwprintw(prova_simples, Yprova++, Xprova, "| [B] Desespero = 50                                                              |"); 
         mvwprintw(prova_simples, Yprova++, Xprova, "| [C] Desespero = 100                                                             |"); 
-        mvwprintw(prova_simples, Yprova++, Xprova, "| [D] O desespero nao pode ser medido in numeros decimais                         |"); 
+        mvwprintw(prova_simples, Yprova++, Xprova, "| [D] O desespero nao pode ser medido em numeros decimais                         |"); 
         mvwprintw(prova_simples, Yprova++, Xprova, "| [E] Nao mensuravel                                                              |"); 
         mvwprintw(prova_simples, Yprova++, Xprova, "|---------------------------------------------------------------------------------|"); 
         mvwprintw(prova_simples, Yprova++, Xprova, "|                                                                                 |"); 

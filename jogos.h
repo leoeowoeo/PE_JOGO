@@ -24,6 +24,7 @@ int personalizar(int *selecao_olhos, int *selecao_face,int *selecao_pernas, int 
 void slow_mvwprintw(WINDOW* win, char* fala, const int y, int x);
 void transicao(int *epilepsia);
 void dialogodepoisprova(int *acertos,int *maexinga,int *epilepsia);
+void demo();
 
 
 

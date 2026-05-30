@@ -32,45 +32,45 @@ int prova_complexa(int *cor,int *acertos)
 // --- DECLARAÇÃO DAS OPÇÕES (Com 81 espaços exatos para referência no seu código) ---
     
     char *questao1[5] = {
-        " [A] 0,4886                                                                      ",    
-        " [B] 0,5112                                                                      ", 
-        " [C] 0,5193                                                                      ", 
-        " [D] 0,5224                                                                      ", 
-        " [E] 0,5385                                                                      "
+        "*[A] 0,4886                                                                      ",    
+        "*[B] 0,5112                                                                      ", 
+        "*[C] 0,5193                                                                      ", 
+        "*[D] 0,5224                                                                      ", 
+        "*[E] 0,5385                                                                      "
     };
     
     
     char *questao2[5] = {
-        " [A] -10                                                                         ",     
-        " [B] -8                                                                          ", 
-        " [C] -6                                                                          ", 
-        " [D] -4                                                                          ", 
-        " [E] -2                                                                          "
+        "*[A] -10                                                                         ",     
+        "*[B] -8                                                                          ", 
+        "*[C] -6                                                                          ", 
+        "*[D] -4                                                                          ", 
+        "*[E] -2                                                                          "
     };
     
     
     char *questao3[5] = {
-        " [A] pi^2                                                                     ", 
-        " [B] pi^4/324                                                                    ", 
-        " [C] pi^2/50                                                                     ", 
-        " [D] pi^2/16                                                                     ", 
-        " [E] pi^2/18                                                                     "
+        "*[A] pi^2                                                                     ", 
+        "*[B] pi^4/324                                                                    ", 
+        "*[C] pi^2/50                                                                     ", 
+        "*[D] pi^2/16                                                                     ", 
+        "*[E] pi^2/18                                                                     "
     };
 
     char *questao4[5] = {
-        " [A] Det(M) = 0                                                                  ", 
-        " [B] Det(M) = sin(2x)                                                            ", 
-        " [C] Det(M) = 1                                                                  ", 
-        " [D] Det(M) = cos(2x)                                                            ", 
-        " [E] Det(M) = cos(x/2)                                                           "
+        "*[A] Det(M) = 0                                                                  ", 
+        "*[B] Det(M) = sin(2x)                                                            ", 
+        "*[C] Det(M) = 1                                                                  ", 
+        "*[D] Det(M) = cos(2x)                                                            ", 
+        "*[E] Det(M) = cos(x/2)                                                           "
     };
 
     char *questao5[5] = {
-        " [A] 1 cor                                                                       ", 
-        " [B] 2 cores                                                                     ", 
-        " [C] 3 cores                                                                     ", 
-        " [D] 4 cores                                                                     ", 
-        " [E] 5 cores                                                                     "
+        "*[A] 1 cor                                                                       ", 
+        "*[B] 2 cores                                                                     ", 
+        "*[C] 3 cores                                                                     ", 
+        "*[D] 4 cores                                                                     ", 
+        "*[E] 5 cores                                                                     "
     };
         mvwprintw(prova_complexa, Yall-1, Xall,"Droga");
     wrefresh(prova_complexa);

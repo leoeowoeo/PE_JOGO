@@ -162,11 +162,11 @@ int main()
         }
     }
     napms(30);
-    if(iniciar==0)
+    if(iniciar==0||depoisprova==0)
     {
         //DIALOGO INICIAL
 
-    /*mvprintw(Yall,Xall,"Mova-se com \"WASD\" - saia com a tecla q");
+    mvprintw(Yall,Xall,"Mova-se com \"WASD\" - saia com a tecla q");
     refresh();
     napms(4000);
     erase();
@@ -178,10 +178,15 @@ int main()
     refresh();
     napms(5000);
     erase();
+    mvprintw(Yall,Xall,"Esse projeto ainda esta sendo desenvolvido");
+    refresh();
+    napms(4000);
+    erase();
     mvprintw(Yall,Xall,"Bom jogo!");
     refresh();
     napms(4000);
-    erase();*/
+
+    erase();
     transicao(&epilepsia);
     quest=dialogoMae(&maexinga);;
 
@@ -609,7 +614,7 @@ int main()
                     }
                     else
                     {
-                        mvprintw(portaY  , portaX+1, " ________");
+                    mvprintw(portaY  , portaX+1, " ________");
                     mvprintw(portaY+1, portaX+1, "|00&!@&@C|");
                     mvprintw(portaY+2, portaX+1, "|________|");
                     mvprintw(portaY+3, portaX+10, "\\  \\/");
@@ -617,7 +622,7 @@ int main()
                     mvprintw(portaY+5, portaX+13, "||  ");
                     }
                 }
-                    else
+                else
                     {
                     mvprintw(portaY  , portaX-1, " ___________");
                     mvprintw(portaY+1, portaX-1, "|vai estudar|");
@@ -631,7 +636,7 @@ int main()
 
             
 
-            int gatoy=armarioY+13, gatox=armarioX+10;
+        int gatoy=armarioY+13, gatox=armarioX+10;
         if(depoisprova==0)
         {
             mvprintw(gatoy,    gatox, "(\\   /)");
@@ -1168,7 +1173,10 @@ if(depoisprova==0)
                         if(cor==1)
                             {cobra(&cor,&jogarcelular5);atividade_sono++;}
 
+                        if(marcar==1||marcar==2)
+                        demo();
                     break;
+
             }
         }
         wrefresh(stdscr);
@@ -1487,35 +1495,35 @@ if(depoisprova==0)
 {
     if(atividade_sono>5&&estudo>=3)// se ele não dormiu mas estudou ele faz a prova cansado e sabendo (prova cansado simples)
     {
-        //cair_no_sono();
-        //dialogoprovacs();
+        cair_no_sono();
+        dialogoprovacs();
         prova_cansado_simples(&cor,&acertos);
     }
 
     if (atividade_sono<=5&&estudo>=3)// se ele dormiu e estudou ele faz a prova descansado e sabendo (prova simples)
     {
-        //dormir();
-        //dialogoprovas();
+        dormir();
+        dialogoprovas();
         prova_simples(&cor,&acertos);
     }
 
     if (atividade_sono>5&&estudo<3)//se ele nao dormiu e não estudou ele faz a prova descansado e burro  (prova cansado complexa)
     {
-        //cair_no_sono();
-        //dialogoprovacc();
+        cair_no_sono();
+        dialogoprovacc();
         prova_cansado_complexa(&cor,&acertos);
     }
     if (atividade_sono<=5&&estudo<3)// se ele dormiu mas não estudou ele faz a prova descansado e burro (prova complexa)
     {
         
-        //dormir();
-        //dialogoprovac();
+        dormir();
+        dialogoprovac();
         prova_complexa(&cor,&acertos);
     }
 }
 //ATO III?
 
-//dialogodepoisprova(&acertos,&maexinga,&epilepsia);
+dialogodepoisprova(&acertos,&maexinga,&epilepsia);
 if(acertos<5)
 {
     depoisprova=1;
@@ -1524,7 +1532,8 @@ else
     break;
 
 }//while do menu
-
+    demo();
+    napms(3000);
     endwin();// fecha a janela
     return 0;
 }
