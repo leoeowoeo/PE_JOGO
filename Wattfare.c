@@ -4,16 +4,18 @@ typedef struct model
 {
     int valor; //quantos watts vale
     int tipo; //se é o normal ou o sucata
+
     //int vida? a gente pode fazer isso realmente virar uma batalha pokemon, mas estilo roguelike, 
-    //onde voce a cada rodada compra os pokemons que voce quer e tenta fazer com que eles
+    //onde voce a cada rodada compra os eletrodomesticos que voce quer e tenta fazer com que eles
     //se protejam uns aos outros, cobrindo as suas fraquesas, e ai, a cada rodada os jogadores
     //ganham mais ou menos watts pra acelerar ou trazer o jogo pra um fim 
+    
 } modelo;
 
 typedef struct eletro
 {
     char nome[20];
-    modelo modelo; // MANTIDO EXATAMENTE COMO ESTAVA NA SUA IMAGEM ORIGINAL.
+    modelo modelo;
 } eletrodomestico;
 
 typedef struct jogador_time

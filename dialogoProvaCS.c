@@ -9,7 +9,7 @@ void dialogoprovacs()
     int tecla_cena = 0;
     int linha_atual = Yall;
 
-    // --- ALARME ---
+
     erase();
     slow_mvwprintw(stdscr, "alarme- BEEP BEEP BEEP", linha_atual, Xall);
     beep(); refresh(); napms(500);
@@ -22,7 +22,7 @@ void dialogoprovacs()
     slow_mvwprintw(stdscr, "alarme- BEEP BEEP BEEP", linha_atual, Xall);
     beep(); refresh(); napms(500);
 
-    // --- DIÁLOGO INICIAL ---
+
     erase();
     slow_mvwprintw(stdscr, "Garoto- Nossa, eu cai no sono... to  todo ferrado", linha_atual, Xall);
     refresh(); napms(1500);
@@ -148,7 +148,6 @@ void dialogoprovacs()
     }
     else
     {
-        //SE ARRUMAR DEVAGAR
         slow_mvwprintw(stdscr, "Voce se arruma lentamente, escolhendo cada roupa...", linha_atual, Xall);
         refresh(); napms(2000);
         
@@ -180,7 +179,6 @@ void dialogoprovacs()
     erase();
     linha_atual = Yall;
 
-    // Frase dinâmica com os xingamentos da mãe em negrito
     slow_mvwprintw(stdscr, "Mae- Voce vai se atrasar ", linha_atual, Xall);
     
     wattron(stdscr, A_BOLD);

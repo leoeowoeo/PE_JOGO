@@ -19,7 +19,6 @@ int dialogoMae(int *maexinga)
     napms(3500);
 
     linha_atual++;
-    // --- MÃE CHAMA O NOME (ANIMAÇÃO PROGRESSIVA) ---
     slow_mvwprintw(stdscr, "A sua mae chama o seu nome", linha_atual, Xall);
     refresh(); 
     napms(1200);
@@ -38,7 +37,6 @@ int dialogoMae(int *maexinga)
     refresh(); 
     napms(1000);
 
-    // --- SILABAÇÃO DO NOME ---
 
     wattron(stdscr, A_BOLD);
     slow_mvwprintw(stdscr, "ca", linha_atual, Xall + 49);
@@ -47,7 +45,6 @@ int dialogoMae(int *maexinga)
     napms(600);
 
     wattron(stdscr, A_BOLD);
-    // Sobrescreve limpando/atualizando visualmente conforme o original
     mvprintw(linha_atual, Xall + 49, "ca-da"); 
     wattroff(stdscr, A_BOLD);
     refresh(); 
@@ -90,7 +87,6 @@ int dialogoMae(int *maexinga)
     nodelay(stdscr, FALSE);
     keypad(stdscr, TRUE);
 
-    // --- ESCOLHA DE CULPA ---
     while (1)
     {
         if (marcar_resposta == 0) wattron(stdscr, A_REVERSE);
@@ -143,7 +139,6 @@ int dialogoMae(int *maexinga)
 
     linha_atual += 2;
 
-    // --- ESCOLHA ---
     marcar_resposta = 0;
     while (1)
     {
@@ -177,7 +172,6 @@ int dialogoMae(int *maexinga)
 
     if (marcar_resposta == 0)
     {
-        // --- SE MENTIR ---
         slow_mvwprintw(stdscr, "Mae-", linha_atual, Xall);
         wattron(stdscr, A_BOLD);
         slow_mvwprintw(stdscr, "JA ESTUDOU A SUA CARA, SEU F!1#0 0@ !#!@", linha_atual, Xall+5);
@@ -218,7 +212,6 @@ int dialogoMae(int *maexinga)
     }
     else
     {
-        // --- SE NÃO MENTIR ---
         slow_mvwprintw(stdscr, "Mae- Eu sabia, voce nao faz nada alem de assistir desenho o dia todo", linha_atual, Xall);
         refresh(); 
         napms(1800);
@@ -259,7 +252,6 @@ int dialogoMae(int *maexinga)
         napms(4000);
     }
 
-    // --- PRIMERA ETAPA: SELEÇÃO DO PENSAMENTO GERAL ---
     erase();
     linha_atual = Yall;
     

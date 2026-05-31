@@ -56,6 +56,8 @@ int main()
                 "Ler 3 livros e dormir?"
             };
             
+    int finais_alcancados;
+
 
     char *olhos[10]={"##","@@", "**","$$","vv","><","XX","OO","00","oo"};
     char *faces[5] = {"(  )", "[  ]", "{  }", "<  >","d  b"};
@@ -80,8 +82,13 @@ int main()
     int atividade_sono=5,estudo=3;
             //CONDIÇÕES DO ATO 3--------------------------------------------------------------------------------------------------------
     int depoisprova=0;
-    int psc=0;
-    int debug=0;
+    int validador=1;
+    int fechar=0;
+
+
+    int debug=1;
+
+
     int revista_coluna=0;
     int revista_linha=0;
     int iniciar=0;
@@ -206,21 +213,23 @@ int main()
     if(atividade_sono>=4){atividade_sono=3;}
     dormindo=0;
     while(1)//jogo
-    {
+    {   
+        if(depoisprova==1&&validador==1){maepistola=0;maepistoladef=0;validador=0;}
+        fechar=0;
         //achar onde tão as linhas e colunas enquanto está no jogo
-        if(debug==0)
+    if (debug == 1) 
         {
-            for(int i=0;i<COLS;i++)
+            for (int i = 0; i < LINES; i++) 
             {
-                mvprintw(LINES,i,"%d",i);
-                refresh();
+                mvprintw(i, COLS - 3, "%2d", i);
             }
-            for(int i=0;i<LINES;i++)
+
+            for (int j = 0; j < COLS; j += 3) 
             {
-                mvprintw(COLS,i,"%d",i);
-                refresh();
+                mvprintw(LINES - 1, j, "%2d", j);
             }
         }
+        
         clock_t frame_start = clock(); // mede o tempo no começo do loop de jogo
     // Localização dos objetos IMOVEIS
         vontadedepisca++;
@@ -511,22 +520,25 @@ int main()
 
             
 
-            if(celularpickup==0&&depoisprova==0)
+            if(celularpickup==0)
                     {
-                        if(interagirCel==1)
+                        if(depoisprova==0)
                         {
-                           if(cor==1) wattron(stdscr, COLOR_PAIR(par));
+                            if(interagirCel==1)
+                            {
+                            if(cor==1) wattron(stdscr, COLOR_PAIR(par));
+                            }
+                            if(celularpos==1)
+                                mvprintw(celularY,   celularX, "[]");
+                            else if(celularpos==2)
+                                mvprintw(celularY+1,   celularX, "[]");
+                            else if(celularpos==3)
+                                mvprintw(celularY+1,   celularX-1, "[]");
+                            else if(celularpickup==1)
+                            {if(celularpos==0)
+                                    mvprintw(celularY,   celularX, " ");}  
+                            wattroff(stdscr, COLOR_PAIR(par));
                         }
-                        if(celularpos==1)
-                            mvprintw(celularY,   celularX, "[]");
-                        else if(celularpos==2)
-                            mvprintw(celularY+1,   celularX, "[]");
-                        else if(celularpos==3)
-                            mvprintw(celularY+1,   celularX-1, "[]");
-                        else if(celularpickup==1)
-                        {if(celularpos==0)
-                                mvprintw(celularY,   celularX, " ");}  
-                        wattroff(stdscr, COLOR_PAIR(par));
                     }
                     if(celularpickup==0 && revistapickup==1 && y>celularY -3 && y<celularY + 3 && x >= celularX - 4 && x <= celularX + 4||celularpickup==0 && livropickup==1 && y>celularY -3 && y<celularY + 3 && x >= celularX - 4 && x <= celularX + 4)
                     {
@@ -536,11 +548,7 @@ int main()
                         celularpickup=0;
                     }
 
-        if(acertos<5&&depoisprova==1)
-        {
-            maepistoladef==0;
-            maepistola=0;
-        }
+
             if(maepistola>150)
                 maepistoladef=1;
             int portaY = 3+Yall, portaX = 11+Xall;
@@ -590,7 +598,14 @@ int main()
                     }
             }
         }
-        else if(acertos<5&&depoisprova==1){
+        else if(acertos<5&&depoisprova==1)
+        {
+            if(i==0)
+            {
+                x=22+Xall, y=10+Yall;
+                i++;
+            }
+
             if(maepistoladef==1)
             {
                if(cor==1) wattron(stdscr,COLOR_PAIR(6));
@@ -1128,16 +1143,21 @@ for(int i=camaX-2; i<=camaX+7;i++)
         {
             interagirJan=0;
         }
-if(depoisprova==0)
+
 //CELULAR
 
-    {char *jogar[3] = {"cobrinha", "2048???", "batalha naval"};
+    char *jogar[3] = {"cobrinha", "2048", "batalha naval"};
     int escolha=0;
+        
         if (celularpickup == 0 && y>celularY -3 && y<celularY + 3 && x >= celularX - 4 && x <= celularX + 4 && revistapickup==0) 
         {
             interagirCel=1;
+            if(depoisprova==0)
             mvprintw(Yall+33, Xall+27, "Pegar celular: E");
-            if (tecla == 'e' || tecla == 'E')   
+            else
+            mvprintw(Yall+33, Xall+27,"Caramba, ela tirou o celular daqui...");
+            
+            if ((tecla == 'e' || tecla == 'E')&&depoisprova==0)   
             {celularpickup = 1;}
         }
             else if(celularpickup == 1 && y>celularY -3 && y<celularY + 3 && x >= celularX - 4 && x <= celularX + 4) 
@@ -1188,7 +1208,7 @@ if(depoisprova==0)
                     break;
 
             }
-        }
+        
         wrefresh(stdscr);
 
 //REVISTA
@@ -1198,12 +1218,14 @@ if(depoisprova==0)
             if (pertoRevista&&celularpickup==0&&livropickup==0) 
             {
                 
-                if (revistapickup == 0)
+                if (revistapickup == 0&&depoisprova==0)
                     mvprintw(Yall+33, Xall+27, " Pegar revista: R");
-                else
+                else if(revistapickup == 1&&depoisprova==0)
                     mvprintw(Yall+33, Xall+27, "Soltar revista: R");
+                else if(revistapickup ==0&&depoisprova==1)
+                    mvprintw(Yall+33, Xall+27, "Sumiu ate com a minha revista...");
 
-                if (tecla == 'r' || tecla == 'R') {
+                if ((tecla == 'r' || tecla == 'R')&&depoisprova==0) {
                     revistapickup = !revistapickup;
                 }
             }
@@ -1523,9 +1545,17 @@ int pertoestante = ((x >= estanteX - 2 && x <= estanteX + 14) && (y >= estanteY 
         break;
     }
     if(tecla=='q')
+    {
+        fechar=1;
         break;
+    }
     }//while jogo
     
+
+if(fechar==1)
+{
+    break;
+}
 
     if(iniciar==0)
     {
@@ -1581,12 +1611,30 @@ if(depoisprova==0)
 //ATO III?
 
 dialogodepoisprova(&acertos,&maexinga,&epilepsia);
-if(acertos<5)
+
+if(acertos<5&&depoisprova==0)
 {
     depoisprova=1;
 }
 else
+{
+    if(dialogofinal(&finais_alcancados))
+    {
+        atividade_sono=0;
+        celularpickup=0;
+        livropickup=0;
+        revistapickup=0;
+        maepistola=0;
+        maepistoladef=0;
+        janelaaberta=0;
+        depoisprova=0;
+        //zerar todas as variáveis que precisam ser zeradas, voltar elas para o valor inicial( se voce achar mais alguma bota ela aqui)
+    }
+    else
+    {
     break;
+    }
+}
 
 }//while do menu
     demo();

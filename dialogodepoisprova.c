@@ -14,12 +14,8 @@ void dialogodepoisprova(int *acertos, int *maexinga, int *epilepsia)
     nodelay(stdscr, FALSE);
     keypad(stdscr, TRUE);
 
-    // --- ENTRADA DA HISTÓRIA BASEADA NA NOTA ---
-
-    // Ajustado para englobar de 0 a 6 (Caminho 1 - Nota Vermelha)
     if ((*acertos)*2 >= 0 && (*acertos)*2 <= 5)
     {
-        // --- CAMINHO 1: NOTA RUIM ---
         slow_mvwprintw(stdscr, "Voce vem caminhando da escola arrastando os pes...", linha_atual, Xall);
         refresh(); napms(2000);
 
@@ -53,7 +49,6 @@ void dialogodepoisprova(int *acertos, int *maexinga, int *epilepsia)
         slow_mvwprintw(stdscr, "     para voce sentar a bunda na cadeira da escola e nao acertar metade de uma prova?!", linha_atual, Xall);
         refresh(); napms(2500);
 
-        // --- SE O JOGADOR MENTIU NO ATO I ---
         if (*maexinga == 1)
         {
             linha_atual += 2;
@@ -78,7 +73,6 @@ void dialogodepoisprova(int *acertos, int *maexinga, int *epilepsia)
         }
         else
         {
-            // --- SE O JOGADOR NÃO MENTIU MAS TIROU NOTA VERMELHA ---
             linha_atual += 2;
             slow_mvwprintw(stdscr, "Mae- Voce tinha me dito que nao tinha estudado muito, mas isso?!", linha_atual, Xall);
             refresh(); napms(2000);
@@ -93,10 +87,42 @@ void dialogodepoisprova(int *acertos, int *maexinga, int *epilepsia)
             wattroff(stdscr, A_BOLD);
             refresh(); napms(3000);
         }
+    //----------------------------------------------------------------------------------------------
+        int opcao_principal = 0;
+    while (1)
+    {
+        if (opcao_principal == 0) wattron(stdscr, A_REVERSE);
+        mvprintw(linha_atual, Xall + 2, "[ Ah, ja fui mal pra caraca, vou chutar o balde e jogar a noite toda]");
+        if (opcao_principal == 0) wattroff(stdscr, A_REVERSE);
+
+        if (opcao_principal == 1) wattron(stdscr, A_REVERSE);
+        mvprintw(linha_atual + 1, Xall + 2, "[ Droga... acho melhor eu estudar pra ir melhor da proxima vez. . . ]");
+        if (opcao_principal == 1) wattroff(stdscr, A_REVERSE);
+
+
+        refresh();
+        tecla_cena = getch();
+
+        if (tecla_cena == KEY_UP)
+        {
+            opcao_principal--;
+            if (opcao_principal < 0) opcao_principal = 1;
+        }
+        else if (tecla_cena == KEY_DOWN)
+        {
+            opcao_principal++;
+            if (opcao_principal > 1) opcao_principal = 0;
+        }
+        else if (tecla_cena == '\n' || tecla_cena == ' ')
+        {
+            break;
+        }
+    //----------------------------------------------------------------------------------------------
+    }
+        
     }
     else if ((*acertos)*2 >= 6 && (*acertos)*2 <= 9)
     {
-        // --- CAMINHO 2: NOTA MEDIANA ---
         slow_mvwprintw(stdscr, "Voce entra em casa em silencio, deixando a mochila no sofa.", linha_atual, Xall);
         refresh(); napms(2000);
 
@@ -107,7 +133,6 @@ void dialogodepoisprova(int *acertos, int *maexinga, int *epilepsia)
         linha_atual++;
         slow_mvwprintw(stdscr, "Mae- Voce chegou... E ai? Como foi naquela bendita prova de matematica?", linha_atual, Xall);
         refresh(); napms(2000);
-
 
         linha_atual += 2;
         while (1)
@@ -194,10 +219,45 @@ void dialogodepoisprova(int *acertos, int *maexinga, int *epilepsia)
         linha_atual += 2;
         slow_mvwprintw(stdscr, "Mae- Agora, vai pro seu quarto, vai ficar sem nada ate que voce aprenda tudo daqueles livros.", linha_atual, Xall);
         refresh(); napms(2500);
-    }
-    else if ((*acertos)*2 == 10)
+    //----------------------------------------------------------------------------------------------
+    int opcao_principal = 0;
+    while (1)
     {
-        // --- CAMINHO 3: GABARITOU ---
+        if (opcao_principal == 0) wattron(stdscr, A_REVERSE);
+        mvprintw(linha_atual + 4, Xall + 2, "[ Meu deus, pra que isso de ter que gabaritar... nao vou estudar nao, vou dormir ]");
+        if (opcao_principal == 0) wattroff(stdscr, A_REVERSE);
+
+        if (opcao_principal == 1) wattron(stdscr, A_REVERSE);
+        mvprintw(linha_atual + 6, Xall + 2, "[ Acho melhor eu estudar pra ir melhor da proxima vez. . . ]");
+        if (opcao_principal == 1) wattroff(stdscr, A_REVERSE);
+
+
+        refresh();
+        tecla_cena = getch();
+
+        if (tecla_cena == KEY_UP)
+        {
+            opcao_principal--;
+            if (opcao_principal < 0) opcao_principal = 1;
+        }
+        else if (tecla_cena == KEY_DOWN)
+        {
+            opcao_principal++;
+            if (opcao_principal > 1) opcao_principal = 0;
+        }
+        else if (tecla_cena == '\n' || tecla_cena == ' ')
+        {
+            if(opcao_principal==0)
+            break;
+        }
+    //----------------------------------------------------------------------------------------------
+    }
+
+
+    }
+    //---------------------------------------------------GABARITA----------------------------------------------------------------
+     else if ((*acertos)*2 == 10)
+    {
         slow_mvwprintw(stdscr, "Voce abre a porta de casa com um sorriso de soslaio!", linha_atual, Xall);
         refresh(); napms(1800);
 
@@ -253,5 +313,5 @@ void dialogodepoisprova(int *acertos, int *maexinga, int *epilepsia)
 
     
     napms(4000);
-    transicao(epilepsia); // Corrigido: Removido o '&' de ponteiro repetido
+    transicao(epilepsia);
 }

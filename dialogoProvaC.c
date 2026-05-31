@@ -11,7 +11,6 @@ void dialogoprovac()
     int linha_atual = Yall;
 
     
-    // --- ALARME ---
     erase();
     slow_mvwprintw(stdscr, "alarme- BEEP BEEP BEEP", linha_atual, Xall);
     beep(); refresh(); napms(500);
@@ -51,7 +50,6 @@ void dialogoprovac()
     while (1)
     {
         if (marcar_resposta == 0) wattron(stdscr, A_REVERSE);
-        // Usando mvwprintw padrão no menu de escolha para evitar o efeito de digitação repetidamente ao mover as setas
         mvprintw(linha_atual, Xall + 2, "[ Eu, vou morrer hoje com essa prova... ]");
         if (marcar_resposta == 0) wattroff(stdscr, A_REVERSE);
 
@@ -77,13 +75,11 @@ void dialogoprovac()
 
     if (marcar_resposta == 0)
     {
-        //DEPRESSIVO
         slow_mvwprintw(stdscr, "Mae- Meu deus, o que foi?", linha_atual, Xall);
         refresh(); napms(1200);
     }
     else
     {
-        //CONFUSO
         slow_mvwprintw(stdscr, "Mae- porque? olha a sua cara de morte!", linha_atual, Xall);
         refresh(); napms(1200);
 
@@ -104,13 +100,13 @@ void dialogoprovac()
     slow_mvwprintw(stdscr, "Mae- ", linha_atual, Xall);
     
     wattron(stdscr, A_BOLD);
-    slow_mvwprintw(stdscr, "P0&&@ ", linha_atual, Xall + 6); // Xall + 6 para alinhar após o "Mae- "
+    slow_mvwprintw(stdscr, "P0&&@ ", linha_atual, Xall + 6);
     wattroff(stdscr, A_BOLD);
     
-    slow_mvwprintw(stdscr, "sabia!", linha_atual, Xall + 12); // Xall + 12 para alinhar após o "P0&&@ "
+    slow_mvwprintw(stdscr, "sabia!", linha_atual, Xall + 12);
     refresh(); napms(1850);
 
-    //CAFÉ
+
     linha_atual += 2;
     slow_mvwprintw(stdscr, "Voce vai tomar cafe, com tempo sobrando", linha_atual, Xall);
     refresh(); napms(2000);

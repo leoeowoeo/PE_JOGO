@@ -9,7 +9,6 @@ void dialogoprovas()
     int tecla_cena = 0;
     int linha_atual = Yall;
 
-    // --- ALARME ---
     erase();
     slow_mvwprintw(stdscr, "alarme- BEEP\a BEEP\a BEEP\a", linha_atual, Xall);
     beep(); refresh(); napms(500);
@@ -55,8 +54,6 @@ void dialogoprovas()
     slow_mvwprintw(stdscr, "Mae- Finalmente levou jeito?", linha_atual, Xall);
     refresh(); napms(1500);
 
-
-    //RESPOSTA
     linha_atual += 2;
     nodelay(stdscr, FALSE); 
     keypad(stdscr, TRUE);
@@ -89,13 +86,13 @@ void dialogoprovas()
 
     if (marcar_resposta == 0)
     {
-        //VERDADE
+
         slow_mvwprintw(stdscr, "Mae- Ah, gracas a Deus, finalmente, esperei tanto por isso", linha_atual, Xall);
         refresh(); napms(2000);
     }
     else
     {
-        //MENTIRA
+
         slow_mvwprintw(stdscr, "Mae- nao senti muita verdade na sua fala... ", linha_atual, Xall);
         refresh(); napms(1500);
 
@@ -110,7 +107,7 @@ void dialogoprovas()
         refresh(); napms(2000);
     }
 
-    //TOMAR CAFÉ
+
     linha_atual += 2;
     slow_mvwprintw(stdscr, "Voce vai tomar cafe, com tempo sobrando", linha_atual, Xall);
     refresh(); napms(2000);

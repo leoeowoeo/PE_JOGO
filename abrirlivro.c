@@ -9,7 +9,7 @@ void abrirlivro(int *livro1,int *livro2,int *livro3)
         int ganhou=0;
 if(*livro1==1&&*livro2==0&&*livro3==0){
 
-            werase(stdscr);// Limpa a janela para desenhar o olho
+            werase(stdscr);
             mvwprintw(stdscr, livroY++,     livroX-20,"     ______ ");
             mvwprintw(stdscr, livroY++,     livroX-20,"    /     /|");
             mvwprintw(stdscr, livroY++,     livroX-20,"   /     / |");
@@ -33,7 +33,7 @@ if(*livro1==1&&*livro2==0&&*livro3==0){
             
             
                 livroY = 8+Yall;
-            werase(stdscr);// Limpa a janela para desenhar o olho fechando
+            werase(stdscr);
             mvwprintw(stdscr, livroY++,     livroX-11,                  "____ ");
                     mvwprintw(stdscr, livroY++,     livroX-20,"       ,-'  ,-|");
                     mvwprintw(stdscr, livroY++,     livroX-20,"   _,-'_,--'  |");
@@ -74,7 +74,7 @@ if(*livro1==1&&*livro2==0&&*livro3==0){
             mvwprintw(stdscr, livroY++,     livroX-20,"|   |    __,--''  ");
             mvwprintw(stdscr, livroY++,     livroX-20,"|___|,--'         ");
             wrefresh(stdscr);
-            napms(105); // Espera 2 segundos
+            napms(105);
 
 
 
@@ -99,7 +99,7 @@ if(*livro1==1&&*livro2==0&&*livro3==0){
 
 
                 livroY = 8+Yall;
-                werase(stdscr);// Limpa a janela para desenhar o olho
+                werase(stdscr);
             mvwprintw(stdscr, livroY++,     livroX-20," ___________________ ");
             mvwprintw(stdscr, livroY++,     livroX-20,"|    ''---..,_,.-=:;|");   
             mvwprintw(stdscr, livroY++,     livroX-20,"|            ||||||||");
@@ -120,7 +120,7 @@ if(*livro1==1&&*livro2==0&&*livro3==0){
 
             
                 livroY = 8+Yall;
-            werase(stdscr);// Limpa a janela para desenhar o olho
+            werase(stdscr);
             mvwprintw(stdscr, livroY++,     livroX-20," ___________________  ");
             mvwprintw(stdscr, livroY++,     livroX-20,"|''-=::;;_'','.\"',:;|");
             mvwprintw(stdscr, livroY++,     livroX-20,"|         || |||  ||| "); 
@@ -141,7 +141,7 @@ if(*livro1==1&&*livro2==0&&*livro3==0){
 
             
             livroY = 8+Yall;
-            werase(stdscr);// Limpa a janela para desenhar o olho fechando
+            werase(stdscr); 
             mvwprintw(stdscr, livroY++,     livroX-20,"     ___________________ ");
             mvwprintw(stdscr, livroY++,     livroX-20,"    |'-,'-,'-, '--,,'-, |");       
             mvwprintw(stdscr, livroY++,     livroX-20,"    |   '-,'-,'-,  | || |");
@@ -163,7 +163,7 @@ if(*livro1==1&&*livro2==0&&*livro3==0){
 
             
             livroY = 8+Yall;
-            werase(stdscr);// Limpa a janela para desenhar o olho fechado
+            werase(stdscr);
 
             mvwprintw(stdscr, livroY++,     livroX-20,"          ___,____________________   ");
             mvwprintw(stdscr, livroY++,     livroX-20," ___---'''__,|                    |  ");    
@@ -205,7 +205,7 @@ if(*livro1==1&&*livro2==0&&*livro3==0){
             napms(100);
 }
 if(*livro1==0&&*livro2==1&&*livro3==0){
-    werase(stdscr);// Limpa a janela para desenhar o olho
+    werase(stdscr);
             mvwprintw(stdscr, livroY++,     livroX-20,"     ______ ");
             mvwprintw(stdscr, livroY++,     livroX-20,"    /     /|");
             mvwprintw(stdscr, livroY++,     livroX-20,"   /     / |");
@@ -229,7 +229,7 @@ if(*livro1==0&&*livro2==1&&*livro3==0){
 
 
             livroY = 8+Yall;
-            werase(stdscr);// Limpa a janela para desenhar o olho fechando
+            werase(stdscr); 
             mvwprintw(stdscr, livroY++,     livroX-10,                   "____  ");
                     mvwprintw(stdscr, livroY++,     livroX-20,"       ,-'  ,-|  ");
                     mvwprintw(stdscr, livroY++,     livroX-20,"   _,-'_,--'  |  ");
@@ -293,7 +293,7 @@ if(*livro1==0&&*livro2==1&&*livro3==0){
             
 
             livroY = 8+Yall;
-            werase(stdscr);// Limpa a janela para desenhar o olho
+            werase(stdscr);
             mvwprintw(stdscr, livroY++,     livroX-20," ___________________     ");
             mvwprintw(stdscr, livroY++,     livroX-20,"|    ''---..,_,.-=:;|    ");   
             mvwprintw(stdscr, livroY++,     livroX-20,"|            ||||||||    ");
@@ -315,7 +315,7 @@ if(*livro1==0&&*livro2==1&&*livro3==0){
 
 
             livroY = 8+Yall;
-            werase(stdscr);// Limpa a janela para desenhar o olho
+            werase(stdscr);
             mvwprintw(stdscr, livroY++,     livroX-20," ___________________  ");
             mvwprintw(stdscr, livroY++,     livroX-20,"|''-=::;;_'','.\"',:| ");
             mvwprintw(stdscr, livroY++,     livroX-20,"|         || |||  ||| "); 
@@ -334,7 +334,7 @@ if(*livro1==0&&*livro2==1&&*livro3==0){
             napms(55);
             
             livroY = 8+Yall;
-            werase(stdscr);// Limpa a janela para desenhar o olho fechando
+            werase(stdscr); 
             mvwprintw(stdscr, livroY++,     livroX-20,"     ___________________   ");
             mvwprintw(stdscr, livroY++,     livroX-20,"    |'-,'-,'-, '--,,'-, |  ");       
             mvwprintw(stdscr, livroY++,     livroX-20,"    |   '-,'-,'-,  | || |  ");
@@ -354,7 +354,7 @@ if(*livro1==0&&*livro2==1&&*livro3==0){
             napms(105);
 
             livroY = 8+Yall;
-            werase(stdscr);// Limpa a janela para desenhar o olho fechado
+            werase(stdscr);
 
             mvwprintw(stdscr, livroY++,     livroX-20,"          ___,____________________   ");
             mvwprintw(stdscr, livroY++,     livroX-20," ___---'''__,|                    |  ");    
@@ -394,7 +394,7 @@ if(*livro1==0&&*livro2==1&&*livro3==0){
             napms(100);
 }
 if(*livro1==0&&*livro2==0&&*livro3==1){
-            werase(stdscr); // LIMPA A JANELA PARA DESENHAR O LIVRO 3 FECHADO
+            werase(stdscr);
             mvwprintw(stdscr, livroY++,     livroX-20,"     ______ ");
             mvwprintw(stdscr, livroY++,     livroX-20,"    /     /|");
             mvwprintw(stdscr, livroY++,     livroX-20,"   /     / |");
@@ -417,7 +417,7 @@ if(*livro1==0&&*livro2==0&&*livro3==1){
 
             
             livroY = 8+Yall;
-            werase(stdscr); // LIMPA A JANELA PARA DESENHAR O LIVRO 3 COMEÇANDO A ABRIR
+            werase(stdscr);
             mvwprintw(stdscr, livroY++,     livroX-10,          "____  ");
             mvwprintw(stdscr, livroY++,     livroX-20,"       ,-'  ,-|  ");
             mvwprintw(stdscr, livroY++,     livroX-20,"   _,-'_,--'  |  ");
@@ -460,7 +460,7 @@ if(*livro1==0&&*livro2==0&&*livro3==1){
             napms(105); 
 
             livroY = 8+Yall;
-            werase(stdscr); // LIMPA A JANELA PARA DESENHAR AS PÁGINAS CENTRALIZADAS COM O NÚMERO 3
+            werase(stdscr);
             mvwprintw(stdscr, livroY++,     livroX-20," ____________________");
             mvwprintw(stdscr, livroY++,     livroX-20,"|                    |");
             mvwprintw(stdscr, livroY++,     livroX-20,"|                    |"); 
@@ -478,7 +478,7 @@ if(*livro1==0&&*livro2==0&&*livro3==1){
             napms(105);
             
             livroY = 8+Yall;
-            werase(stdscr); // LIMPA A JANELA PARA MOSTRAR AS PÁGINAS EM TRANSIÇÃO PARA A ESQUERDA
+            werase(stdscr);
             mvwprintw(stdscr, livroY++,     livroX-20," ___________________     ");
             mvwprintw(stdscr, livroY++,     livroX-20,"|    ''---..,_,.-=:;|    ");   
             mvwprintw(stdscr, livroY++,     livroX-20,"|            ||||||||    ");
@@ -497,7 +497,7 @@ if(*livro1==0&&*livro2==0&&*livro3==1){
             napms(55);
 
             livroY = 8+Yall;
-            werase(stdscr); // LIMPA A JANELA PARA MOSTRAR AS PÁGINAS AINDA MAIS ABERTAS À ESQUERDA
+            werase(stdscr);
             mvwprintw(stdscr, livroY++,     livroX-20," ___________________  ");
             mvwprintw(stdscr, livroY++,     livroX-20,"|''-=::;;_'','.\"',:| ");
             mvwprintw(stdscr, livroY++,     livroX-20,"|         || |||  ||| "); 
@@ -516,7 +516,7 @@ if(*livro1==0&&*livro2==0&&*livro3==1){
             napms(55);
             
             livroY = 8+Yall;
-            werase(stdscr); // LIMPA A JANELA PARA DESENHAR O LIVRO QUASE TOTALMENTE ABERTO
+            werase(stdscr);
             mvwprintw(stdscr, livroY++,     livroX-20,"     ___________________   ");
             mvwprintw(stdscr, livroY++,     livroX-20,"    |'-,'-,'-, '--,,'-, |  ");       
             mvwprintw(stdscr, livroY++,     livroX-20,"    |   '-,'-,'-,  | || |  ");
@@ -536,7 +536,7 @@ if(*livro1==0&&*livro2==0&&*livro3==1){
             napms(105);
 
             livroY = 8+Yall;
-            werase(stdscr); // LIMPA A JANELA PARA MOSTRAR A CAPA TOTALMENTE DEITADA
+            werase(stdscr);
 
             mvwprintw(stdscr, livroY++,     livroX-20,"          ___,____________________   ");
             mvwprintw(stdscr, livroY++,     livroX-20," ___---'''__,|                    |  ");    
@@ -557,7 +557,7 @@ if(*livro1==0&&*livro2==0&&*livro3==1){
             napms(105);  
 
             livroY = 8+Yall;
-            werase(stdscr); // LIMPA A JANELA PARA DESENHAR AS DUAS PÁGINAS EM BRANCO TOTALMENTE ABERTAS NO FINAL
+            werase(stdscr); 
             mvwprintw(stdscr, livroY++,     livroX-20," ____________________ ____________________   ");
             mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");    
             mvwprintw(stdscr, livroY++,     livroX-20,"|                    |                    |  ");
@@ -623,7 +623,7 @@ if(*livro1==0&&*livro2==0&&*livro3==1){
 
 
             
-            werase(stdscr);// Limpa a janela para desenhar o olho
+            werase(stdscr);
             mvwprintw(stdscr, livroY++,     livroX-20,"     ______ ");
             mvwprintw(stdscr, livroY++,     livroX-20,"    /     /|");
             mvwprintw(stdscr, livroY++,     livroX-20,"   /     / |");
@@ -647,7 +647,7 @@ if(*livro1==0&&*livro2==0&&*livro3==1){
 
 
             livroY = 8+Yall;
-            werase(stdscr);// Limpa a janela para desenhar o olho fechando
+            werase(stdscr); 
             mvwprintw(stdscr, livroY++,     livroX-20,                  "____");
                     mvwprintw(stdscr, livroY++,     livroX-20,"       ,-'  ,-|  ");
                     mvwprintw(stdscr, livroY++,     livroX-20,"   _,-'_,--'  |");
@@ -709,7 +709,7 @@ if(*livro1==0&&*livro2==0&&*livro3==1){
             
 
             livroY = 8+Yall;
-            werase(stdscr);// Limpa a janela para desenhar o olho
+            werase(stdscr);
             mvwprintw(stdscr, livroY++,     livroX-20," ___________________   ");
             mvwprintw(stdscr, livroY++,     livroX-20,"|    ''---..,_,.-=:;|    ");   
             mvwprintw(stdscr, livroY++,     livroX-20,"|            ||||||||    ");
@@ -731,7 +731,7 @@ if(*livro1==0&&*livro2==0&&*livro3==1){
 
 
             livroY = 8+Yall;
-            werase(stdscr);// Limpa a janela para desenhar o olho
+            werase(stdscr);
             mvwprintw(stdscr, livroY++,     livroX-20," ___________________  ");
             mvwprintw(stdscr, livroY++,     livroX-20,"|''-=::;;_'','.\"',:| ");
             mvwprintw(stdscr, livroY++,     livroX-20,"|         || |||  ||| "); 
@@ -750,7 +750,7 @@ if(*livro1==0&&*livro2==0&&*livro3==1){
             napms(55);
             
             livroY = 8+Yall;
-            werase(stdscr);// Limpa a janela para desenhar o olho fechando
+            werase(stdscr); 
             mvwprintw(stdscr, livroY++,     livroX-20,"     ___________________   ");
             mvwprintw(stdscr, livroY++,     livroX-20,"    |'-,'-,'-, '--,,'-, |  ");       
             mvwprintw(stdscr, livroY++,     livroX-20,"    |   '-,'-,'-,  | || |  ");
@@ -770,7 +770,7 @@ if(*livro1==0&&*livro2==0&&*livro3==1){
             napms(105);
 
             livroY = 8+Yall;
-            werase(stdscr);// Limpa a janela para desenhar o olho fechado
+            werase(stdscr);
 
             mvwprintw(stdscr, livroY++,     livroX-20,"          ___,____________________");
             mvwprintw(stdscr, livroY++,     livroX-20," ___---'''__,|                    |  ");    
