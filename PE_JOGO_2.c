@@ -60,6 +60,7 @@ int main()
     char *olhos[10]={"##","@@", "**","$$","vv","><","XX","OO","00","oo"};
     char *faces[5] = {"(  )", "[  ]", "{  }", "<  >","d  b"};
     char *pernas[4] = {"/|","|\\","<v", "v>"};
+    char *revista[9]={"1","2","3","4","5","6"};
     int selecao_olhos=9,selecao_face=0,selecao_pernas=0;
     //movimento
     int passo=0,vira=0;
@@ -70,7 +71,7 @@ int main()
     int marcar = 0;
     int xbarra=3,ybarra=3;
     char barra[20]={'#','#','#','#','#','#','#','#','#','#','#'};
-    int j;
+    int j,i;
     int iniciot;
     int linhaatual=Yall;
     int maexinga=0;
@@ -79,7 +80,10 @@ int main()
     int atividade_sono=5,estudo=3;
             //CONDIÇÕES DO ATO 3--------------------------------------------------------------------------------------------------------
     int depoisprova=0;
-
+    int psc=0;
+    int debug=0;
+    int revista_coluna=0;
+    int revista_linha=0;
     int iniciar=0;
     keypad(stdscr, TRUE); // ativa o teclado para usar as setas, na tela principal, que é a stdscr
     nodelay(stdscr, TRUE); // Faz o getch() não ser bloqueante
@@ -166,7 +170,7 @@ int main()
     {
         //DIALOGO INICIAL
 
-    mvprintw(Yall,Xall,"Mova-se com \"WASD\" - saia com a tecla q");
+    /*mvprintw(Yall,Xall,"Mova-se com \"WASD\" - saia com a tecla q");
     refresh();
     napms(4000);
     erase();
@@ -188,7 +192,7 @@ int main()
 
     erase();
     transicao(&epilepsia);
-    quest=dialogoMae(&maexinga);;
+    quest=dialogoMae(&maexinga);;*/
 
     }
     // não botei um refresh aqui, pq eu posso botar varios printw e dps dar um refresh em tudo
@@ -203,7 +207,20 @@ int main()
     dormindo=0;
     while(1)//jogo
     {
-
+        //achar onde tão as linhas e colunas enquanto está no jogo
+        if(debug==0)
+        {
+            for(int i=0;i<COLS;i++)
+            {
+                mvprintw(LINES,i,"%d",i);
+                refresh();
+            }
+            for(int i=0;i<LINES;i++)
+            {
+                mvprintw(COLS,i,"%d",i);
+                refresh();
+            }
+        }
         clock_t frame_start = clock(); // mede o tempo no começo do loop de jogo
     // Localização dos objetos IMOVEIS
         vontadedepisca++;
@@ -216,7 +233,6 @@ int main()
             {pisca = 0;}
             else
                 vontadedepisca=0;
-            
             erase();
            if(cor==1) wattron(stdscr, COLOR_PAIR(1));
            if(cor==1) wattron(stdscr, COLOR_PAIR(4));
@@ -282,9 +298,9 @@ int main()
             {       
                         mvprintw(revistay+2,    revistax+18, " |-_          __-|  ");
                         mvprintw(revistay+3,    revistax+18, " |  '--__.__-'   |  ");
-                        mvprintw(revistay+4,    revistax+18, " |sudoku1|palavra|  ");
-                        mvprintw(revistay+5,    revistax+18, " |sudoku2|cruzada| ");
-                        mvprintw(revistay+6,    revistax+18, " |sudoku3|1, 2, 3|  ");
+                        mvprintw(revistay+4,    revistax+18, " |sudoku |palavra|  ");
+                        mvprintw(revistay+5,    revistax+18, " | 1 2 3 |cruzada| ");
+                        mvprintw(revistay+6,    revistax+18, " | 4 5 6 |1  2  3|  ");
                         mvprintw(revistay+7,    revistax+18, " |-__    |    __-|  ");
                         mvprintw(revistay+8,    revistax+18, " |-__'-__|__-'__-|  ");
                         mvprintw(revistay+9,   revistax+18, "     '-__|__-'    ");
@@ -345,7 +361,7 @@ int main()
             mvprintw(ybarra+2,xbarra,"+-----------+");
             mvprintw(ybarra+1,xbarra,"|");
             mvprintw(ybarra+1,xbarra+12,"|");
-            if(jogarcelular5!=5||encararespelho!=1||dormircama!=1||jogartodosjogos!=6||ler1jogar3!=4||ler3jogatodos!=4||ler3dormir!=3)
+            if((jogarcelular5!=5||encararespelho!=1||dormircama!=1||jogartodosjogos!=6||ler1jogar3!=4||ler3jogatodos!=4||ler3dormir!=3)&&depoisprova==0)
                 mvprintw(ybarra+5,xbarra,"Quest: %s",quests[quest]);
 
             int espelhoy = 3+Yall, espelhox = 63+Xall;
@@ -375,7 +391,7 @@ int main()
                 {
                     if (celularpickup == 0 && y == celularY && x >= celularX - 1 && x <= celularX + 1) 
                                         {
-                                            mvprintw(LINES - 1, COLS - 55, "Pegar celular: E");
+                                            mvprintw(Yall+33, Xall+27, "Pegar celular: E");
                                             if (tecla == 'e' || tecla == 'E')   
                                             {celularpickup = 1;}
                                         }
@@ -514,9 +530,9 @@ int main()
                     }
                     if(celularpickup==0 && revistapickup==1 && y>celularY -3 && y<celularY + 3 && x >= celularX - 4 && x <= celularX + 4||celularpickup==0 && livropickup==1 && y>celularY -3 && y<celularY + 3 && x >= celularX - 4 && x <= celularX + 4)
                     {
-                        mvprintw(LINES-9, COLS-25, "Pegar celular:");
-                        mvprintw(LINES-9, COLS-11, "Mao ocupada");
-                        mvprintw(LINES-6, COLS-23, "Devolva o item da mao");
+                        mvprintw(Yall+33, Xall+27, "Pegar celular:");
+                        mvprintw(Yall+33, Xall+35, "Mao ocupada");
+                        mvprintw(Yall+35, Xall+27, "Devolva o item da mao");
                         celularpickup=0;
                     }
 
@@ -870,7 +886,7 @@ int main()
                                     //-----------------------//OLHANDO PRA TRÁS:
                                         else if(vira%2==1)       
                                         {   
-                                            mvprintw(y,x-2,"[]%s",faces[selecao_face]);              //printar o rosto de costar
+                                            mvprintw(y,x-2,"[]%s",faces[selecao_face]);                 //printar o rosto de costar
                                             if(passo%2==0)mvprintw(y+1,x+1,"%s",pernas[selecao_pernas]);//perna no passo par
                                             else          mvprintw(y+1,x+1,"%s",pernas[selecao_pernas+1]);
                                         }
@@ -915,7 +931,7 @@ int main()
             mvprintw (armarioY+1, armarioX, " |\"\"\"\"|/|");
             mvprintw (armarioY+2, armarioX, " |    | |");
             mvprintw (armarioY+3, armarioX, " |    | |");
-            mvprintw (armarioY+4, armarioX, " |    |/");
+            mvprintw (armarioY+4, armarioX, " |    |");
             mvprintw (armarioY+5, armarioX, " |\"\"\"\"|");
             mvprintw (armarioY+6, armarioX+6, "|\\");
             mvprintw (armarioY+7, armarioX+6, "| |");
@@ -1042,14 +1058,6 @@ for(int i=camaX-2; i<=camaX+7;i++)
     x=xf;y=yf;
 
 
-
-
-
-
-
-
-
-
     check++;
     if(check > 100) { check = 0; passo = 0; }
 
@@ -1057,7 +1065,7 @@ for(int i=camaX-2; i<=camaX+7;i++)
 //ESPELHO
         if(y>espelhoy&&y<espelhoy+8&&x>espelhox-2&&x<espelhox+9&&vira%2==1)
             {
-                mvprintw(LINES-9, COLS-20, "Encarar o espelho: E");
+                mvprintw(Yall+33, Xall+27, "Encarar o espelho: E");
                 if(tecla=='e'||tecla=='E')
                     {espelho=1;}
             }
@@ -1065,7 +1073,7 @@ for(int i=camaX-2; i<=camaX+7;i++)
         if(y>camaY&&y<camaY+5&&x>camaX-4&&x<camaX+9)
             {
                 interagirCam=1;
-                mvprintw(LINES-9, COLS-20, "Dormir: F");
+                mvprintw(Yall+33, Xall+27, "Dormir: F");
                 if(tecla=='f'||tecla=='F')
                     {dormindo=1;}
             }
@@ -1074,17 +1082,17 @@ for(int i=camaX-2; i<=camaX+7;i++)
 
 //ARMARIO
         int pertodearmario = (x >= armarioX - 2 && x <= armarioX + 8) &&
-                            (y >= armarioY+2 && y <= armarioY + 9);
+                             (y >= armarioY+2 && y <= armarioY + 9);
         if (pertodearmario) 
         {
             if(armarioaberto)
             {
-            mvprintw(LINES - 12, COLS-20, "Fechar armario: E");
+            mvprintw(Yall+33, Xall+27, "Fechar armario: E");
             interagirArm=1;
             }
             else
             {
-                mvprintw(LINES - 12, COLS-20, "Abrir armario: E");
+                mvprintw(Yall+33, Xall+27, "Abrir armario: E");
                 interagirArm=1;
             }
 
@@ -1105,11 +1113,11 @@ for(int i=camaX-2; i<=camaX+7;i++)
             if(janelaaberta)
             {
                 interagirJan=1;
-            mvprintw(LINES - 12, COLS-21, " Abrir janela: E");
+            mvprintw(Yall+33, Xall+27, " Abrir janela: E");
             }
             else{
             interagirJan=1;
-            mvprintw(LINES - 12, COLS-21, " Fechar janela: E");
+            mvprintw(Yall+33, Xall+27, " Fechar janela: E");
             }
 
             if (tecla == 'e' || tecla == 'E') {
@@ -1128,13 +1136,13 @@ if(depoisprova==0)
         if (celularpickup == 0 && y>celularY -3 && y<celularY + 3 && x >= celularX - 4 && x <= celularX + 4 && revistapickup==0) 
         {
             interagirCel=1;
-            mvprintw(LINES -12, COLS - 20, "Pegar celular: E");
+            mvprintw(Yall+33, Xall+27, "Pegar celular: E");
             if (tecla == 'e' || tecla == 'E')   
             {celularpickup = 1;}
         }
             else if(celularpickup == 1 && y>celularY -3 && y<celularY + 3 && x >= celularX - 4 && x <= celularX + 4) 
         {
-            mvprintw(LINES -12, COLS - 20, "Soltar celular: E");
+            mvprintw(Yall+33, Xall+27, "Soltar celular: E");
             if (tecla == 'e' || tecla == 'E')   
             {celularpickup = 0;}
             celularpos++;
@@ -1171,10 +1179,12 @@ if(depoisprova==0)
                     escolha=marcar;
                     if(marcar==0)
                         if(cor==1)
-                            {cobra(&cor,&jogarcelular5);atividade_sono++;}
+                            {cobra(&cor,&jogarcelular5);atividade_sono++;marcar=0;}
 
-                        if(marcar==1||marcar==2)
+
+                        if(marcar==1||marcar==2){
                         demo();
+                        marcar=0;}
                     break;
 
             }
@@ -1189,9 +1199,9 @@ if(depoisprova==0)
             {
                 
                 if (revistapickup == 0)
-                    mvprintw(LINES - 9, COLS-21, " Pegar revista: R");
+                    mvprintw(Yall+33, Xall+27, " Pegar revista: R");
                 else
-                    mvprintw(LINES - 9, COLS-20, "Soltar revista: R");
+                    mvprintw(Yall+33, Xall+27, "Soltar revista: R");
 
                 if (tecla == 'r' || tecla == 'R') {
                     revistapickup = !revistapickup;
@@ -1199,12 +1209,59 @@ if(depoisprova==0)
             }
             else if(pertoRevista&&celularpickup==1||pertoRevista&&livropickup==1)
             {
-                mvprintw(LINES-9, COLS-25, "Pegar revista:");
-                mvprintw(LINES-9, COLS-11, "Mao ocupada");
-                mvprintw(LINES-6, COLS-23, "Devolva o item da mao");
+                mvprintw(Yall+33, Xall+27, "Pegar revista:");
+                mvprintw(Yall+33, Xall+35, "Mao ocupada");
+                mvprintw(Yall+35, Xall+27, "Devolva o item da mao");
                 revistapickup=0;
             }
+        if(revistapickup==1){
+            mvprintw(revistay+5+revista_linha,revistax+18+revista_coluna,"%s",revista[marcar]);
+            switch(tecla)
+            {
+                case KEY_RIGHT: 
+                    marcar--;
+                    revista_coluna+=2;
+                    if(revista_coluna>6&&revista_linha==0)revista_coluna=0;
+                    else if(revista_linha==1)
+                        {if(revista_coluna>6) marcar=0;
+                        if(revista_coluna>12) revista_coluna=0;}
+                    if(marcar==-1)
+                    marcar=5;
+                    break;
+
+                case KEY_LEFT: 
+                    marcar++;
+                    if(marcar>5)
+                    marcar=0;
+                    break;
+                case KEY_DOWN:
+                    revista_linha++;
+                    if(revista_linha>2) revista_linha=0;
+                    break;
+                case KEY_UP:
+                    if(revista_coluna>=6)revista_linha--;
+                    break;
+
+                case '\n':
+                    if(marcar==0||marcar)
+                        if(cor==1)
+                        demo();
+                    break;
+
+            }
         }
+        }
+        /*              
+                        mvprintw(revistay+2,    revistax+18, " |-_          __-|  ");
+                        mvprintw(revistay+3,    revistax+18, " |  '--__.__-'   |  ");
+                        mvprintw(revistay+4,    revistax+18, " |sudoku |palavra|  ");
+                        mvprintw(revistay+5,    revistax+18, " | 1 2 3 |cruzada|  ");
+                        mvprintw(revistay+6,    revistax+18, " | 4 5 6 |1  2  3|  ");
+                        mvprintw(revistay+7,    revistax+18, " |-__    |    __-|  ");
+                        mvprintw(revistay+8,    revistax+18, " |-__'-__|__-'__-|  ");
+                        mvprintw(revistay+9,   revistax+18, "     '-__|__-'       ");
+        */
+       
 /*)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
         ))))))))))))))))))))))))))))))))))))))
         )))))))))))))))))))))))))))))))))))))))
@@ -1223,7 +1280,7 @@ int pertoestante = ((x >= estanteX - 2 && x <= estanteX + 14) && (y >= estanteY 
                     // --- LIVRO 1 ---
                     if (x >= estanteX - 2 && x <= estanteX + 2) 
                     {
-                        mvprintw(LINES - 9, COLS - 21, " Pegar livro 1: E");
+                        mvprintw(Yall+33, Xall+27, " Pegar livro 1: E");
                         if (tecla == 'e' || tecla == 'E') 
                         {
                             livropickup = 1;
@@ -1236,7 +1293,7 @@ int pertoestante = ((x >= estanteX - 2 && x <= estanteX + 14) && (y >= estanteY 
                     // --- LIVRO 2 ---
                     else if (x >= estanteX + 3 && x <= estanteX + 8) 
                     {
-                        mvprintw(LINES - 9, COLS - 21, " Pegar livro 2: E");
+                        mvprintw(Yall+33, Xall+27, " Pegar livro 2: E");
                         if (tecla == 'e' || tecla == 'E') 
                         {
                             livropickup = 1;
@@ -1249,7 +1306,7 @@ int pertoestante = ((x >= estanteX - 2 && x <= estanteX + 14) && (y >= estanteY 
                     // --- LIVRO 3 ---
                     else if (x >= estanteX + 9 && x <= estanteX + 14) 
                     {
-                        mvprintw(LINES - 9, COLS - 21, " Pegar livro 3: E");
+                        mvprintw(Yall+33, Xall+27, " Pegar livro 3: E");
                         if (tecla == 'e' || tecla == 'E') 
                         {
                             livropickup = 1;
@@ -1263,7 +1320,7 @@ int pertoestante = ((x >= estanteX - 2 && x <= estanteX + 14) && (y >= estanteY 
                 // Se o jogador JÁ ESTÁ segurando um livro, o menu muda para SOLTAR
                 else if (livropickup == 1) 
                 {
-                    mvprintw(LINES - 9, COLS - 20, "Soltar livro: E");
+                    mvprintw(Yall+33, Xall+27, "Soltar livro: E");
                     if (tecla == 'e' || tecla == 'E') 
                     {
                         livropickup = 0;
@@ -1276,9 +1333,9 @@ int pertoestante = ((x >= estanteX - 2 && x <= estanteX + 14) && (y >= estanteY 
             
             else if(celularpickup==1||livropickup==1||revistapickup==1)
             {
-                mvprintw(LINES-9, COLS-25, "Pegar livro:");
-                mvprintw(LINES-9, COLS-11, "Mao ocupada");
-                mvprintw(LINES-6, COLS-23, "Devolva o item da mao");
+                mvprintw(Yall+33, Xall+27, "Pegar livro:");
+                mvprintw(Yall+33, Xall+35, "Mao ocupada");
+                mvprintw(Yall+35, Xall+27, "Devolva o item da mao");
                 livropickup=0;
             }
         }
@@ -1289,7 +1346,7 @@ int pertoestante = ((x >= estanteX - 2 && x <= estanteX + 14) && (y >= estanteY 
 
         if(livro1||livro2||livro3)
         {
-            mvprintw(LINES-15, COLS-25, "Estudar livro?:R");
+            mvprintw(Yall+35, Xall+27, "Estudar livro?:R");
             if (tecla == 'r' || tecla == 'R') 
             {
                 estudando = 1;
@@ -1496,28 +1553,28 @@ if(depoisprova==0)
     if(atividade_sono>5&&estudo>=3)// se ele não dormiu mas estudou ele faz a prova cansado e sabendo (prova cansado simples)
     {
         cair_no_sono();
-        dialogoprovacs();
+        //dialogoprovacs();
         prova_cansado_simples(&cor,&acertos);
     }
 
     if (atividade_sono<=5&&estudo>=3)// se ele dormiu e estudou ele faz a prova descansado e sabendo (prova simples)
     {
         dormir();
-        dialogoprovas();
+        //dialogoprovas();
         prova_simples(&cor,&acertos);
     }
 
     if (atividade_sono>5&&estudo<3)//se ele nao dormiu e não estudou ele faz a prova descansado e burro  (prova cansado complexa)
     {
         cair_no_sono();
-        dialogoprovacc();
+        //dialogoprovacc();
         prova_cansado_complexa(&cor,&acertos);
     }
     if (atividade_sono<=5&&estudo<3)// se ele dormiu mas não estudou ele faz a prova descansado e burro (prova complexa)
     {
         
         dormir();
-        dialogoprovac();
+        //dialogoprovac();
         prova_complexa(&cor,&acertos);
     }
 }
