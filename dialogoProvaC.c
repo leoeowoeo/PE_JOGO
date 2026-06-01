@@ -10,7 +10,7 @@ void dialogoprovac()
     int tecla_cena = 0;
     int linha_atual = Yall;
 
-    
+    keypad(stdscr, FALSE);
     erase();
     slow_mvwprintw(stdscr, "alarme- BEEP BEEP BEEP", linha_atual, Xall);
     beep(); refresh(); napms(500);
@@ -140,4 +140,5 @@ void dialogoprovac()
     linha_atual++;
     slow_mvwprintw(stdscr, "Podem virar as provas...", linha_atual, Xall);
     refresh(); napms(4000);
+    keypad(stdscr, FALSE);
 }

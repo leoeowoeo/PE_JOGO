@@ -13,7 +13,5 @@ RUN apt-get update && apt-get install -y libncurses-dev && rm -rf /var/lib/apt/l
 
 COPY . /app
 
-RUN make
 
-CMD ["./game"]
 

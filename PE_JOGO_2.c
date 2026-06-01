@@ -79,7 +79,7 @@ int main()
     int maexinga=0;
     int epilepsia=0;
     // condições de inicio do ato2 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    int atividade_sono=5,estudo=3;
+    int atividade_sono=0,estudo=0;
             //CONDIÇÕES DO ATO 3--------------------------------------------------------------------------------------------------------
     int depoisprova=0;
     int validador=1;
@@ -176,8 +176,8 @@ int main()
     if(iniciar==0||depoisprova==0)
     {
         //DIALOGO INICIAL
-
-    /*mvprintw(Yall,Xall,"Mova-se com \"WASD\" - saia com a tecla q");
+keypad(stdscr, FALSE);
+    mvprintw(Yall,Xall,"Mova-se com \"WASD\" - saia com a tecla q");
     refresh();
     napms(4000);
     erase();
@@ -199,7 +199,8 @@ int main()
 
     erase();
     transicao(&epilepsia);
-    quest=dialogoMae(&maexinga);;*/
+    quest=dialogoMae(&maexinga);
+    keypad(stdscr, TRUE);
 
     }
     // não botei um refresh aqui, pq eu posso botar varios printw e dps dar um refresh em tudo
@@ -1582,29 +1583,30 @@ if(depoisprova==0)
 {
     if(atividade_sono>5&&estudo>=3)// se ele não dormiu mas estudou ele faz a prova cansado e sabendo (prova cansado simples)
     {
+        
         cair_no_sono();
-        //dialogoprovacs();
+        dialogoprovacs();
         prova_cansado_simples(&cor,&acertos);
     }
 
     if (atividade_sono<=5&&estudo>=3)// se ele dormiu e estudou ele faz a prova descansado e sabendo (prova simples)
     {
         dormir();
-        //dialogoprovas();
+        dialogoprovas();
         prova_simples(&cor,&acertos);
     }
 
     if (atividade_sono>5&&estudo<3)//se ele nao dormiu e não estudou ele faz a prova descansado e burro  (prova cansado complexa)
     {
         cair_no_sono();
-        //dialogoprovacc();
+        dialogoprovacc();
         prova_cansado_complexa(&cor,&acertos);
     }
     if (atividade_sono<=5&&estudo<3)// se ele dormiu mas não estudou ele faz a prova descansado e burro (prova complexa)
     {
         
         dormir();
-        //dialogoprovac();
+        dialogoprovac();
         prova_complexa(&cor,&acertos);
     }
 }

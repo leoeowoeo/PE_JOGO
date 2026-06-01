@@ -85,8 +85,9 @@ int dialogoMae(int *maexinga)
 
     linha_atual++;
     nodelay(stdscr, FALSE);
+    
+    keypad(stdscr, FALSE);
     keypad(stdscr, TRUE);
-
     while (1)
     {
         if (marcar_resposta == 0) wattron(stdscr, A_REVERSE);

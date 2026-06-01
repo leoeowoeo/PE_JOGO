@@ -141,4 +141,5 @@ void dialogoprovas()
     linha_atual++;
     slow_mvwprintw(stdscr, "Podem virar as provas...", linha_atual, Xall);
     refresh(); napms(4000);
+    keypad(stdscr, FALSE);
 }

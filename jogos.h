@@ -19,6 +19,7 @@ void dialogoprovas();
 void dialogoprovac();
 void dialogoprovacs();
 void dialogoprovacc();
+int dialogofinal(int *finais_alcancados);
 int dialogoMae(int *maexinga);
 int personalizar(int *selecao_olhos, int *selecao_face,int *selecao_pernas, int xselecao, int yselecao);
 void slow_mvwprintw(WINDOW* win, char* fala, const int y, int x);

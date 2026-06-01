@@ -1,22 +1,14 @@
 #include <ncurses.h>
 void abrirlivro(int *livro1,int *livro2,int *livro3)
 {
-        curs_set(0);
+        curs_set(0); // guia foca
 
         keypad(stdscr, TRUE);
         int Xall=(COLS/2)-40, Yall=3;
         int livroY = Yall+8, livroX = Xall+35;
         int ganhou=0;
 if(*livro1==1&&*livro2==0&&*livro3==0){
-
-            werase(stdscr);
-            mvwprintw(stdscr, livroY++,     livroX-20,"     ______ ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"    /     /|");
-            mvwprintw(stdscr, livroY++,     livroX-20,"   /     / |");
-            mvwprintw(stdscr, livroY++,     livroX-20,"  /     /  |"); 
-            mvwprintw(stdscr, livroY++,     livroX-20," /_____/   |"); 
-            mvwprintw(stdscr, livroY++,     livroX-20,"|     |    |");
-            mvwprintw(stdscr, livroY++,     livroX-20,"|fund.|  , |");
+https://github.com/leoeowoeo/PE_JOGO|  , |");
             mvwprintw(stdscr, livroY++,     livroX-20,"|da   | /| |"); 
             mvwprintw(stdscr, livroY++,     livroX-20,"|mat. |  | |");
             mvwprintw(stdscr, livroY++,     livroX-20,"|elem-|  | |");

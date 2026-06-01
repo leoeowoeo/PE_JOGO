@@ -1,11 +1,14 @@
 #include<ncurses.h>
 #include "jogos.h"
-int dialogoFinal(int *finais_alcancados)
+int dialogofinal(int *finais_alcancados)
 {
     //dialogo bom(caso ele tenha gabaritado)
     int Xall = (COLS / 2) - 57;
     int Yall = 3;
-    int linha_atual = Yall;
+    int linha_atual;
+    erase();
+    slow_mvwprintw(stdscr, "Voce entra no seu quarto e fecha a porta de vagar", linha_atual, Xall);
+    refresh(); napms(1000);
 
     erase();
     slow_mvwprintw(stdscr, "Voce entra no seu quarto e fecha a porta de vagar", linha_atual, Xall);
@@ -51,7 +54,7 @@ int dialogoFinal(int *finais_alcancados)
 
     int opcao_retorno = 0;
     int tecla_cena = 0;
-    int linha_atual=Yall;
+    linha_atual=Yall;
 
     erase();
     slow_mvwprintw(stdscr, "Voce joga a cabeça no travesseiro, exausto e frustrado...", linha_atual, Xall);
