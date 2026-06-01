@@ -89,6 +89,7 @@ void dialogodepoisprova(int *acertos, int *maexinga, int *epilepsia)
         }
     //----------------------------------------------------------------------------------------------
         int opcao_principal = 0;
+        flushinp();
     while (1)
     {
         if (opcao_principal == 0) wattron(stdscr, A_REVERSE);
@@ -135,6 +136,7 @@ void dialogodepoisprova(int *acertos, int *maexinga, int *epilepsia)
         refresh(); napms(700);
 
         linha_atual += 2;
+        flushinp();
         while (1)
         {
             if (marcar_resposta == 0)   wattron(stdscr, A_REVERSE);
@@ -221,6 +223,7 @@ void dialogodepoisprova(int *acertos, int *maexinga, int *epilepsia)
         refresh(); napms(700);
     //----------------------------------------------------------------------------------------------
     int opcao_principal = 0;
+    flushinp();
     while (1)
     {
         if (opcao_principal == 0) wattron(stdscr, A_REVERSE);

@@ -1,7 +1,6 @@
 #include <ncurses.h>
 #include <string.h>
 #include <stdlib.h>
-
 int mvwprintw_cansado_complexa(WINDOW *janela, int Yprova, int Xprova, const char *prova, int cansando);
 
 int prova_cansado_complexa(int *cor,int *acertos) 
@@ -101,7 +100,7 @@ int prova_cansado_complexa(int *cor,int *acertos)
     mvwprintw(prova_cansado_complexa, Yall+1, Xall+15,"cansado    ");
     wrefresh(prova_cansado_complexa);
     napms(2000);
-
+flushinp();
     werase(prova_cansado_complexa);
     while (tecla != 'p')
     {

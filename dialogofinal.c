@@ -187,6 +187,7 @@ int dialogofinal(int *finais_alcancados)
     nodelay(stdscr, FALSE);
     keypad(stdscr, TRUE);
 
+    flushinp();
     while (1)
     {
         if (opcao_retorno == 0) wattron(stdscr, A_REVERSE);

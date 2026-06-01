@@ -42,7 +42,7 @@ void dialogoprovacc()
     
     nodelay(stdscr, FALSE); 
     keypad(stdscr, TRUE);
-
+flushinp();
     while (1)
     {
         if (marcar_arrumar == 0)    wattron(stdscr, A_REVERSE);
@@ -90,7 +90,7 @@ void dialogoprovacc()
         linha_atual++;
         slow_mvwprintw(stdscr, "ta com duas meias diferentes e sem cinto?", linha_atual, Xall + 5);
         refresh(); napms(700);
-
+flushinp();
         // RESPOSTA PARA A MÃE
         linha_atual += 2;
         while (1)

@@ -30,7 +30,7 @@ int prova_complexa(int *cor,int *acertos)
     //RODA PRA TESTAR
     // Vetores com o espaçamento exato embutido (81 caracteres entre as barras)
 // --- DECLARAÇÃO DAS OPÇÕES (Com 81 espaços exatos para referência no seu código) ---
-    
+flushinp();
     char *questao1[5] = {
         "*[A] 0,4886                                                                      ",    
         "*[B] 0,5112                                                                      ", 

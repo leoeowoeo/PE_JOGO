@@ -20,7 +20,7 @@ int prova_cansado_simples(int *cor,int *acertos)
     init_pair(4,COLOR_RED,COLOR_WHITE);
     init_pair(5,COLOR_YELLOW,COLOR_WHITE);
     init_pair(6,COLOR_BLACK,COLOR_WHITE);
-
+flushinp();
     
     // Posições base globais
     int Xall = 40, Yall = 3;

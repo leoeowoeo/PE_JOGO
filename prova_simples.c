@@ -50,7 +50,7 @@ int prova_simples(int *cor, int *acertos){
 
         int Yprova = Yall;
         int Xprova = Xall;
-        
+        flushinp();
         tecla = wgetch(prova_simples);
         werase(prova_simples); 
         
