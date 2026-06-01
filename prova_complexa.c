@@ -87,6 +87,7 @@ int prova_complexa(int *cor,int *acertos)
     mvwprintw(prova_complexa, Yall, Xall,"Eu não estudei...");
     wrefresh(prova_complexa);
     napms(3000);
+    flushinp();
     while (tecla != 'p')
     {
         int Yprova = Yall;

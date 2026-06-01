@@ -86,7 +86,6 @@ int dialogoMae(int *maexinga)
     linha_atual++;
     nodelay(stdscr, FALSE);
     
-    keypad(stdscr, FALSE);
     keypad(stdscr, TRUE);
     while (1)
     {

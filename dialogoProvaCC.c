@@ -12,30 +12,30 @@ void dialogoprovacc()
     // --- ALARME ---
     erase();
     slow_mvwprintw(stdscr, "alarme- BEEP BEEP BEEP", linha_atual, Xall);
-    beep(); refresh(); napms(500);
+    beep(); refresh(); napms(70);
     
     erase();
     slow_mvwprintw(stdscr, "alarme- BEEP BEEP BEEP", linha_atual, Xall);
-    beep(); refresh(); napms(500);
+    beep(); refresh(); napms(70);
     
     erase();
     slow_mvwprintw(stdscr, "alarme- BEEP BEEP BEEP", linha_atual, Xall);
-    beep(); refresh(); napms(500);
+    beep(); refresh(); napms(70);
 
     erase();
     slow_mvwprintw(stdscr, "Garoto- Nossa, eu cai no sono... to  todo ferrado", linha_atual, Xall);
-    refresh(); napms(1500);
+    refresh(); napms(700);
     
     linha_atual++;
     slow_mvwprintw(stdscr, "Voce demora para levantar por estar lerdo", linha_atual, Xall);
-    refresh(); napms(1000);
+    refresh(); napms(700);
 
     linha_atual++;
     slow_mvwprintw(stdscr, "Garoto- Ah e", linha_atual, Xall);
-    refresh(); napms(1000);
+    refresh(); napms(700);
     
     slow_mvwprintw(stdscr, "Garoto- Ah e, eu tenho prova, preciso me arrumar", linha_atual, Xall);
-    refresh(); napms(2000);
+    refresh(); napms(700);
 
     linha_atual += 2;
     slow_mvwprintw(stdscr, "Como voce vai se arrumar?", linha_atual, Xall);
@@ -73,23 +73,23 @@ void dialogoprovacc()
     {
         //SE ARRUMAR RÁPIDO
         slow_mvwprintw(stdscr, "Voce se arruma correndo, sai jogando as roupas para o alto", linha_atual, Xall);
-        refresh(); napms(1200);
+        refresh(); napms(700);
         
         linha_atual++;
         slow_mvwprintw(stdscr, "pega o que ve pela frente que e vestivel e sai", linha_atual, Xall);
-        refresh(); napms(2000);
+        refresh(); napms(700);
 
         linha_atual += 2;
         slow_mvwprintw(stdscr, "Mae- Meu deus, o que aconteceu com voce?", linha_atual, Xall);
-        refresh(); napms(1500);
+        refresh(); napms(700);
 
         linha_atual++;
         slow_mvwprintw(stdscr, "Mae- Que cara e essa toda marcada? E porque voce", linha_atual, Xall);
-        refresh(); napms(1200);
+        refresh(); napms(700);
         
         linha_atual++;
         slow_mvwprintw(stdscr, "ta com duas meias diferentes e sem cinto?", linha_atual, Xall + 5);
-        refresh(); napms(2000);
+        refresh(); napms(700);
 
         // RESPOSTA PARA A MÃE
         linha_atual += 2;
@@ -121,63 +121,63 @@ void dialogoprovacc()
         if (marcar_resposta == 0)
         {
             slow_mvwprintw(stdscr, "Mae- Estilo? desfaz esse estilo, pelo amor de deus", linha_atual, Xall);
-            refresh(); napms(2000);
+            refresh(); napms(700);
         }
         else
         {
             slow_mvwprintw(stdscr, "Mae- Percebe-se, vai jogar uma agua no rosto e escovar esse dente", linha_atual, Xall);
             linha_atual++;
             slow_mvwprintw(stdscr, "    to sentindo o bafo daqui...", linha_atual, Xall);
-            refresh(); napms(2500);
+            refresh(); napms(700);
         }
 
         linha_atual += 2;
         slow_mvwprintw(stdscr, "Garoto- Ta bem...", linha_atual, Xall);
-        refresh(); napms(1200);
+        refresh(); napms(700);
         
         linha_atual++;
         slow_mvwprintw(stdscr, "Voce volta pra acertar as things", linha_atual, Xall);
-        refresh(); napms(2000);
+        refresh(); napms(700);
         linha_atual++;
         slow_mvwprintw(stdscr, "Passa um tempo", linha_atual, Xall);
-        refresh(); napms(2000);
+        refresh(); napms(700);
         linha_atual++;
         slow_mvwprintw(stdscr, "...", linha_atual, Xall);
-        refresh(); napms(2000);
+        refresh(); napms(700);
     }
     else
     {
         //SE ARRUMAR DEVAGAR (Efeito de digitação manual simulado pelo slow_mvwprintw elimina a necessidade dos múltiplos erases manuais)
         slow_mvwprintw(stdscr, "Voce se arruma lentamente", linha_atual, Xall);
-        refresh(); napms(1000);
+        refresh(); napms(700);
         
         linha_atual++;
         slow_mvwprintw(stdscr, "Voce se arruma lentamente, escolhendo cada roupa...", linha_atual, Xall);
-        refresh(); napms(2000);
+        refresh(); napms(700);
         
         linha_atual++;
         slow_mvwprintw(stdscr, "Claro, voce chega atrasado, mas nao feio", linha_atual, Xall);
-        refresh(); napms(2000);
+        refresh(); napms(700);
 
         linha_atual += 2;
         slow_mvwprintw(stdscr, "Mae- Olha que voce vai se atrasar!!!", linha_atual, Xall);
-        refresh(); napms(1500);
+        refresh(); napms(700);
         
         linha_atual++;
         slow_mvwprintw(stdscr, "Garoto- Ta mae, eu to so colocando a blusa!", linha_atual, Xall);
-        refresh(); napms(1800);
+        refresh(); napms(700);
         
         linha_atual++;
         slow_mvwprintw(stdscr, "Voce nao esta so colocando a blusa, voce esta escolhendo ela ainda...", linha_atual, Xall);
-        refresh(); napms(2500);
+        refresh(); napms(700);
         
         linha_atual++;
         slow_mvwprintw(stdscr, "...", linha_atual, Xall);
-        refresh(); napms(1500);
+        refresh(); napms(700);
         
         linha_atual++;
         slow_mvwprintw(stdscr, "Voce faz seu cafe, depois de demorar pra se arrumar e enquanto voce esta comen-", linha_atual, Xall);
-        refresh(); napms(2000);
+        refresh(); napms(700);
     }
 
     erase();
@@ -197,22 +197,22 @@ void dialogoprovacc()
     wattroff(stdscr, A_BOLD);
 
     refresh(); 
-    napms(2500);
+    napms(700);
 
     linha_atual += 2;
     slow_mvwprintw(stdscr, "Voce engole a comida rapidamente e vira um nescau gelado que ate doi o ceu da boca", linha_atual, Xall);
-    refresh(); napms(2500);
+    refresh(); napms(700);
 
     linha_atual++;
     slow_mvwprintw(stdscr, "Garoto- ...", linha_atual, Xall);
-    refresh(); napms(1500);
+    refresh(); napms(700);
     linha_atual++;
     slow_mvwprintw(stdscr, "Mae- Meu deus, ta todo acabado, eu te levo hoje, se nao voce se atrasa", linha_atual, Xall);
-    refresh(); napms(2500);
+    refresh(); napms(700);
 
     linha_atual++;
     slow_mvwprintw(stdscr, "Voces saem e a sua mae te leva pra escola", linha_atual, Xall);
-    refresh(); napms(6000);
+    refresh(); napms(700);
 
     erase();
     linha_atual = Yall;
@@ -220,24 +220,23 @@ void dialogoprovacc()
     slow_mvwprintw(stdscr, "Professor- A prova ta facil, a materia que a gente viu em sala", linha_atual, Xall);
     linha_atual++;
     slow_mvwprintw(stdscr, "e a que eu marquei para voces lerem nos livros em casa", linha_atual, Xall);
-    refresh(); napms(3500);
+    refresh(); napms(700);
 
     linha_atual += 2;
     slow_mvwprintw(stdscr, "Professor- Pega a prova e passa pra traz", linha_atual, Xall);
-    refresh(); napms(800);
+    refresh(); napms(70);
     linha_atual++;
     slow_mvwprintw(stdscr, "Professor- Pega a prova e passa pra traz", linha_atual, Xall);
-    refresh(); napms(800);
+    refresh(); napms(70);
     linha_atual++;
     slow_mvwprintw(stdscr, "Professor- Pega a prova e passa pra traz...", linha_atual, Xall);
-    refresh(); napms(1500);
+    refresh(); napms(700);
 
     linha_atual += 2;
     slow_mvwprintw(stdscr, "Todos pegam as suas provas se arrumam e o professor diz:", linha_atual, Xall);
-    refresh(); napms(2000);
+    refresh(); napms(700);
     
     linha_atual++;
     slow_mvwprintw(stdscr, "Podem virar as provas...", linha_atual, Xall);
-    refresh(); napms(6000);
-    keypad(stdscr, FALSE);
+    refresh(); napms(700);
 }
