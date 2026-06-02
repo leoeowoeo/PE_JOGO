@@ -3,6 +3,19 @@
 #include <stdio.h>
 #include <time.h>
 
+typedef struct SAVE_
+{
+        int atividade_sono;
+        int celularpickup;
+        int livropickup;
+        int revistapickup;
+        int maepistola;
+        int maepistoladef;
+        int janelaaberta;
+        int depoisprova;
+        char imagem[100];
+}SAVE;
+
     #define TARGET_FRAME_MS 30 // teste pra commit
     #define VERMELHO
     #define COR_MARROM         8
@@ -27,6 +40,35 @@ int main()
     noecho(); // n mostra o que o usuario ta digita ndo
     
     //coordenadas
+    SAVE save1,save2,save3;
+
+        save1.atividade_sono=0;
+        save1.celularpickup=0;
+        save1.livropickup=0;
+        save1.revistapickup=0;
+        save1.maepistola=0;
+        save1.maepistoladef=0;
+        save1.janelaaberta=0;
+        save1.depoisprova=0;
+
+        save2.atividade_sono=0;
+        save2.celularpickup=0;
+        save2.livropickup=0;
+        save2.revistapickup=0;
+        save2.maepistola=0;
+        save2.maepistoladef=0;
+        save2.janelaaberta=0;
+        save2.depoisprova=0;
+
+        save3.atividade_sono=0;
+        save3.celularpickup=0;
+        save3.livropickup=0;
+        save3.revistapickup=0;
+        save3.maepistola=0;
+        save3.maepistoladef=0;
+        save3.janelaaberta=0;
+        save3.depoisprova=0;
+    
     int Xall=(COLS/2)-57, Yall=3;
     int tecla=0, x=22+Xall, y=10+Yall;
     int xf=22+Xall,yf=10+Yall,lado=0;
@@ -176,7 +218,7 @@ int main()
     if(iniciar==0||depoisprova==0)
     {
         //DIALOGO INICIAL
-keypad(stdscr, FALSE);
+    /*keypad(stdscr, FALSE);
     mvprintw(Yall,Xall,"Mova-se com \"WASD\" - saia com a tecla q");
     refresh();
     napms(4000);
@@ -199,7 +241,7 @@ keypad(stdscr, FALSE);
 
     erase();
     transicao(&epilepsia);
-    quest=dialogoMae(&maexinga);
+    quest=dialogoMae(&maexinga);*/
     keypad(stdscr, TRUE);
 
     }
@@ -1569,13 +1611,13 @@ if(fechar==1)
         refresh();
         iniciar=1;
         napms(1000);
-    }//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    }
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 
 
 }//menu
@@ -1620,8 +1662,21 @@ if(acertos<5&&depoisprova==0)
 }
 else
 {
-    if(dialogofinal(&finais_alcancados))
+    if(dialogofinal(&finais_alcancados))// isso daqui que vai virar a struct que a gente rpecisa botar no arquivo binário do jogo, o save.
+    // então, a gente bota tudo isso numa struct, da om ctrl +shift +l bota o nome da struct antes de todas essas variaveis do save. 
+    // tipo save.ativida_desono
+    //save.atividade_sono=0;
+    //save.celularpickup=0;
+    //save.livropickup=0;
+    //save.revistapickup=0;
+    //save.maepistola=0;
+    //save.maepistoladef=0;
+    //save.janelaaberta=0;
+    //save.depoisprova=0;
+    // e ai a gente só recarrega a struct com tudo, e a gente pode fazer 3 saves e salvar um sprite do momento tbm,
+    //um vetor de caracteres com uma imagem pequena ao redor do jogador que mostre o ponto do save que ele ta pra botar na pasta.
     {
+
         atividade_sono=0;
         celularpickup=0;
         livropickup=0;
