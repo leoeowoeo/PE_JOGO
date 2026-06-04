@@ -2,6 +2,18 @@
 #define JOGOS_H
 
 #include <ncurses.h>
+typedef struct SAVE_
+{
+        int atividade_sono;
+        int celularpickup;
+        int livropickup;
+        int revistapickup;
+        int maepistola;
+        int maepistoladef;
+        int janelaaberta;
+        int depoisprova;
+        char imagem[100];
+}SAVE;
 
 int inicio(int *selecao_olhos, int *selecao_face,int *selecao_pernas, int *cor, int *interage, int *selecaocor,int *iniciar,int *epilepsia);
 void pedrapapeltesoura(int *cor,int *encararespelho);
@@ -26,6 +38,10 @@ void slow_mvwprintw(WINDOW* win, char* fala, const int y, int x);
 void transicao(int *epilepsia);
 void dialogodepoisprova(int *acertos,int *maexinga,int *epilepsia);
 void demo();
+
+void iniciar(SAVE *save_atual);
+int gravar(const char *nome_arquivo, SAVE *save_atual);
+int recarregar(const char *nome_arquivo, SAVE *save_atual);
 
 
 

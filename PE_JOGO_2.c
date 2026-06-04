@@ -3,19 +3,6 @@
 #include <stdio.h>
 #include <time.h>
 
-typedef struct SAVE_
-{
-        int atividade_sono;
-        int celularpickup;
-        int livropickup;
-        int revistapickup;
-        int maepistola;
-        int maepistoladef;
-        int janelaaberta;
-        int depoisprova;
-        char imagem[100];
-}SAVE;
-
     #define TARGET_FRAME_MS 30 // teste pra commit
     #define VERMELHO
     #define COR_MARROM         8
@@ -34,12 +21,15 @@ typedef struct SAVE_
 #include "jogos.h"
 int main()
 {
+    FILE *entrada, *saida;
+    
+
     curs_set(0);
     initscr(); // inicia a tela (janela)  
     cbreak(); // quebra a linha, tipo o \n, mas do ncurses, n da pra usar os 2 aqui, so esse msms
     noecho(); // n mostra o que o usuario ta digita ndo
     
-    //coordenadas
+
     SAVE save1,save2,save3;
 
         save1.atividade_sono=0;
