@@ -3,7 +3,7 @@
 #include "jogos.h"
 #define COR_CIANO          18
 
-int inicio(int *selecao_olhos, int *selecao_face,int *selecao_pernas, int *cor, int *interage, int *selecaocor,int *iniciar,int *epilepsia)
+int inicio(int *selecao_olhos, int *selecao_face,int *selecao_pernas, int *cor, int *interage, int *selecaocor,int *iniciar,int *epilepsia,SAVE *save_atual)
 {//abriu main
     keypad(stdscr,TRUE);
     noecho();
@@ -161,6 +161,7 @@ int inicio(int *selecao_olhos, int *selecao_face,int *selecao_pernas, int *cor, 
                 if(selecao==1)
                 {//abriu if 8
                     jogar=1;
+                    menusave(cor,save_atual);
                     wattroff(stdscr,COLOR_PAIR(4));
                     break;
                 }//fechou if8

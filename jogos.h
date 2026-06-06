@@ -15,7 +15,7 @@ typedef struct SAVE_
         char imagem[100];
 }SAVE;
 
-int inicio(int *selecao_olhos, int *selecao_face,int *selecao_pernas, int *cor, int *interage, int *selecaocor,int *iniciar,int *epilepsia);
+int inicio(int *selecao_olhos, int *selecao_face,int *selecao_pernas, int *cor, int *interage, int *selecaocor,int *iniciar,int *epilepsia,SAVE *save_atual);
 void pedrapapeltesoura(int *cor,int *encararespelho);
 int cobra(int *cor, int *jogarcelular5);
 void dormir();
@@ -42,6 +42,7 @@ void demo();
 void iniciar(int slot,SAVE *save_atual);
 void gravar(int slot,SAVE *save_atual);
 void recarregar(int slot,SAVE *save_atual);
+void menusave(int*cor,SAVE *save_atual);
 
 
 

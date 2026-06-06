@@ -114,7 +114,7 @@ int main()
     curs_set(0);
     while(1)//menu
     {
-        if(save.depoisprova==0) inicio(&selecao_olhos,&selecao_face,&selecao_pernas,&cor, &interage, &selecaocor,&iniciar,&epilepsia);
+        if(save.depoisprova==0) inicio(&selecao_olhos,&selecao_face,&selecao_pernas,&cor, &interage, &selecaocor,&iniciar,&epilepsia,&save);
         if(epilepsia==1){
             mvprintw(LINES-5,5,"MODO DE EPILEPSIA");
         }

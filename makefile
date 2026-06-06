@@ -27,9 +27,11 @@ SRC = dialogos/dialogofinal.c \
       dialogos/dialogoProvaC.c \
       dialogos/dialogoMae.c \
       dialogos/dialogodepoisprova.c \
-	  funcoes/iniciar.c \
-	  funcoes/recarregar.c \
-	  funcoes/gravar.c 
+	funcoes/iniciar.c \
+	funcoes/recarregar.c \
+	funcoes/gravar.c \
+      funcoes/menusave.c
+      
 
 all:
 	$(CC) $(SRC) -o $(OUT) $(LIBS)
