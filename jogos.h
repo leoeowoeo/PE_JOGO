@@ -39,9 +39,9 @@ void transicao(int *epilepsia);
 void dialogodepoisprova(int *acertos,int *maexinga,int *epilepsia);
 void demo();
 
-void iniciar(SAVE *save_atual);
-int gravar(const char *nome_arquivo, SAVE *save_atual);
-int recarregar(const char *nome_arquivo, SAVE *save_atual);
+void iniciar(int slot,SAVE *save_atual);
+void gravar(int slot,SAVE *save_atual);
+void recarregar(int slot,SAVE *save_atual);
 
 
 
