@@ -1567,10 +1567,10 @@ int pertoestante = ((x >= estanteX - 2 && x <= estanteX + 14) && (y >= estanteY 
     }//while jogo
     
 
-if(fechar==1)
-{
-    break;
-}
+    if(fechar==1)
+    {
+        break;
+    }
 
     if(iniciar==0)
     {
@@ -1593,6 +1593,7 @@ if(fechar==1)
 
 
 }//menu
+
 if(save.depoisprova==0)
 {
     if(save.atividade_sono>5&&estudo>=3)// se ele não dormiu mas estudou ele faz a prova cansado e sabendo (prova cansado simples)

@@ -12,6 +12,7 @@ typedef struct SAVE_
         int maepistoladef;
         int janelaaberta;
         int depoisprova;
+        char momento[64];
         char imagem[100];
 }SAVE;
 
@@ -40,9 +41,9 @@ void dialogodepoisprova(int *acertos,int *maexinga,int *epilepsia);
 void demo();
 
 void iniciar(int slot,SAVE *save_atual);
-void gravar(int slot,SAVE *save_atual);
-void recarregar(int slot,SAVE *save_atual);
-void menusave(int*cor,SAVE *save_atual);
+int gravar(int slot,SAVE *save_atual);
+int recarregar(int slot,SAVE *save_atual);
+void menusave(int*cor,SAVE *save_atual,int *jogar);
 
 
 

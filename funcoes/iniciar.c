@@ -13,6 +13,7 @@ void iniciar(int slot, SAVE *save_atual)
     save_atual->maepistoladef = 0;
     save_atual->janelaaberta = 0;
     save_atual->depoisprova = 0;
+    strcpy(save_atual->momento, "Dialogo com a mae ");//SALVO
     strcpy(save_atual->imagem, "inicial");
 
 

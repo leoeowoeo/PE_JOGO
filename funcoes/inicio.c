@@ -28,7 +28,6 @@ int inicio(int *selecao_olhos, int *selecao_face,int *selecao_pernas, int *cor, 
     char *faces[5] = {"(  )", "[  ]", "{  }", "<  >","d  b"};
     char *pernas[4] = {"/|","|\\","<v", "v>"};
 
-
     *iniciar=0;
 
     while(sair!=1)
@@ -49,7 +48,7 @@ int inicio(int *selecao_olhos, int *selecao_face,int *selecao_pernas, int *cor, 
         
         if(selecao==1)
         {//abriu if 1 e fechou
-            if(piscar<=15)
+            if(piscar<=25)
             {//aif2 e fechou
                     if(*cor==0)
                     {mvprintw(3,7,"Voce pode ativar as cores nas opcoes");}
@@ -71,7 +70,7 @@ int inicio(int *selecao_olhos, int *selecao_face,int *selecao_pernas, int *cor, 
         
         if(selecao==2)
         {//abriu if5
-            if(piscar>15)
+            if(piscar>25)
             {//abriu if6
                 mvprintw(yselecao+2,xselecao-14,"%s",faces[*selecao_face]);
                 mvprintw(yselecao+2,xselecao-13,"--");
@@ -87,7 +86,7 @@ int inicio(int *selecao_olhos, int *selecao_face,int *selecao_pernas, int *cor, 
         }////fechou if5
         if(selecao==3)
         {//abriu if3
-            if(piscar>15)
+            if(piscar>25)
             {    mvprintw(yselecao+4,xselecao-14,"%s",faces[*selecao_face]);
                 mvprintw(yselecao+4,xselecao-13,"%s",olhos[*selecao_olhos]);
             //æbriu if4
@@ -105,7 +104,7 @@ int inicio(int *selecao_olhos, int *selecao_face,int *selecao_pernas, int *cor, 
         }//fechou if3
         if(selecao==4)
         {
-            if(piscar>15)
+            if(piscar>25)
             {
                 mvprintw(yselecao+6,xselecao-14,"%s",faces[*selecao_face]);
                 mvprintw(yselecao+6,xselecao-13,"--");
@@ -123,7 +122,7 @@ int inicio(int *selecao_olhos, int *selecao_face,int *selecao_pernas, int *cor, 
         }
         if(selecao==5)
         {//abriu if7
-            if(piscar>15)
+            if(piscar>25)
             {//abru if8
                 mvprintw(yselecao+8,xselecao-12,"%s",faces[*selecao_face]);
                 mvprintw(yselecao+8,xselecao-11,"xx");
@@ -161,7 +160,9 @@ int inicio(int *selecao_olhos, int *selecao_face,int *selecao_pernas, int *cor, 
                 if(selecao==1)
                 {//abriu if 8
                     jogar=1;
-                    menusave(cor,save_atual);
+                    menusave(cor,save_atual,&jogar);
+                    nodelay(stdscr,FALSE);
+                    timeout(200);
                     wattroff(stdscr,COLOR_PAIR(4));
                     break;
                 }//fechou if8
