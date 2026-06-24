@@ -3,6 +3,10 @@
 #include "jogos.h"
 int gravar(int slot, SAVE *save_atual)
 {
+    if (slot < 1 || slot > 3 || save_atual == NULL) {
+        return 0;
+    }
+
     FILE *save = fopen("save.dat", "r+b"); // "r+b" é melhor para atualizar dados existentes
 
     if (save == NULL) {
@@ -11,7 +15,7 @@ int gravar(int slot, SAVE *save_atual)
     }
 
     if (save != NULL) {
-        fseek(save, slot * sizeof(SAVE), SEEK_SET); // vai direto para o slot escolhido
+        fseek(save, (slot - 1) * sizeof(SAVE), SEEK_SET); // vai direto para o slot escolhido
         fwrite(save_atual, sizeof(SAVE), 1, save); // escreve a struct inteira no arquivo
         fflush(save); // garante que os bytes saiam da memoria e vao para o disco
         fclose(save);

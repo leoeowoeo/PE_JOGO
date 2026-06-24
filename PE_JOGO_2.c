@@ -1,6 +1,7 @@
 #include <ncurses.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include <time.h>
 
     #define TARGET_FRAME_MS 30 // teste pra commit
@@ -98,6 +99,7 @@ int main()
 
     int validador=1;
     int fechar=0;
+        int voltar_inicio=0;
 
 
     int debug=1;
@@ -222,8 +224,6 @@ int main()
 
     int chuvax = 53+Xall, chuvay = 5+Yall, pos=0, pos2=1, pos3=2;
 
-
-
     while(1){//antes/save.depoisprova
     if(save.atividade_sono>=4){save.atividade_sono=3;}
     dormindo=0;
@@ -231,29 +231,21 @@ int main()
     {   
         if(save.depoisprova==1&&validador==1){save.maepistola=0;save.maepistoladef=0;validador=0;}
         fechar=0;
-        //achar onde tão as linhas e colunas enquanto está no jogo
-    if (debug == 1) 
-        {
-            for (int i = 0; i < LINES; i++) 
-            {
-                mvprintw(i, COLS - 3, "%2d", i);
-            }
-
-            for (int j = 0; j < COLS; j += 3) 
-            {
-                mvprintw(LINES - 1, j, "%2d", j);
-            }
-        }
         
         clock_t frame_start = clock(); // mede o tempo no começo do loop de jogo
+
+        if(save.depoisprova==0)
+        {strcpy(save.momento, "Quarto");}//iniciou o momento do quarto
+        else
+        {strcpy(save.momento, "Quarto(depois da prova)");}
     // Localização dos objetos IMOVEIS
         vontadedepisca++;
 
         nodelay(stdscr, TRUE);
 
-            if(vontadedepisca<=600)
+            if(vontadedepisca<=500)
             {pisca=1;}
-            else if(vontadedepisca > 600 && vontadedepisca <= 605)    
+            else if(vontadedepisca > 500 && vontadedepisca <= 505)    
             {pisca = 0;}
             else
                 vontadedepisca=0;
@@ -386,7 +378,7 @@ int main()
             mvprintw(ybarra+1,xbarra,"|");
             mvprintw(ybarra+1,xbarra+12,"|");
             if((jogarcelular5!=5||encararespelho!=1||dormircama!=1||jogartodosjogos!=6||ler1jogar3!=4||ler3jogatodos!=4||ler3dormir!=3)&&save.depoisprova==0)
-                mvprintw(ybarra+5,xbarra,"Quest: %s",quests[quest]);
+                mvprintw(ybarra,xbarra+30,"Quest: %s",quests[quest]);
 
             int espelhoy = 3+Yall, espelhox = 63+Xall;
             
@@ -557,8 +549,7 @@ int main()
                     }
                     if(save.celularpickup==0 && save.revistapickup==1 && y>celularY -3 && y<celularY + 3 && x >= celularX - 4 && x <= celularX + 4||save.celularpickup==0 && save.livropickup==1 && y>celularY -3 && y<celularY + 3 && x >= celularX - 4 && x <= celularX + 4)
                     {
-                        mvprintw(Yall+33, Xall+27, "Pegar celular:");
-                        mvprintw(Yall+33, Xall+35, "Mao ocupada");
+                        mvprintw(Yall+33, Xall+27, "Mao ocupada");
                         mvprintw(Yall+35, Xall+27, "Devolva o item da mao");
                         save.celularpickup=0;
                     }
@@ -590,7 +581,7 @@ int main()
                 mvprintw(portaY+3, portaX+1, "          |     | |");
                 mvprintw(portaY+4, portaX+1, "          |(00) | |");
                 mvprintw(portaY+5, portaX+1, "          | ||  |*|");
-                mvprintw(portaY+6, portaX+11,           "I_____I |");
+                mvprintw(portaY+6, portaX+11,          "I_____I |");
                 mvprintw(portaY+7, portaX+18,                 "\\|");
                 wattroff(stdscr,COLOR_PAIR(6));
                 if(maexinga)
@@ -604,10 +595,10 @@ int main()
                 }
                     else
                     {
-                        mvprintw(portaY  , portaX-1, " __________");
+                    mvprintw(portaY  , portaX-1, " __________");
                     mvprintw(portaY+1, portaX-1, "|vai dormir|");
                     mvprintw(portaY+2, portaX-1, "|__________|");
-                    mvprintw(portaY+3, portaX+10, "\\  \\/");
+                    mvprintw(portaY+3, portaX+10, "\\| \\/");
                     mvprintw(portaY+4, portaX+12, "(00) ");
                     mvprintw(portaY+5, portaX+13, "||  ");
                     }
@@ -642,7 +633,7 @@ int main()
                 mvprintw(portaY+3, portaX+1, "          |     | |");
                 mvprintw(portaY+4, portaX+1, "          |(00) | |");
                 mvprintw(portaY+5, portaX+1, "          | ||  |*|");
-                mvprintw(portaY+6, portaX+11,           "I_____I |");
+                mvprintw(portaY+6, portaX+11,          "I_____I |");
                 mvprintw(portaY+7, portaX+18,                 "\\|");
                 wattroff(stdscr,COLOR_PAIR(6));
 
@@ -972,7 +963,7 @@ int main()
         {
                 if(interagirArm==1)
         {
-           if(cor==1) wattron(stdscr, COLOR_PAIR(par));
+            if(cor==1) wattron(stdscr, COLOR_PAIR(par));
         }
 
             mvprintw (armarioY+1, armarioX, " |\"\"\"\"|");
@@ -1103,7 +1094,7 @@ for(int i=camaX-2; i<=camaX+7;i++)
         if(y>camaY&&y<camaY+5&&x>camaX-4&&x<camaX+9)
             {
                 interagirCam=1;
-                mvprintw(Yall+33, Xall+27, "Dormir: F");
+                mvprintw(Yall+33, Xall+65, "Dormir: F");
                 if(tecla=='f'||tecla=='F')
                     {dormindo=1;}
             }
@@ -1112,12 +1103,12 @@ for(int i=camaX-2; i<=camaX+7;i++)
 
 //ARMARIO
         int pertodearmario = (x >= armarioX - 2 && x <= armarioX + 8) &&
-                             (y >= armarioY+2 && y <= armarioY + 9);
+                            (y >= armarioY+2 && y <= armarioY + 9);
         if (pertodearmario) 
         {
             if(armarioaberto)
             {
-            mvprintw(Yall+33, Xall+27, "Fechar armario: E");
+            mvprintw(Yall+33, Xall+26, "Fechar armario: E");
             interagirArm=1;
             }
             else
@@ -1223,71 +1214,91 @@ for(int i=camaX-2; i<=camaX+7;i++)
                     break;
 
             }
+        }
         
         wrefresh(stdscr);
 
 //REVISTA
-    int pertoRevista = (x >= armarioX - 3 && x <= armarioX + 7) &&
-        (y >= armarioY - 1 && y <= armarioY + 7);
-        if(armarioaberto)
-            if (pertoRevista&&save.celularpickup==0&&save.livropickup==0) 
-            {
-                
-                if (save.revistapickup == 0)
-                    mvprintw(Yall+33, Xall+27, " Pegar revista: R");
-                else if(save.revistapickup == 1)
-                    mvprintw(Yall+33, Xall+27, "Soltar revista: R");
-                else if(save.revistapickup ==0&&save.depoisprova==1)
-                    mvprintw(Yall+33, Xall+27, "Sumiu ate com a minha revista...");
 
-                if ((tecla == 'r' || tecla == 'R')) {
-                    save.revistapickup = !save.revistapickup;
-                }
-            }
-            else if(pertoRevista&&save.celularpickup==1||pertoRevista&&save.livropickup==1)
+        
+        int pertoRevista = ((x >= armarioX - 3 && x <= armarioX + 7) && (y >= armarioY && y <= armarioY + 7));
+
+        if(armarioaberto)
+        {
+            if (pertoRevista && save.celularpickup==0 && save.livropickup==0&& save.revistapickup==0) 
             {
-                mvprintw(Yall+33, Xall+27, "Pegar revista:");
-                mvprintw(Yall+33, Xall+35, "Mao ocupada");
-                mvprintw(Yall+35, Xall+27, "Devolva o item da mao");
-                save.revistapickup=0;
+                interagirArm=1;
+                if(save.depoisprova==0)
+                {
+                    mvprintw(Yall+33, Xall+47, " Pegar revista: R");
+                }
+                else
+                mvprintw(Yall+33, Xall+47,"Caramba, ela tirou o revista daqui...");
+                
+                if ((tecla == 'r' || tecla == 'R')&&save.depoisprova==0)   
+                {save.revistapickup = !save.revistapickup;}
             }
-        if(save.revistapickup==1){
-            mvprintw(revistay+5+revista_linha,revistax+18+revista_coluna,"%s",revista[marcar]);
+            else if(save.revistapickup && pertoRevista&&save.celularpickup==0&&save.livropickup==0)
+            {
+                mvprintw(Yall+33, Xall+47, "Soltar revista: R");
+                if (tecla == 'r' || tecla == 'R')   
+                {save.revistapickup = !save.revistapickup;}
+            }
+            else if ((save.celularpickup==1 || save.livropickup==1)&&pertoRevista)
+            {
+                interagirArm=0;
+                mvprintw(Yall+35, Xall+27, "Mao ocupada");
+                mvprintw(Yall+37, Xall+27, "Devolva o item da mao");
+            }
+
+
+                        
+            if(save.revistapickup==1)
+        {
+            attron(A_REVERSE);
+            mvprintw(revistay+5+revista_linha, revistax+18+revista_coluna+3, "%s", revista[marcar]);
+            attroff(A_REVERSE);
             switch(tecla)
             {
-                case KEY_RIGHT: 
+                case KEY_RIGHT:
                     marcar--;
                     revista_coluna+=2;
-                    if(revista_coluna>6&&revista_linha==0)revista_coluna=0;
+                    if(revista_coluna>4 && revista_linha==0) revista_coluna=0;
                     else if(revista_linha==1)
-                        {if(revista_coluna>6) marcar=0;
-                        if(revista_coluna>12) revista_coluna=0;}
+                    {
+                        if(revista_coluna>6) marcar=0;
+                        if(revista_coluna>12) revista_coluna=0;
+                    }
                     if(marcar==-1)
-                    marcar=5;
+                        marcar=5;
                     break;
 
-                case KEY_LEFT: 
+                case KEY_LEFT:
                     marcar++;
                     if(marcar>5)
-                    marcar=0;
+                        marcar=0;
                     break;
+
                 case KEY_DOWN:
                     revista_linha++;
-                    if(revista_linha>2) revista_linha=0;
+                    if(revista_linha>2) 
+                        revista_linha=0;
                     break;
+
                 case KEY_UP:
-                    if(revista_coluna>=6)revista_linha--;
+                    if(revista_coluna>=6) 
+                        revista_linha--;
                     break;
 
                 case '\n':
-                    if(marcar==0||marcar)
+                    if(marcar==0 || marcar)
                         if(cor==1)
-                        demo();
+                            demo();
                     break;
-
+                    }
+                }
             }
-        }
-        }
+
         /*              
                         mvprintw(revistay+2,    revistax+18, " |-_          __-|  ");
                         mvprintw(revistay+3,    revistax+18, " |  '--__.__-'   |  ");
@@ -1368,7 +1379,7 @@ int pertoestante = ((x >= estanteX - 2 && x <= estanteX + 14) && (y >= estanteY 
                     }
                 }
             
-            else if(save.celularpickup==1||save.livropickup==1||save.revistapickup==1)
+            else if(pertoRevista&&(save.celularpickup==1||save.livropickup==1||save.revistapickup==1))
             {
                 mvprintw(Yall+33, Xall+27, "Pegar livro:");
                 mvprintw(Yall+33, Xall+35, "Mao ocupada");
@@ -1527,6 +1538,7 @@ int pertoestante = ((x >= estanteX - 2 && x <= estanteX + 14) && (y >= estanteY 
         }
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     refresh();
+    gravar_imagem_do_momento(y,x,save.imagem);
 
     clock_t frame_end = clock(); // mede o tempo no final do loop de jogo
     double elapsed_ms = (double)(frame_end - frame_start) * 1000.0 / CLOCKS_PER_SEC; // tempo gasto no frame em milissegundos
@@ -1561,10 +1573,16 @@ int pertoestante = ((x >= estanteX - 2 && x <= estanteX + 14) && (y >= estanteY 
     }
     if(tecla=='q')
     {
-        fechar=1;
+        voltar_inicio=1;
         break;
     }
     }//while jogo
+
+    if(voltar_inicio==1)
+    {
+        voltar_inicio=0;
+        continue;
+    }
     
 
     if(fechar==1)
@@ -1638,14 +1656,14 @@ else
     if(dialogofinal(&finais_alcancados))// isso daqui que vai virar a struct que a gente rpecisa botar no arquivo binário do jogo, o save.
     // então, a gente bota tudo isso numa struct, da om ctrl +shift +l bota o nome da struct antes de todas essas variaveis do save. 
     // tipo save.ativida_desono
-    //save.save.atividade_sono=0;
-    //save.save.celularpickup=0;
-    //save.save.livropickup=0;
-    //save.save.revistapickup=0;
-    //save.save.maepistola=0;
-    //save.save.maepistoladef=0;
-    //save.save.janelaaberta=0;
-    //save.save.depoisprova=0;
+    //save.atividade_sono=0;
+    //save.celularpickup=0;
+    //save.livropickup=0;
+    //save.revistapickup=0;
+    //save.maepistola=0;
+    //save.maepistoladef=0;
+    //save.janelaaberta=0;
+    //save.depoisprova=0;
     // e ai a gente só recarrega a struct com tudo, e a gente pode fazer 3 saves e salvar um sprite do momento tbm,
     //um vetor de caracteres com uma imagem pequena ao redor do jogador que mostre o ponto do save que ele ta pra botar na pasta.
     {

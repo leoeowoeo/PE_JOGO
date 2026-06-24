@@ -160,7 +160,7 @@ int inicio(int *selecao_olhos, int *selecao_face,int *selecao_pernas, int *cor, 
                 if(selecao==1)
                 {//abriu if 8
                     jogar=1;
-                    menusave(cor,save_atual,&jogar);
+                    menusave(cor,save_atual,&jogar, selecao_olhos, selecao_face, selecao_pernas);
                     nodelay(stdscr,FALSE);
                     timeout(200);
                     wattroff(stdscr,COLOR_PAIR(4));

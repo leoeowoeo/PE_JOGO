@@ -1,22 +1,25 @@
 #include<ncurses.h>
 #include"jogos.h"
 #include<string.h>
-void menusave(int *cor,SAVE *save_atual, int *jogar){
+void menusave(int *cor,SAVE *save_atual, int *jogar,int *selecao_olhos, int *selecao_face,int *selecao_pernas){
     initscr();
     nodelay(stdscr,TRUE);
     keypad(stdscr,TRUE);
     init_pair(4,COLOR_WHITE,-1);
     int xselecao=60,yselecao=10;
-    int tecla, selecao=0;
+    int tecla, selecao=0,i,j;
     int sair=1;
     int selecao_salvar=1;
     int INICIAR=0;
     int savey=15,savex=60;
     int salvo=0;
-    iniciar(0,save_atual);
-    iniciar(1,save_atual);
-    iniciar(2,save_atual);
-    int tam = strlen(save_atual->momento);
+    int carregoOUsalvo=0;
+    SAVE slots[3] = {0};
+    for(int slot=0; slot<3; slot++){
+        if(!recarregar(slot + 1, &slots[slot])){
+            iniciar(slot + 1, &slots[slot], selecao_olhos, selecao_face, selecao_pernas);
+        }
+    }
     while(sair){
         erase();
         tecla=getch();
@@ -26,16 +29,22 @@ void menusave(int *cor,SAVE *save_atual, int *jogar){
         if(selecao==0){
             wattron(stdscr,COLOR_PAIR(4)|A_BOLD);
             mvprintw(yselecao,xselecao-16,">SLOT 1");
+            printar_imagem_do_momento(yselecao+1,xselecao-16,slots[0].imagem);
+            mvprintw(yselecao+21,xselecao-16,"%s",slots[0].momento);
             wattroff(stdscr,COLOR_PAIR(4)|A_BOLD);
         }
         else if(selecao==1){
             wattron(stdscr,COLOR_PAIR(4)|A_BOLD);
             mvprintw(yselecao,xselecao,">SLOT 2");
+            printar_imagem_do_momento(yselecao+1,xselecao,slots[1].imagem);
+            mvprintw(yselecao+21,xselecao,"%s",slots[1].momento);
             wattroff(stdscr,COLOR_PAIR(4)|A_BOLD);
         }
         else if(selecao==2){
             wattron(stdscr,COLOR_PAIR(4)|A_BOLD);
             mvprintw(yselecao,xselecao+16,">SLOT 3");
+            printar_imagem_do_momento(yselecao+1,xselecao+16,slots[2].imagem);
+            mvprintw(yselecao+21,xselecao+16,"%s",slots[2].momento);
             wattroff(stdscr,COLOR_PAIR(4)|A_BOLD);
         }
         switch(tecla)
@@ -67,10 +76,7 @@ void menusave(int *cor,SAVE *save_atual, int *jogar){
                     }
                     salvo=0;
                 }
-                for(int i=0;i<tam;i++)
-                {
-                    mvwprintw(stdscr,yselecao+10,xselecao-8+i,"%c",save_atual->momento[i]);
-                }
+                mvwprintw(stdscr,yselecao+10,xselecao-8,"%s",slots[selecao].momento);
                 mvprintw(yselecao+2,xselecao-8," SALVAR");
                 mvprintw(yselecao+4,xselecao-8," INICIAR");
                 if(selecao_salvar==1)
@@ -99,14 +105,16 @@ void menusave(int *cor,SAVE *save_atual, int *jogar){
                     break;
                     case '\n':
                     if(selecao_salvar==1){
-                        gravar(selecao,save_atual);
-                        
+                        gravar(selecao + 1,save_atual);
+                        recarregar(1, &slots[0]);
+                        recarregar(2, &slots[1]);
+                        recarregar(3, &slots[2]);
                         salvo=1;
                         break;
                         //chamar funçao gravar pra salvar no slot "selecao"(variavel)
                     }
                     if(selecao_salvar==2){
-                        recarregar(selecao,save_atual);
+                        recarregar(selecao + 1,save_atual);
                         INICIAR=1;
 
                         break;
@@ -123,15 +131,20 @@ void menusave(int *cor,SAVE *save_atual, int *jogar){
                 napms(30);
 
             }
+            carregoOUsalvo=1;
+            recarregar(1, &slots[0]);
+            recarregar(2, &slots[1]);
+            recarregar(3, &slots[2]);
             break;
         }
         flushinp();
-        if(tecla=='p')
+        if(tecla=='p' && !carregoOUsalvo)
         {
             *jogar=0;
             sair=0;
             nodelay(stdscr,FALSE);
         }
+        carregoOUsalvo=0;
         refresh();
         napms(30);
     }

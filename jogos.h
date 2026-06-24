@@ -13,7 +13,7 @@ typedef struct SAVE_
         int janelaaberta;
         int depoisprova;
         char momento[64];
-        char imagem[100];
+        char imagem[6][12];
 }SAVE;
 
 int inicio(int *selecao_olhos, int *selecao_face,int *selecao_pernas, int *cor, int *interage, int *selecaocor,int *iniciar,int *epilepsia,SAVE *save_atual);
@@ -40,10 +40,12 @@ void transicao(int *epilepsia);
 void dialogodepoisprova(int *acertos,int *maexinga,int *epilepsia);
 void demo();
 
-void iniciar(int slot,SAVE *save_atual);
+void iniciar(int slot,SAVE *save_atual,int *selecao_olhos, int *selecao_face,int *selecao_pernas);
 int gravar(int slot,SAVE *save_atual);
 int recarregar(int slot,SAVE *save_atual);
-void menusave(int*cor,SAVE *save_atual,int *jogar);
+void menusave(int*cor,SAVE *save_atual,int *jogar,int *selecao_olhos, int *selecao_face,int *selecao_pernas);
+void gravar_imagem_do_momento(int xdogaroto, int ydogaroto,char imagem_do_momento[6][12]);
+void printar_imagem_do_momento(int x, int y, char imagem_do_momento[6][12]);
 
 
 
