@@ -1,5 +1,5 @@
 #include<ncurses.h>
-void cair_no_sono()
+void cair_no_sono() // a função roda o a animação de dormir, quando o personagem dorme no meio do quarto
 {
     int Xall=(COLS/2)-57, Yall=3;
     int olhosonoY=Yall+10, olhosonoX=Xall;

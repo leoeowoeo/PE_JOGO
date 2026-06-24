@@ -1,7 +1,9 @@
 #include<ncurses.h>
 #include"jogos.h"
 #include<string.h>
-void menusave(int *cor,SAVE *save_atual, int *jogar,int *selecao_olhos, int *selecao_face,int *selecao_pernas){
+void menusave(int *cor,SAVE *save_atual, int *jogar,int *selecao_olhos, int *selecao_face,int *selecao_pernas)
+// a função mostra o menu de save e torna possivel a escolha de salvar e dar load para jogar em cada save ( salvar sobreescreve )
+{
     initscr();
     nodelay(stdscr,TRUE);
     keypad(stdscr,TRUE);
@@ -15,12 +17,12 @@ void menusave(int *cor,SAVE *save_atual, int *jogar,int *selecao_olhos, int *sel
     int salvo=0;
     int carregoOUsalvo=0;
     SAVE slots[3] = {0};
-    for(int slot=0; slot<3; slot++){
-        if(!recarregar(slot + 1, &slots[slot])){
-            iniciar(slot + 1, &slots[slot], selecao_olhos, selecao_face, selecao_pernas);
-        }
+    for(i=0; i<3; i++)
+    {
+        iniciar(i + 1, &slots[i], selecao_olhos, selecao_face, selecao_pernas);// aqui eu inicio todos os saves com o momento e a imagem
     }
-    while(sair){
+    while(sair)
+    {
         erase();
         tecla=getch();
         mvprintw(yselecao,xselecao-16," SLOT 1");

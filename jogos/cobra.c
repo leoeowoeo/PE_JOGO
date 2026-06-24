@@ -7,7 +7,9 @@
     #define COR_VERDECOBRA    10
 
 
-int cobra(int *cor,int *jogarcelular){
+int cobra(int *cor,int *jogarcelular)
+// a função implementa o jogo da cobirnha
+{
 
         if(*cor==1)
     {

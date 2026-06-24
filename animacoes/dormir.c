@@ -1,5 +1,5 @@
 #include <ncurses.h>
-void dormir()
+void dormir()// a função roda a animação de dormir na cama
 {
     #include<ncurses.h>
 void cair_no_sono();

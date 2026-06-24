@@ -1,5 +1,6 @@
 #include <ncurses.h>
-void transicao(int *epilepsia){
+void transicao(int *epilepsia)// a função roda uma transição colorida e piscante pra definir bem os momentos do jogo ( sem ela os dialogos pareciam se misturar)
+{
     if(*epilepsia==0)
     {for(int i=0;i<LINES;i++){
         for(int j=0;j<COLS;j++){

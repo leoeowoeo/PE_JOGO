@@ -1,6 +1,6 @@
 #include<ncurses.h>
 #include "jogos.h"
-int dialogofinal(int *finais_alcancados)
+int dialogofinal(int *finais_alcancados)// autoexplicativo
 {
     //dialogo bom(caso ele tenha gabaritado)
     int Xall = (COLS / 2) - 57;

@@ -3,6 +3,7 @@
 #include "jogos.h"
 
 void iniciar(int slot, SAVE *save_atual,int *selecao_olhos, int *selecao_face,int *selecao_pernas)
+//a função inicia o struct atual quando o struct ainda não foi rodado
 {
     char *olhos[10] = {"##", "@@", "**", "$$", "vv", "><", "XX", "OO", "00", "oo"};
     char *faces[5] = {"(  )", "[  ]", "{  }", "<  >", "d  b"};

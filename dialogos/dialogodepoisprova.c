@@ -1,7 +1,7 @@
 #include <ncurses.h>
 #include "jogos.h"
 
-void dialogodepoisprova(int *acertos, int *maexinga, int *epilepsia)
+void dialogodepoisprova(int *acertos, int *maexinga, int *epilepsia)// autoexplicativo
 {
     
     int Xall = (COLS / 2) - 57;

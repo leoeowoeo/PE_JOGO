@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include"jogos.h"
-int recarregar(int slot,SAVE *save_atual)
+int recarregar(int slot,SAVE *save_atual)// a função recarrega o save
 {
     FILE *load;
     if (slot < 1 || slot > 3 || save_atual == NULL) {

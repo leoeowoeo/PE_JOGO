@@ -1,6 +1,7 @@
 #include<ncurses.h>
 #include "jogos.h"
-void demo(){
+void demo()// delimita onde o jogador pode acessar, já que não temos todos os modos de jogo que serão feitos prontos e disponiveis na integridade
+{
     initscr();
     nodelay(stdscr,TRUE);
     int cont=0;

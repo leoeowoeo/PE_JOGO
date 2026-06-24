@@ -4,6 +4,7 @@
 #define COR_CIANO          18
 
 int inicio(int *selecao_olhos, int *selecao_face,int *selecao_pernas, int *cor, int *interage, int *selecaocor,int *iniciar,int *epilepsia,SAVE *save_atual)
+// a função apresenta a tela inicial do jogo, com o botão de iniciar,opção,credito,customização e sair
 {//abriu main
     keypad(stdscr,TRUE);
     noecho();

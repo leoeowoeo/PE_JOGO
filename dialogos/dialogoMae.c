@@ -2,7 +2,7 @@
 #include "jogos.h"
 
 
-int dialogoMae(int *maexinga)
+int dialogoMae(int *maexinga)// autoexplicativo
 {
     int Xall = (COLS/2) - 57;
     int Yall = 3;

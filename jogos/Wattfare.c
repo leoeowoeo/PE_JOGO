@@ -1,5 +1,22 @@
 #include<ncurses.h>
 
+/* não está finalizado, mas aqui será um dos minijogos, ele consiste em um sistema de vantagens, similar a um pedra papel tesoura ou pokemon,
+mas junto com cartas, manejo de dinheiro e algumas outras mecanicas
+
+eu tentei dar uma olhada na melhor maneira de por isso em prática, pelo que eu entendi eu tive que fazer eles num modelo onde 
+toda dupla de elementos tenha um elemento em comum que venca deles
+
+https://forumcontent.paradoxplaza.com/public/1504355/1779854896432.png
+
+nesse estilo.
+*/
+
+
+
+
+
+
+
 typedef struct model 
 {
     int valor; //quantos watts vale

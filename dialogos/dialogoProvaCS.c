@@ -1,6 +1,6 @@
 #include<ncurses.h>
 #include"jogos.h"
-void dialogoprovacs()
+void dialogoprovacs()// autoexplicativo
 {
     int Xall=(COLS/2)-57, Yall=3;
     int tecla=0, x=22+Xall, y=10+Yall;

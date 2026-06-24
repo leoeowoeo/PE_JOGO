@@ -5,6 +5,7 @@
 
 // A implementação função fica aqui
 void pedrapapeltesoura(int *cor,int *encararespelho)
+// a função implementa um pedra papel tesoura ( em dialogos )
 {
     curs_set(0);
     WINDOW *espelho = newwin(LINES, COLS, 0, 0);

@@ -1,5 +1,5 @@
 #include <ncurses.h>
-void slow_mvwprintw(WINDOW* win, char* fala, const int y, int x)
+void slow_mvwprintw(WINDOW* win, char* fala, const int y, int x)// Criação do gustavo, printa dialogos letra a letra
 {
     int delay_ms=50;
     for(int i=0;fala[i]!='\0';i++)

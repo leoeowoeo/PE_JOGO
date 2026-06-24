@@ -13,7 +13,7 @@ typedef struct SAVE_
         int janelaaberta;
         int depoisprova;
         char momento[64];
-        char imagem[6][12];
+        char imagem[6][13];
 }SAVE;
 
 int inicio(int *selecao_olhos, int *selecao_face,int *selecao_pernas, int *cor, int *interage, int *selecaocor,int *iniciar,int *epilepsia,SAVE *save_atual);
