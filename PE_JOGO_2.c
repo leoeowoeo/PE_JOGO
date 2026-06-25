@@ -43,6 +43,7 @@ int main()
         save.depoisprova=0;
     
     int Xall=(COLS/2)-57, Yall=3;
+    int iniciado=0;
     int tecla=0, x=22+Xall, y=10+Yall;
     int xf=22+Xall,yf=10+Yall,lado=0;
     //coordenadas, e variaveis de controle
@@ -116,7 +117,7 @@ int main()
     curs_set(0);
     while(1)//menu
     {
-        if(save.depoisprova==0) inicio(&selecao_olhos,&selecao_face,&selecao_pernas,&cor, &interage, &selecaocor,&iniciar,&epilepsia,&save);
+        if(save.depoisprova==0) inicio(&selecao_olhos,&selecao_face,&selecao_pernas,&cor, &interage, &selecaocor,&iniciar,&epilepsia,&save,&iniciado);
         if(epilepsia==1){
             mvprintw(LINES-5,5,"MODO DE EPILEPSIA");
         }
@@ -290,6 +291,11 @@ int main()
             wattroff(stdscr, COLOR_PAIR(7));
             wattroff(stdscr, COLOR_PAIR(par));
 
+
+
+            gravar_imagem_do_momento(x,y,save.imagem);
+            printar_imagem_do_momento(celularX+18,celularY, save.imagem);
+            
 
 
             
@@ -1537,8 +1543,9 @@ int pertoestante = ((x >= estanteX - 2 && x <= estanteX + 14) && (y >= estanteY 
             
         }
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //gravar_imagem_do_momento(y,x,save.imagem);  
     refresh();
-    gravar_imagem_do_momento(y,x,save.imagem);
+    
 
     clock_t frame_end = clock(); // mede o tempo no final do loop de jogo
     double elapsed_ms = (double)(frame_end - frame_start) * 1000.0 / CLOCKS_PER_SEC; // tempo gasto no frame em milissegundos
@@ -1581,15 +1588,6 @@ int pertoestante = ((x >= estanteX - 2 && x <= estanteX + 14) && (y >= estanteY 
     if(voltar_inicio==1)
     {
         voltar_inicio=0;
-        continue;
-    }
-    
-
-    if(fechar==1)
-    {
-        break;
-    }
-
     if(iniciar==0)
     {
         break;
@@ -1602,6 +1600,9 @@ int pertoestante = ((x >= estanteX - 2 && x <= estanteX + 14) && (y >= estanteY 
         iniciar=1;
         napms(1000);
     }
+        continue;
+    }
+
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -1610,8 +1611,8 @@ int pertoestante = ((x >= estanteX - 2 && x <= estanteX + 14) && (y >= estanteY 
 
 
 
-}//menu
-
+    }//menu
+}
 if(save.depoisprova==0)
 {
     if(save.atividade_sono>5&&estudo>=3)// se ele não dormiu mas estudou ele faz a prova cansado e sabendo (prova cansado simples)
@@ -1678,13 +1679,9 @@ else
         save.depoisprova=0;
         //zerar todas as variáveis que precisam ser zeradas, voltar elas para o valor inicial( se voce achar mais alguma bota ela aqui)
     }
-    else
-    {
-    break;
-    }
 }
 
-}//while do menu
+//while do menu
     demo();
     napms(3000);
     endwin();// fecha a janela

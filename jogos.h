@@ -2,6 +2,9 @@
 #define JOGOS_H
 
 #include <ncurses.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 typedef struct SAVE_
 {
         int atividade_sono;
@@ -13,10 +16,10 @@ typedef struct SAVE_
         int janelaaberta;
         int depoisprova;
         char momento[64];
-        char imagem[6][13];
+        char imagem[6][12];
 }SAVE;
 
-int inicio(int *selecao_olhos, int *selecao_face,int *selecao_pernas, int *cor, int *interage, int *selecaocor,int *iniciar,int *epilepsia,SAVE *save_atual);
+int inicio(int *selecao_olhos, int *selecao_face,int *selecao_pernas, int *cor, int *interage, int *selecaocor,int *iniciar,int *epilepsia,SAVE *save_atual,int *iniciado);
 void pedrapapeltesoura(int *cor,int *encararespelho);
 int cobra(int *cor, int *jogarcelular5);
 void dormir();
@@ -43,10 +46,10 @@ void demo();
 void iniciar(int slot,SAVE *save_atual,int *selecao_olhos, int *selecao_face,int *selecao_pernas);
 int gravar(int slot,SAVE *save_atual);
 int recarregar(int slot,SAVE *save_atual);
-void menusave(int*cor,SAVE *save_atual,int *jogar,int *selecao_olhos, int *selecao_face,int *selecao_pernas);
+void menusave(int*cor,SAVE *save_atual,int *jogar,int *selecao_olhos, int *selecao_face,int *selecao_pernas,int *iniciado);
 void gravar_imagem_do_momento(int xdogaroto, int ydogaroto,char imagem_do_momento[6][12]);
 void printar_imagem_do_momento(int x, int y, char imagem_do_momento[6][12]);
-
+void desenha_borda(int x, int y);
 
 
 #endif

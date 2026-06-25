@@ -32,7 +32,8 @@ SRC = dialogos/dialogofinal.c \
 	funcoes/gravar.c \
       funcoes/menusave.c \
       funcoes/gravar_imagem_do_momento.c \
-      funcoes/printar_imagem_do_momento.c
+      funcoes/printar_imagem_do_momento.c \
+      funcoes/desenha_borda.c 
       
 
 all:

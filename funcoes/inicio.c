@@ -3,7 +3,7 @@
 #include "jogos.h"
 #define COR_CIANO          18
 
-int inicio(int *selecao_olhos, int *selecao_face,int *selecao_pernas, int *cor, int *interage, int *selecaocor,int *iniciar,int *epilepsia,SAVE *save_atual)
+int inicio(int *selecao_olhos, int *selecao_face,int *selecao_pernas, int *cor, int *interage, int *selecaocor,int *iniciar,int *epilepsia,SAVE *save_atual,int *iniciado)
 // a função apresenta a tela inicial do jogo, com o botão de iniciar,opção,credito,customização e sair
 {//abriu main
     keypad(stdscr,TRUE);
@@ -161,7 +161,7 @@ int inicio(int *selecao_olhos, int *selecao_face,int *selecao_pernas, int *cor, 
                 if(selecao==1)
                 {//abriu if 8
                     jogar=1;
-                    menusave(cor,save_atual,&jogar, selecao_olhos, selecao_face, selecao_pernas);
+                    menusave(cor,save_atual,&jogar, selecao_olhos, selecao_face, selecao_pernas,iniciado);
                     nodelay(stdscr,FALSE);
                     timeout(200);
                     wattroff(stdscr,COLOR_PAIR(4));

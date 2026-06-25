@@ -1,5 +1,5 @@
 #include<ncurses.h>
-void gravar_imagem_do_momento(int xdogaroto, int ydogaroto,char imagem_do_momento[6][13])
+void gravar_imagem_do_momento(int xdogaroto, int ydogaroto,char imagem_do_momento[6][12])
 // a função deve gravar a matriz de caracteres em torno do personagem pra
 // ficar visivel o save que ele esta na hora da seleção
 {
@@ -7,9 +7,7 @@ void gravar_imagem_do_momento(int xdogaroto, int ydogaroto,char imagem_do_moment
     {
         for(int j=0;j<12;j++)
         {
-            imagem_do_momento[i][j] = '\0';
+            imagem_do_momento[i][j] = mvinch(ydogaroto-3+i, xdogaroto-5+j);
         }
-        mvinnstr(ydogaroto-3+i, xdogaroto-5, imagem_do_momento[i], 12);
-        imagem_do_momento[i][12] = '\0';
     }
 }

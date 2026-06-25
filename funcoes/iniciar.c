@@ -19,7 +19,7 @@ void iniciar(int slot, SAVE *save_atual,int *selecao_olhos, int *selecao_face,in
     save_atual->depoisprova = 0;
     strcpy(save_atual->momento, "Dialogo com a mae ");//SALVO
 
-    strcpy(save_atual->imagem[0], "     \\ /   ");
+    strcpy(save_atual->imagem[0], "     \\/    ");
     strcpy(save_atual->imagem[1], "    (00)   ");
     strcpy(save_atual->imagem[2], "     ||    ");
     strcpy(save_atual->imagem[3], "           ");
