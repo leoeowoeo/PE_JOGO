@@ -1,0 +1,19 @@
+{
+  "name": "game",
+  "build": {
+    "dockerfile": "../dockerfile"
+  },
+
+  "workspaceFolder": "/workspace",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cpptools"
+      ]
+    }
+  },
+
+  "remoteUser": "root"
+}

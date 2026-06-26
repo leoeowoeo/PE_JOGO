@@ -1,18 +1,13 @@
-# FROM gcc:latest AS base
-# # gcc:latest define que será um linux com a versão mais recente do compilador gcc baixado
-#
-# WORKDIR /app
-
 FROM gcc:latest AS base
 # gcc:latest define um Linux com compilador GCC disponível
 
-WORKDIR /app
+# Define o mesmo diretório do devcontainer
+WORKDIR /workspace
 
-# Instala ncurses para compilar e rodar o jogo com ncurses
-RUN apt-get update && apt-get install -y libncurses-dev && rm -rf /var/lib/apt/lists/*
+# Instala ncurses para compilar e rodar o jogo
+RUN apt-get update && apt-get install -y \
+    libncurses-dev \
+    && rm -rf /var/lib/apt/lists/*
 
-COPY . /app
-
-RUN make
-
-CMD ["./game"]
+# Copia os arquivos locais para dentro do container
+COPY . /workspace
