@@ -14,12 +14,12 @@ int prova_cansado_simples(int *cor,int *acertos)
     keypad(provacansado_simples,TRUE);
     nodelay(provacansado_simples,TRUE);
     
-    init_pair(1,COLOR_BLACK,COLOR_WHITE);
-    init_pair(2,COLOR_BLUE,COLOR_WHITE);
-    init_pair(3,COLOR_GREEN,COLOR_WHITE);
-    init_pair(4,COLOR_RED,COLOR_WHITE);
-    init_pair(5,COLOR_YELLOW,COLOR_WHITE);
-    init_pair(6,COLOR_BLACK,COLOR_WHITE);
+    init_pair(21,COLOR_BLACK,COLOR_WHITE);
+    init_pair(22,COLOR_BLUE,COLOR_WHITE);
+    init_pair(23,COLOR_GREEN,COLOR_WHITE);
+    init_pair(24,COLOR_RED,COLOR_WHITE);
+    init_pair(25,COLOR_YELLOW,COLOR_WHITE);
+    init_pair(26,COLOR_BLACK,COLOR_WHITE);
 flushinp();
     
     // Posições base globais
@@ -94,7 +94,7 @@ flushinp();
         tecla = wgetch(provacansado_simples);
         werase(provacansado_simples); 
         
-        if(*cor==1) wattron(provacansado_simples, COLOR_PAIR(1));
+        if(*cor==1) wattron(provacansado_simples, COLOR_PAIR(21));
         mvwprintw_cansado(provacansado_simples, Yprova++, Xprova, "|=================================================================================|",cansando);     
         mvwprintw_cansado(provacansado_simples, Yprova++, Xprova, "|                                     RURJR                                       |",cansando); 
         mvwprintw_cansado(provacansado_simples, Yprova++, Xprova, "|                            PROOOVA DE MATETICA                                  |",cansando); 
@@ -124,24 +124,24 @@ flushinp();
         
         // Linha 1 do hachurado integrado ao mvwprintw_cansado
         mvwprintw_cansado(provacansado_simples, Yprova,   Xprova, "|                           |                       |                             |", cansando); 
-        if(*cor==1) wattron(provacansado_simples, COLOR_PAIR(4));
+        if(*cor==1) wattron(provacansado_simples, COLOR_PAIR(24));
         mvwprintw_cansado(provacansado_simples, Yprova++, Xprova+33, "+---- ---  ---+", cansando); 
-        wattroff(provacansado_simples, COLOR_PAIR(4));
-        if(*cor==1) wattron(provacansado_simples, COLOR_PAIR(1));
+        wattroff(provacansado_simples, COLOR_PAIR(24));
+        if(*cor==1) wattron(provacansado_simples, COLOR_PAIR(21));
 
         // Linha 2 do hachurado: O texto central "A = 4" (ou corrompido!)
         mvwprintw_cansado(provacansado_simples, Yprova,   Xprova, "|                        |          |     |           |                           |", cansando); 
-        if(*cor==1) wattron(provacansado_simples, COLOR_PAIR(4));
+        if(*cor==1) wattron(provacansado_simples, COLOR_PAIR(24));
         mvwprintw_cansado(provacansado_simples, Yprova++, Xprova+36, "    |       |", cansando); 
-        wattroff(provacansado_simples, COLOR_PAIR(4));
-        if(*cor==1) wattron(provacansado_simples, COLOR_PAIR(1));
+        wattroff(provacansado_simples, COLOR_PAIR(24));
+        if(*cor==1) wattron(provacansado_simples, COLOR_PAIR(21));
 
         // Linha 3 do hachurado: Fechamento da caixinha interna
         mvwprintw_cansado(provacansado_simples, Yprova,   Xprova, "|                           |       +-------+     |                               |", cansando); 
-        if(*cor==1) wattron(provacansado_simples, COLOR_PAIR(4));
+        if(*cor==1) wattron(provacansado_simples, COLOR_PAIR(24));
         mvwprintw_cansado(provacansado_simples, Yprova++, Xprova+36, "+- --    ---  -+", cansando); 
-        wattroff(provacansado_simples, COLOR_PAIR(4));
-        if(*cor==1) wattron(provacansado_simples, COLOR_PAIR(1));
+        wattroff(provacansado_simples, COLOR_PAIR(24));
+        if(*cor==1) wattron(provacansado_simples, COLOR_PAIR(21));
 
         mvwprintw_cansado(provacansado_simples, Yprova++, Xprova, "|                        +---   --------------------+                             |", cansando); 
         mvwprintw_cansado(provacansado_simples, Yprova++, Xprova, "|                                       10101010                                  |", cansando); 
@@ -205,7 +205,7 @@ flushinp();
         mvwprintw_cansado(provacansado_simples, Yprova++, Xprova, "|                                                                                 |",cansando); 
         mvwprintw_cansado(provacansado_simples, Yprova++, Xprova, "|=================================================================================|",cansando); 
         wrefresh(provacansado_simples);
-        wattroff(provacansado_simples, COLOR_PAIR(1));
+        wattroff(provacansado_simples, COLOR_PAIR(21));
         
         if(i/1000==1)
         {
@@ -234,9 +234,9 @@ flushinp();
                 {
                     if(i == marcar)
                     {
-                        if(*cor==1) wattron(provacansado_simples, COLOR_PAIR(2));
+                        if(*cor==1) wattron(provacansado_simples, COLOR_PAIR(22));
                         mvwprintw_cansado(provacansado_simples, Yall + 10 + i, Xall + 1, questao1[i],cansando);
-                        wattroff(provacansado_simples, COLOR_PAIR(2));
+                        wattroff(provacansado_simples, COLOR_PAIR(22));
                     }
                 }
             }
@@ -246,9 +246,9 @@ flushinp();
                 {
                     if(i == marcar)
                     {
-                        if(*cor==1) wattron(provacansado_simples, COLOR_PAIR(2));
+                        if(*cor==1) wattron(provacansado_simples, COLOR_PAIR(22));
                         mvwprintw_cansado(provacansado_simples, Yall + 28 + i, Xall + 1, questao2[i],cansando);
-                        wattroff(provacansado_simples, COLOR_PAIR(2));
+                        wattroff(provacansado_simples, COLOR_PAIR(22));
                     }
                 }
             }
@@ -258,9 +258,9 @@ flushinp();
                 {
                     if(i == marcar)
                     {
-                        if(*cor==1) wattron(provacansado_simples, COLOR_PAIR(2));
+                        if(*cor==1) wattron(provacansado_simples, COLOR_PAIR(22));
                         mvwprintw_cansado(provacansado_simples, Yall + 42 + i, Xall + 1, questao3[i],cansando);
-                        wattroff(provacansado_simples, COLOR_PAIR(2));
+                        wattroff(provacansado_simples, COLOR_PAIR(22));
                     }
                 }
             }
@@ -270,9 +270,9 @@ flushinp();
                 {
                     if(i == marcar)
                     {
-                        if(*cor==1) wattron(provacansado_simples, COLOR_PAIR(2));
+                        if(*cor==1) wattron(provacansado_simples, COLOR_PAIR(22));
                         mvwprintw_cansado(provacansado_simples, Yall + 54 + i, Xall + 1, questao4[i],cansando);
-                        wattroff(provacansado_simples, COLOR_PAIR(2));
+                        wattroff(provacansado_simples, COLOR_PAIR(22));
                     }
                 }
             }
@@ -282,9 +282,9 @@ flushinp();
                 {
                     if(i == marcar)
                     {
-                        if(*cor==1) wattron(provacansado_simples, COLOR_PAIR(2));
+                        if(*cor==1) wattron(provacansado_simples, COLOR_PAIR(22));
                         mvwprintw_cansado(provacansado_simples, Yall + 71 + i, Xall + 1, questao5[i],cansando);
-                        wattroff(provacansado_simples, COLOR_PAIR(2));
+                        wattroff(provacansado_simples, COLOR_PAIR(22));
                     }
                 }
             }
@@ -324,7 +324,7 @@ flushinp();
         {
             int Ycentro = Yall + 35; 
             int Xcentro = Xall + 5;
-            mvwprintw_cansado(provacansado_simples, Ycentro,     Xcentro, "/====================================================\\",cansando/4);
+            /*mvwprintw_cansado(provacansado_simples, Ycentro,     Xcentro, "/====================================================\\",cansando/4);
             mvwprintw_cansado(provacansado_simples, Ycentro + 1, Xcentro, "|      Tem certeza? Vai entregar a prova?            | ",cansando/4);
             mvwprintw_cansado(provacansado_simples, Ycentro + 2, Xcentro, "|                                                    | ",cansando/4);
             mvwprintw_cansado(provacansado_simples, Ycentro + 4, Xcentro, "\\====================================================/",cansando/4);
@@ -343,7 +343,7 @@ flushinp();
             mvwprintw_cansado(provacansado_simples, Ycentro + 3, Xcentro + 30, confirmacao[1],cansando/4);
             if (marcar_confirmacao == 1) wattroff(provacansado_simples, A_REVERSE);
 
-            mvwprintw(provacansado_simples, Ycentro + 3, Xcentro + 53, "|");
+            mvwprintw(provacansado_simples, Ycentro + 3, Xcentro + 53, "|");*/
             wrefresh(provacansado_simples);
 
             switch(tecla)
@@ -370,7 +370,7 @@ flushinp();
             }
         }
     }
-
+    
     *acertos = 0;
     for(i=0;i<5;i++)
     {
@@ -378,14 +378,16 @@ flushinp();
             (*acertos)++;
     }
     
-    werase(provacansado_simples);
+    //DEIXAR ISSO HABILITADO PRA MOSTRAR OS ACERTOS DEPOIS DE FAZER UMA PROVA ( NORMALMENTE DEVE ESTAR DESATIVADO)
+    /*werase(provacansado_simples);
     mvwprintw(provacansado_simples, 0, 0, "Acertos: %d", *acertos);
-    wrefresh(provacansado_simples);
+    wrefresh(provacansado_simples);*/
     
     nodelay(provacansado_simples, FALSE);
     wgetch(provacansado_simples);
 
     delwin(provacansado_simples);
+
     endwin();
 }
 

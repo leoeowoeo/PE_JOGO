@@ -8,12 +8,12 @@ int prova_complexa(int *cor,int *acertos)
     keypad(prova_complexa,TRUE);
     nodelay(prova_complexa,TRUE);
     start_color();
-    init_pair(1,COLOR_BLACK,COLOR_WHITE);
-    init_pair(2,COLOR_BLUE,COLOR_WHITE);
-    init_pair(3,COLOR_GREEN,COLOR_WHITE);
-    init_pair(4,COLOR_RED,COLOR_WHITE);
-    init_pair(5,COLOR_YELLOW,COLOR_WHITE);
-    init_pair(6,COLOR_BLACK,COLOR_WHITE);
+    init_pair(21,COLOR_BLACK,COLOR_WHITE);
+    init_pair(22,COLOR_BLUE,COLOR_WHITE);
+    init_pair(23,COLOR_GREEN,COLOR_WHITE);
+    init_pair(24,COLOR_RED,COLOR_WHITE);
+    init_pair(25,COLOR_YELLOW,COLOR_WHITE);
+    init_pair(26,COLOR_BLACK,COLOR_WHITE);
     
     
     // Posições base globais
@@ -26,7 +26,7 @@ int prova_complexa(int *cor,int *acertos)
     int resposta_dada = 0;
     
     int resposta[5],respostacerta[5]={1,1,4,2,0};
-    char *confirmacao[2]={ "sim, entregar","não, revisar"};
+    char *confirmacao[2]={ "sim, entregar","nao, revisar"};
     //RODA PRA TESTAR
     // Vetores com o espaçamento exato embutido (81 caracteres entre as barras)
 // --- DECLARAÇÃO DAS OPÇÕES (Com 81 espaços exatos para referência no seu código) ---
@@ -76,15 +76,15 @@ flushinp();
     wrefresh(prova_complexa);
     napms(400);
 
-        mvwprintw(prova_complexa, Yall-1, Xall+5,",Droga");
+        mvwprintw(prova_complexa, Yall-1, Xall+6,",Droga");
     wrefresh(prova_complexa);
     napms(400);
 
-        mvwprintw(prova_complexa, Yall-1, Xall+10,",Droga!");
+        mvwprintw(prova_complexa, Yall-1, Xall+11,",Droga!");
     wrefresh(prova_complexa);
     napms(1500);
 
-    mvwprintw(prova_complexa, Yall, Xall,"Eu não estudei...");
+    mvwprintw(prova_complexa, Yall, Xall,"Eu nao estudei...");
     wrefresh(prova_complexa);
     napms(3000);
     flushinp();
@@ -97,7 +97,7 @@ flushinp();
         werase(prova_complexa); 
         
         // --- CABEÇALHO ---
-        if(*cor==1) wattron(prova_complexa, COLOR_PAIR(1));
+        if(*cor==1) wattron(prova_complexa, COLOR_PAIR(21));
         mvwprintw(prova_complexa, Yprova++, Xprova, "|=================================================================================|");     
         mvwprintw(prova_complexa, Yprova++, Xprova, "|                                     UFRRJ                                       |"); 
         mvwprintw(prova_complexa, Yprova++, Xprova, "|                        PROVA DE MATEMATICA AVANCADA                             |"); 
@@ -200,7 +200,7 @@ flushinp();
         mvwprintw(prova_complexa, Yprova++, Xprova, "|---------------------------------------------------------------------------------|"); 
         mvwprintw(prova_complexa, Yprova++, Xprova, "|=================================================================================|"); 
         
-        wattroff(prova_complexa, COLOR_PAIR(1));
+        wattroff(prova_complexa, COLOR_PAIR(21));
 
         if (!confirmando) {
             switch(tecla)
@@ -220,9 +220,9 @@ flushinp();
                 {
                     if(i == marcar)
                     {
-                        if(*cor==1) wattron(prova_complexa, COLOR_PAIR(2));
+                        if(*cor==1) wattron(prova_complexa, COLOR_PAIR(22));
                         mvwprintw(prova_complexa, Yall + 15 + i, Xall + 1, "%s", questao1[i]);
-                        wattroff(prova_complexa, COLOR_PAIR(2));
+                        wattroff(prova_complexa, COLOR_PAIR(22));
                     }
                 }
             }
@@ -232,11 +232,11 @@ flushinp();
                 {
                     if(i == marcar)
                     {
-                        if(*cor==1) wattron(prova_complexa, COLOR_PAIR(2));
+                        if(*cor==1) wattron(prova_complexa, COLOR_PAIR(22));
                         
                         
                         mvwprintw(prova_complexa, Yall + 30 + i, Xall + 1, "%s", questao2[i]);
-                        wattroff(prova_complexa, COLOR_PAIR(2));
+                        wattroff(prova_complexa, COLOR_PAIR(22));
                     }
                 }
             }
@@ -246,11 +246,11 @@ flushinp();
                 {
                     if(i == marcar)
                     {
-                        if(*cor==1) wattron(prova_complexa, COLOR_PAIR(2));
+                        if(*cor==1) wattron(prova_complexa, COLOR_PAIR(22));
                         
                         
                         mvwprintw(prova_complexa, Yall + 50 + i, Xall + 1, "%s", questao3[i]);
-                        wattroff(prova_complexa, COLOR_PAIR(2));
+                        wattroff(prova_complexa, COLOR_PAIR(22));
                     }
                 }
             }
@@ -260,9 +260,9 @@ flushinp();
                 {
                     if(i == marcar)
                     {
-                        if(*cor==1) wattron(prova_complexa, COLOR_PAIR(2));
+                        if(*cor==1) wattron(prova_complexa, COLOR_PAIR(22));
                         mvwprintw(prova_complexa, Yall + 66 + i, Xall + 1, "%s", questao4[i]);
-                        wattroff(prova_complexa, COLOR_PAIR(2));
+                        wattroff(prova_complexa, COLOR_PAIR(22));
                     }
                 }
             }
@@ -272,9 +272,9 @@ flushinp();
                 {
                     if(i == marcar)
                     {
-                        if(*cor==1) wattron(prova_complexa, COLOR_PAIR(2));
+                        if(*cor==1) wattron(prova_complexa, COLOR_PAIR(22));
                         mvwprintw(prova_complexa, Yall + 84 + i, Xall + 1, "%s", questao5[i]);
-                        wattroff(prova_complexa, COLOR_PAIR(2));
+                        wattroff(prova_complexa, COLOR_PAIR(22));
                     }
                 }
             }
@@ -317,7 +317,7 @@ flushinp();
             estado_confirmacao = 2;
             int Ycentro = Yall + 35; 
             int Xcentro = Xall + 5;
-            mvwprintw(prova_complexa, Ycentro,     Xcentro, "/====================================================\\");
+            /*mvwprintw(prova_complexa, Ycentro,     Xcentro, "/====================================================\\");
             mvwprintw(prova_complexa, Ycentro + 1, Xcentro, "|      Tem certeza? Vai entregar a prova?            | ");
             mvwprintw(prova_complexa, Ycentro + 2, Xcentro, "|                                                    | ");
             mvwprintw(prova_complexa, Ycentro + 4, Xcentro, "\\====================================================/");
@@ -336,9 +336,9 @@ flushinp();
             wprintw(prova_complexa, "%s", confirmacao[1]);
             if (marcar_confirmacao == 1) wattroff(prova_complexa, A_REVERSE);
 
-            mvwprintw(prova_complexa, Ycentro + 3, Xcentro + 53, "|");
+            mvwprintw(prova_complexa, Ycentro + 3, Xcentro + 53, "|");*/
             wrefresh(prova_complexa);
-
+            
             switch(tecla)
             {
                 case KEY_LEFT:
@@ -371,15 +371,13 @@ flushinp();
             (*acertos)++;
     }
     
-    werase(prova_complexa);
+    /*werase(prova_complexa);
     
-    
-    mvwprintw(prova_complexa, 7, 5, "Acertos: %d", *acertos);
+    //DEIXAR ISSO HABILITADO PRA MOSTRAR OS ACERTOS DEPOIS DE FAZER UMA PROVA ( NORMALMENTE DEVE ESTAR DESATIVADO)
+    mvwprintw(prova_complexa, 7, 5, "Acertos: %d", *acertos);*/
     wrefresh(prova_complexa);
     
     nodelay(prova_complexa, FALSE);
-    
-    
     wgetch(prova_complexa);
 
     delwin(prova_complexa);

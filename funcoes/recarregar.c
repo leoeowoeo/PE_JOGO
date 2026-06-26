@@ -3,11 +3,8 @@
 int recarregar(int slot,SAVE *save_atual)// a função recarrega o save
 {
     FILE *load;
-    if (slot < 1 || slot > 3 || save_atual == NULL) {
-        return 0;
-    }
-
-    load=fopen("save.dat","rb"); // abre o arquivo apenas para leitura binaria
+    
+    load=fopen("save.bin","rb"); // abre o arquivo apenas para leitura binaria
     
     if(load != NULL)
     {

@@ -7,12 +7,12 @@ int prova_simples(int *cor, int *acertos){
     keypad(prova_simples,TRUE);
     nodelay(prova_simples,TRUE);
     start_color();
-    init_pair(1,COLOR_BLACK,COLOR_WHITE);
-    init_pair(2,COLOR_BLUE,COLOR_WHITE);
-    init_pair(3,COLOR_GREEN,COLOR_WHITE);
-    init_pair(4,COLOR_RED,COLOR_WHITE);
-    init_pair(5,COLOR_YELLOW,COLOR_WHITE);
-    init_pair(6,COLOR_BLACK,COLOR_WHITE);
+    init_pair(21,COLOR_BLACK,COLOR_WHITE);
+    init_pair(22,COLOR_BLUE,COLOR_WHITE);
+    init_pair(23,COLOR_GREEN,COLOR_WHITE);
+    init_pair(24,COLOR_RED,COLOR_WHITE);
+    init_pair(25,COLOR_YELLOW,COLOR_WHITE);
+    init_pair(26,COLOR_BLACK,COLOR_WHITE);
     
     
     // Posições base globais
@@ -44,18 +44,18 @@ int prova_simples(int *cor, int *acertos){
         mvwprintw(prova_simples, Yall-1, Xall+13,",e dormi bem, acho que ta tudo certo entao!");
     wrefresh(prova_simples);
     napms(2000);
-    
+    flushinp();
     while (tecla != 'p')
     {
 
         int Yprova = Yall;
         int Xprova = Xall;
-        flushinp();
+
         tecla = wgetch(prova_simples);
         werase(prova_simples); 
         
         // --- CABEÇALHO ---
-        if(*cor==1) wattron(prova_simples, COLOR_PAIR(1));
+        if(*cor==1) wattron(prova_simples, COLOR_PAIR(21));
         mvwprintw(prova_simples, Yprova++, Xprova, "|=================================================================================|");     
         mvwprintw(prova_simples, Yprova++, Xprova, "|                                     UFRRJ                                       |"); 
         mvwprintw(prova_simples, Yprova++, Xprova, "|                              PROVA DE MATEMATICA                                |"); 
@@ -82,20 +82,20 @@ int prova_simples(int *cor, int *acertos){
         mvwprintw(prova_simples, Yprova++, Xprova, "|                                                                                 |"); 
         mvwprintw(prova_simples, Yprova++, Xprova, "|                           +-----------------------+                             |"); 
         mvwprintw(prova_simples, Yprova,   Xprova, "|                           |                       |                             |"); 
-        wattron(prova_simples, COLOR_PAIR(4));
+        wattron(prova_simples, COLOR_PAIR(24));
         mvwprintw(prova_simples, Yprova++, Xprova+36,                                 "+-------+"); 
-        wattroff(prova_simples, COLOR_PAIR(4));
-        wattron(prova_simples, COLOR_PAIR(1));
+        wattroff(prova_simples, COLOR_PAIR(24));
+        wattron(prova_simples, COLOR_PAIR(21));
         mvwprintw(prova_simples, Yprova,   Xprova, "|                         5 |                       |                             |"); 
-        wattron(prova_simples, COLOR_PAIR(4));
+        wattron(prova_simples, COLOR_PAIR(24));
         mvwprintw(prova_simples, Yprova++, Xprova+36,                                 "| A = 4 |"); 
-        wattroff(prova_simples, COLOR_PAIR(4));
-        wattron(prova_simples, COLOR_PAIR(1));
+        wattroff(prova_simples, COLOR_PAIR(24));
+        wattron(prova_simples, COLOR_PAIR(21));
         mvwprintw(prova_simples, Yprova,   Xprova, "|                           |                       |                             |"); 
-        wattron(prova_simples, COLOR_PAIR(4));
+        wattron(prova_simples, COLOR_PAIR(24));
         mvwprintw(prova_simples, Yprova++, Xprova+36,                                 "+-------+"); 
-        wattroff(prova_simples, COLOR_PAIR(4));
-        wattron(prova_simples, COLOR_PAIR(1));
+        wattroff(prova_simples, COLOR_PAIR(24));
+        wattron(prova_simples, COLOR_PAIR(21));
 
         mvwprintw(prova_simples, Yprova++, Xprova, "|                           +-----------------------+                             |"); 
         mvwprintw(prova_simples, Yprova++, Xprova, "|                                       10                                        |"); 
@@ -108,22 +108,22 @@ int prova_simples(int *cor, int *acertos){
         mvwprintw(prova_simples, Yprova++, Xprova, "| [E] Area = 510                                                                  |"); 
         mvwprintw(prova_simples, Yprova++, Xprova, "|---------------------------------------------------------------------------------|"); 
         mvwprintw(prova_simples, Yprova++, Xprova, "|                                                                                 |"); 
-
+  
         
         // --- QUESTÃO 3 ---
         mvwprintw(prova_simples, Yprova++, Xprova, "|=================================================================================|"); 
-        mvwprintw(prova_simples, Yprova++, Xprova, "| QUESTAO 3: Se todo bixo da Rural eh ansioso, e alguns ansiosos                  |"); 
-        mvwprintw(prova_simples, Yprova++, Xprova, "| gostam de programacao, podemos afirmar que:                                     |"); 
+        mvwprintw(prova_simples, Yprova++, Xprova, "| QUESTAO 3: Ache o enunciado equivalente a:                                      |"); 
+        mvwprintw(prova_simples, Yprova++, Xprova, "| [(aVb)V~a]^[(~bVa)V~a]                                                          |"); 
         mvwprintw(prova_simples, Yprova++, Xprova, "|                                                                                 |"); 
         mvwprintw(prova_simples, Yprova++, Xprova, "|---------------------------------------------------------------------------------|"); 
-        mvwprintw(prova_simples, Yprova++, Xprova, "| [A] Todo bixo gosta de programacao.                                             |"); 
-        mvwprintw(prova_simples, Yprova++, Xprova, "| [B] Nenhum bixo gosta de programacao.                                           |"); 
-        mvwprintw(prova_simples, Yprova++, Xprova, "| [C] E possivel que algum bixo goste de programacao.                             |"); 
-        mvwprintw(prova_simples, Yprova++, Xprova, "| [D] Se bixo da rural gosta de programacao ele eh ansioso                        |"); 
-        mvwprintw(prova_simples, Yprova++, Xprova, "| [E] Eu estou ansioso agora                                                      |"); 
+        mvwprintw(prova_simples, Yprova++, Xprova, "| [A] (~aVb)<->[(aVb)V~a]^[(~bVa)V~a]                                             |"); 
+        mvwprintw(prova_simples, Yprova++, Xprova, "| [B] ~{[(~aVb)V~a]^[(~bVa)V~a<->(a^~b)]}                                         |"); 
+        mvwprintw(prova_simples, Yprova++, Xprova, "| [C] verdadeiro                                                                  |"); 
+        mvwprintw(prova_simples, Yprova++, Xprova, "| [D] ~a->b                                                                       |"); 
+        mvwprintw(prova_simples, Yprova++, Xprova, "| [E] (b^a)<->(~bVa)                                                              |"); 
         mvwprintw(prova_simples, Yprova++, Xprova, "|---------------------------------------------------------------------------------|"); 
-        mvwprintw(prova_simples, Yprova++, Xprova, "|                                                                                 |"); 
-        
+        mvwprintw(prova_simples, Yprova++, Xprova, "|                                                                                 |");
+
         // --- QUESTÃO 4 ---
         mvwprintw(prova_simples, Yprova++, Xprova, "|=================================================================================|"); 
         mvwprintw(prova_simples, Yprova++, Xprova, "| QUESTAO 4: Um algoritmo precisa processar uma matriz quadrada 5x5.              |"); 
@@ -141,8 +141,8 @@ int prova_simples(int *cor, int *acertos){
         // --- QUESTÃO 5 ---
         mvwprintw(prova_simples, Yprova++, Xprova, "|=================================================================================|"); 
         mvwprintw(prova_simples, Yprova++, Xprova, "| QUESTAO 5: O grafico abaixo representa o desespero de um estudante pelo         |"); 
-        mvwprintw(prova_simples, Yprova++, Xprova, "| numero de semanas de aula. Qual o valor aproximado no pico?                     |"); 
-        mvwprintw(prova_simples, Yprova++, Xprova, "|                                                                                 |"); 
+        mvwprintw(prova_simples, Yprova++, Xprova, "| numero de semanas de aula.                                                      |"); 
+        mvwprintw(prova_simples, Yprova++, Xprova, "| DE ACORDO COM O GRAFICO: Qual o valor aproximado no pico?                       |"); 
         mvwprintw(prova_simples, Yprova++, Xprova, "|                               Nivel |                                           |"); 
         mvwprintw(prova_simples, Yprova++, Xprova, "|                                100  |          /\\                               |"); 
         mvwprintw(prova_simples, Yprova++, Xprova, "|                                 50  |    /\\   /  \\                              |"); 
@@ -159,7 +159,7 @@ int prova_simples(int *cor, int *acertos){
         mvwprintw(prova_simples, Yprova++, Xprova, "|=================================================================================|"); 
 
 
-        wattroff(prova_simples, COLOR_PAIR(1));
+        wattroff(prova_simples, COLOR_PAIR(21));
 
         if (!confirmando) {
             switch(tecla)
@@ -179,9 +179,9 @@ int prova_simples(int *cor, int *acertos){
                 {
                     if(i == marcar)
                     {
-                        if(*cor==1) wattron(prova_simples, COLOR_PAIR(2));
+                        if(*cor==1) wattron(prova_simples, COLOR_PAIR(22));
                         mvwprintw(prova_simples, Yall + 10 + i, Xall + 2, "%s", questao1[i]);
-                        wattroff(prova_simples, COLOR_PAIR(2));
+                        wattroff(prova_simples, COLOR_PAIR(22));
                     }
                 }
             }
@@ -191,9 +191,9 @@ int prova_simples(int *cor, int *acertos){
                 {
                     if(i == marcar)
                     {
-                        if(*cor==1) wattron(prova_simples, COLOR_PAIR(2));
+                        if(*cor==1) wattron(prova_simples, COLOR_PAIR(22));
                         mvwprintw(prova_simples, Yall + 28 + i, Xall + 2, "%s", questao2[i]);
-                        wattroff(prova_simples, COLOR_PAIR(2));
+                        wattroff(prova_simples, COLOR_PAIR(22));
                     }
                 }
             }
@@ -203,9 +203,9 @@ int prova_simples(int *cor, int *acertos){
                 {
                     if(i == marcar)
                     {
-                        if(*cor==1) wattron(prova_simples, COLOR_PAIR(2));
+                        if(*cor==1) wattron(prova_simples, COLOR_PAIR(22));
                         mvwprintw(prova_simples, Yall + 40 + i, Xall + 2, "%s", questao3[i]);
-                        wattroff(prova_simples, COLOR_PAIR(2));
+                        wattroff(prova_simples, COLOR_PAIR(22));
                     }
                 }
             }
@@ -215,9 +215,9 @@ int prova_simples(int *cor, int *acertos){
                 {
                     if(i == marcar)
                     {
-                        if(*cor==1) wattron(prova_simples, COLOR_PAIR(2));
+                        if(*cor==1) wattron(prova_simples, COLOR_PAIR(22));
                         mvwprintw(prova_simples, Yall + 52 + i, Xall + 2, "%s", questao4[i]);
-                        wattroff(prova_simples, COLOR_PAIR(2));
+                        wattroff(prova_simples, COLOR_PAIR(22));
                     }
                 }
             }
@@ -227,9 +227,9 @@ int prova_simples(int *cor, int *acertos){
                 {
                     if(i == marcar)
                     {
-                        if(*cor==1) wattron(prova_simples, COLOR_PAIR(2));
+                        if(*cor==1) wattron(prova_simples, COLOR_PAIR(22));
                         mvwprintw(prova_simples, Yall + 69 + i, Xall + 2, "%s", questao5[i]);
-                        wattroff(prova_simples, COLOR_PAIR(2));
+                        wattroff(prova_simples, COLOR_PAIR(22));
                     }
                 }
             }
@@ -270,7 +270,7 @@ int prova_simples(int *cor, int *acertos){
             int Ycentro = Yall + 35;
             int Xcentro = Xall + 5;
 
-            mvwprintw(prova_simples, Ycentro,     Xcentro, "/====================================================\\");
+            /*mvwprintw(prova_simples, Ycentro,     Xcentro, "/====================================================\\");
             mvwprintw(prova_simples, Ycentro + 1, Xcentro, "|      TEM CERTEZA DAS SUAS DECOSOES?                |");
             mvwprintw(prova_simples, Ycentro + 2, Xcentro, "|                                                    |");
             mvwprintw(prova_simples, Ycentro + 4, Xcentro, "\\====================================================/");
@@ -289,7 +289,7 @@ int prova_simples(int *cor, int *acertos){
             wprintw(prova_simples, "%s", confirmacao[1]);
             if (marcar_confirmacao == 1) wattroff(prova_simples, A_REVERSE);
 
-            mvwprintw(prova_simples, Ycentro + 3, Xcentro + 53, "|");
+            mvwprintw(prova_simples, Ycentro + 3, Xcentro + 53, "|");*/
             wrefresh(prova_simples);
 
             switch(tecla)
@@ -322,9 +322,9 @@ int prova_simples(int *cor, int *acertos){
         if(resposta[i]==respostacerta[i])
             (*acertos)++;
     }
-    
-    werase(prova_simples);
-    mvwprintw(prova_simples, 7, 5, "Acertos: %d", *acertos);
+    //DEIXAR ISSO HABILITADO PRA MOSTRAR OS ACERTOS DEPOIS DE FAZER UMA PROVA ( NORMALMENTE DEVE ESTAR DESATIVADO)
+    /*werase(prova_simples);
+    mvwprintw(prova_simples, 7, 5, "Acertos: %d", *acertos);*/
     wrefresh(prova_simples);
     
     nodelay(prova_simples, FALSE);

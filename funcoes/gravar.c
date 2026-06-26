@@ -8,11 +8,11 @@ int gravar(int slot, SAVE *save_atual)
         return 0;
     }
 
-    FILE *save = fopen("save.dat", "r+b"); // "r+b" é melhor para atualizar dados existentes
+    FILE *save = fopen("save.bin", "r+b"); // "r+b" é melhor para atualizar dados existentes
 
     if (save == NULL) {
         // Se o arquivo ainda nao existe, crio um novo binario para os saves.
-        save = fopen("save.dat", "w+b");
+        save = fopen("save.bin", "w+b");
     }
 
     if (save != NULL) {

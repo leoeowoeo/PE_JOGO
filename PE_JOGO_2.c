@@ -30,25 +30,31 @@ int main()
     cbreak(); // quebra a linha, tipo o \n, mas do ncurses, n da pra usar os 2 aqui, so esse msms
     noecho(); // n mostra o que o usuario ta digita ndo
     
+int Xall=(COLS/2)-57, Yall=3;
 
     SAVE save;
 
-        save.atividade_sono=0;
-        save.celularpickup=0;
-        save.livropickup=0;
-        save.revistapickup=0;
-        save.maepistola=0;
-        save.maepistoladef=0;
-        save.janelaaberta=0;
-        save.depoisprova=0;
-    
-    int Xall=(COLS/2)-57, Yall=3;
-    int iniciado=0;
-    int tecla=0, x=22+Xall, y=10+Yall;
+        save.atividade_sono;
+        save.celularpickup;
+        save.livropickup;
+        save.revistapickup;
+        save.maepistola;
+        save.maepistoladef;
+        save.janelaaberta;
+        save.depoisprova;
+        save.iniciado;
+        save.x;
+        save.y;
+        save.celularpos;
+        save.revistapickup;
+        save.quest;
+                                save.estagio;//0
+
+    int tecla=0;
     int xf=22+Xall,yf=10+Yall,lado=0;
     //coordenadas, e variaveis de controle
     int janelaY = 4+Yall, janelaX = 50+Xall; 
-    int celularY = 9+Yall, celularX = 76+Xall,celularpos=1;
+    int celularY = 9+Yall, celularX = 76+Xall;
     int armarioY = 14+Yall, armarioX = 19+Xall, armarioaberto=0,pertocama=0,dormindo=0;
     int revistax=celularX, revistay=celularY, meow=0;
     int  livroX=celularX+17, livroY=celularY,abrindolivro=0;
@@ -59,7 +65,6 @@ int main()
     //seleção
     int interagirCel=0,interagirEst=0,interagirArm=0,interagirJan=0,interagirCam=0;
     int selecaocor=4,tecla_selecao,interage=0,cor=1,par=0;
-    int quest=0;
     int jogarcelular5=0,encararespelho=0,dormircama=0,jogartodosjogos=0,ler1jogar3=0,ler3dormir=0,ler3jogatodos=0;
     char *quests[8]=
             {
@@ -69,7 +74,8 @@ int main()
                 "Jogar todos os jogos uma vez",
                 "Ler um livro e jogar 3 jogos",
                 "Ler 3 livros e jogar todos os jogos do celular",
-                "Ler 3 livros e dormir?"
+                "Ler 3 livros e . . .dormir?",
+                "Leia 3 livros e durma bem"
             };
             
     int finais_alcancados;
@@ -102,13 +108,14 @@ int main()
     int fechar=0;
         int voltar_inicio=0;
 
-
+    int jogar=0;
     int debug=1;
 
 
     int revista_coluna=0;
     int revista_linha=0;
     int iniciar=0;
+    int estanoquarto=0;
     keypad(stdscr, TRUE); // ativa o teclado para usar as setas, na tela principal, que é a stdscr
     nodelay(stdscr, TRUE); // Faz o getch() não ser bloqueante
 
@@ -117,12 +124,11 @@ int main()
     curs_set(0);
     while(1)//menu
     {
-        if(save.depoisprova==0) inicio(&selecao_olhos,&selecao_face,&selecao_pernas,&cor, &interage, &selecaocor,&iniciar,&epilepsia,&save,&iniciado);
+        estanoquarto=0;
+        if(save.depoisprova==0) inicio(&selecao_olhos,&selecao_face,&selecao_pernas,&cor, &interage, &selecaocor,&iniciar,&epilepsia,&save,&save.iniciado,&jogar,&estanoquarto);
         if(epilepsia==1){
             mvprintw(LINES-5,5,"MODO DE EPILEPSIA");
         }
-        // FAZER CONTATO COM MOVEIS
-        //FAZER NÃO REPETIR A INTRODUÇÃO QUANDO SAIR E ENTRAR USANDO "Q"
 
     erase();
     refresh();
@@ -212,11 +218,11 @@ int main()
     erase();
     mvprintw(Yall,Xall,"Bom jogo!");
     refresh();
-    napms(4000);
-
+    napms(4000);*/
+                                                                                save.estagio++;//1
     erase();
     transicao(&epilepsia);
-    quest=dialogoMae(&maexinga);*/
+    //save.quest=dialogoMae(&maexinga);
     keypad(stdscr, TRUE);
 
     }
@@ -224,21 +230,50 @@ int main()
     int pisca=1, vontadedepisca=0;
 
     int chuvax = 53+Xall, chuvay = 5+Yall, pos=0, pos2=1, pos3=2;
+while(1)
+{//while dialogo final
 
-    while(1){//antes/save.depoisprova
+    while(1)
+    {//antes/save.depoisprova
     if(save.atividade_sono>=4){save.atividade_sono=3;}
     dormindo=0;
     while(1)//jogo
     {   
+        estanoquarto=1;
+        gravar_imagem_do_momento(save.x,save.y,save.imagem);
+
+
+        if(tecla=='m')
+        {
+            menusave(&cor,&save,&jogar,&selecao_olhos,&selecao_face,&selecao_pernas,&save.iniciado,&estanoquarto);
+        }
+
         if(save.depoisprova==1&&validador==1){save.maepistola=0;save.maepistoladef=0;validador=0;}
         fechar=0;
+    
         
+
         clock_t frame_start = clock(); // mede o tempo no começo do loop de jogo
 
         if(save.depoisprova==0)
-        {strcpy(save.momento, "Quarto");}//iniciou o momento do quarto
+        {   
+            if(save.estagio==0)
+            strcpy(save.momento, "Dialogo com a mae");
+            else if(save.estagio==1)
+            strcpy(save.momento,  "Quarto");
+            else if(save.estagio==2)
+            strcpy(save.momento,  "Prova");
+        
+
+        }//iniciou o momento do quarto
         else
-        {strcpy(save.momento, "Quarto(depois da prova)");}
+        {   
+            if(save.estagio==3)
+            strcpy(save.momento, "Quarto(depois da prova)");
+            else if(save.estagio==4)
+            strcpy(save.momento, "Dialogo final");
+        }
+
     // Localização dos objetos IMOVEIS
         vontadedepisca++;
 
@@ -293,7 +328,7 @@ int main()
 
 
 
-            gravar_imagem_do_momento(x,y,save.imagem);
+            gravar_imagem_do_momento(save.x,save.y,save.imagem);
             printar_imagem_do_momento(celularX+18,celularY, save.imagem);
             
 
@@ -384,7 +419,7 @@ int main()
             mvprintw(ybarra+1,xbarra,"|");
             mvprintw(ybarra+1,xbarra+12,"|");
             if((jogarcelular5!=5||encararespelho!=1||dormircama!=1||jogartodosjogos!=6||ler1jogar3!=4||ler3jogatodos!=4||ler3dormir!=3)&&save.depoisprova==0)
-                mvprintw(ybarra,xbarra+30,"Quest: %s",quests[quest]);
+                mvprintw(ybarra,xbarra+30,"Quest: %s",quests[save.quest]);
 
             int espelhoy = 3+Yall, espelhox = 63+Xall;
             
@@ -398,10 +433,10 @@ int main()
                 save.atividade_sono++;
             }
 
-            if (x >= espelhox - 6 && x <= espelhox + 20 && y < espelhoy + 13 && vira % 2 == 1) {
+            if (save.x >= espelhox - 6 && save.x <= espelhox + 20 && save.y < espelhoy + 13 && vira % 2 == 1) {
             
-                int reflexx = x; // O reflexo segue o seu X
-                int distancia = y - espelhoy;
+                int reflexx = save.x; // O reflexo segue o seu X
+                int distancia = save.y - espelhoy;
                 int reflexy = (espelhoy + 4) - (distancia / 3);
 
                 if (reflexy < espelhoy + 1) reflexy = espelhoy + 1;
@@ -409,9 +444,9 @@ int main()
                 if (reflexx < espelhox)     reflexx = espelhox;
                 if (reflexx > espelhox + 9) reflexx = espelhox + 9;
 
-                if (vira % 2 == 1 && x >= espelhox && x <= espelhox + 7)
+                if (vira % 2 == 1 && save.x >= espelhox && save.x <= espelhox + 7)
                 {
-                    if (save.celularpickup == 0 && y == celularY && x >= celularX - 1 && x <= celularX + 1) 
+                    if (save.celularpickup == 0 && save.y == celularY && save.x >= celularX - 1 && save.x <= celularX + 1) 
                                         {
                                             mvprintw(Yall+33, Xall+27, "Pegar celular: E");
                                             if (tecla == 'e' || tecla == 'E')   
@@ -457,12 +492,12 @@ int main()
                             mvprintw(reflexy + 1, reflexx+1, "%s",pernas[selecao_pernas+1]);
                         }
                     }/*if(passo%2==0)mvprintw(y+1,x+1,"%s",pernas[selecao_pernas]);//perna no passo par
-                       else          mvprintw(y+1,x+1,"%s",pernas[selecao_pernas-1])*/
+                    else          mvprintw(y+1,x+1,"%s",pernas[selecao_pernas-1])*/
                 }
 }
             if(cor==1) wattron(stdscr, COLOR_PAIR(11));
             if(cor==1) wattron(stdscr,COLOR_PAIR(2));
-                if(y>espelhoy&&y<espelhoy+8&&x>espelhox-2&&x<espelhox+9&&vira%2==1)
+                if(save.y>espelhoy&&save.y<espelhoy+8&&save.x>espelhox-2&&save.x<espelhox+9&&vira%2==1)
                 {
                     if(cor==1) wattron(stdscr, COLOR_PAIR(par));
                 }
@@ -541,19 +576,19 @@ int main()
                             {
                             if(cor==1) wattron(stdscr, COLOR_PAIR(par));
                             }
-                            if(celularpos==1)
+                            if(save.celularpos==1)
                                 mvprintw(celularY,   celularX, "[]");
-                            else if(celularpos==2)
+                            else if(save.celularpos==2)
                                 mvprintw(celularY+1,   celularX, "[]");
-                            else if(celularpos==3)
+                            else if(save.celularpos==3)
                                 mvprintw(celularY+1,   celularX-1, "[]");
                             else if(save.celularpickup==1)
-                            {if(celularpos==0)
+                            {if(save.celularpos==0)
                                     mvprintw(celularY,   celularX, " ");}  
                             wattroff(stdscr, COLOR_PAIR(par));
                         }
                     }
-                    if(save.celularpickup==0 && save.revistapickup==1 && y>celularY -3 && y<celularY + 3 && x >= celularX - 4 && x <= celularX + 4||save.celularpickup==0 && save.livropickup==1 && y>celularY -3 && y<celularY + 3 && x >= celularX - 4 && x <= celularX + 4)
+                    if(save.celularpickup==0 && save.revistapickup==1 && save.y>celularY -3 && save.y<celularY + 3 && save.x >= celularX - 4 && save.x <= celularX + 4||save.celularpickup==0 && save.livropickup==1 && save.y>celularY -3 && save.y<celularY + 3 && save.x >= celularX - 4 && save.x <= celularX + 4)
                     {
                         mvprintw(Yall+33, Xall+27, "Mao ocupada");
                         mvprintw(Yall+35, Xall+27, "Devolva o item da mao");
@@ -612,15 +647,10 @@ int main()
         }
         else if(acertos<5&&save.depoisprova==1)
         {
-            if(i==0)
-            {
-                x=22+Xall, y=10+Yall;
-                i++;
-            }
 
             if(save.maepistoladef==1)
             {
-               if(cor==1) wattron(stdscr,COLOR_PAIR(6));
+                if(cor==1) wattron(stdscr,COLOR_PAIR(6));
                 mvprintw(portaY+1, portaX+11, "_______");
                 mvprintw(portaY+2, portaX+11, "|     |");
                 mvprintw(portaY+3, portaX+11, "|     |");
@@ -631,7 +661,7 @@ int main()
             }
             else
             {
-               if(cor==1) wattron(stdscr,COLOR_PAIR(6));
+                if(cor==1) wattron(stdscr,COLOR_PAIR(6));
                     
                 mvprintw(portaY  , portaX+1, "                   ");
                 mvprintw(portaY+1, portaX+1, "          _______  ");
@@ -746,6 +776,12 @@ int main()
         }
         wattroff(stdscr, COLOR_PAIR(par));
         wattroff(stdscr, COLOR_PAIR(6));
+
+
+
+
+
+        
         if(save.livropickup==1)
             {
                 if(abrindolivro==1)
@@ -761,13 +797,13 @@ int main()
                     mvwprintw(stdscr, livroY+2,     livroX,"|Exemplo Pratico     |Diagramas de         |");
                     mvwprintw(stdscr, livroY+3,     livroX,"|de Isolamento:      |Conjuntos(Venn):     |");
                     mvwprintw(stdscr, livroY+4,     livroX,"|Seja a equacao      |Se todo elemento de  |");
-                    mvwprintw(stdscr, livroY+5,     livroX,"|Ax - B = Cx + D     |A esta em B, e alguns|");
-                    mvwprintw(stdscr, livroY+6,     livroX,"|1)Isola os termos   |elementos de B estao |");      
-                    mvwprintw(stdscr, livroY+7,     livroX,"|com 'x':            |em C,nao se pode     |");
-                    mvwprintw(stdscr, livroY+8,     livroX,"|Ax - Cx = D + B     |afirmar que todo ou  |");
-                    mvwprintw(stdscr, livroY+9,     livroX,"|2)Evidencie x:      |nenhum elemento de A |");
-                    mvwprintw(stdscr, livroY+10,    livroX,"|x * (A - C) = D + B |está em C           |");
-                    mvwprintw(stdscr, livroY+11,    livroX,"| x = (D + B)/(A - C)|                     |");
+                    mvwprintw(stdscr, livroY+5,     livroX,"|Ax - B = Cx + D     |A esta em B e todos  |");
+                    mvwprintw(stdscr, livroY+6,     livroX,"|1)Isola os termos   |de B estao em A, logo|");      
+                    mvwprintw(stdscr, livroY+7,     livroX,"|com 'x':            |B=A                  |");
+                    mvwprintw(stdscr, livroY+8,     livroX,"|Ax - Cx = D + B     |Simbolismos:         |");
+                    mvwprintw(stdscr, livroY+9,     livroX,"|2)Evidencie x:      |Se 2 enunciados sao  |");
+                    mvwprintw(stdscr, livroY+10,    livroX,"|x * (A - C) = D + B |iguais, tem-se uma   |");
+                    mvwprintw(stdscr, livroY+11,    livroX,"| x = (D + B)/(A - C)|tautologia=verdadeiro|");
                     mvwprintw(stdscr, livroY+12,    livroX,"|____________________|_____________________|"); 
                 }
                 else if(livro2==1&&livro1==0&&livro3==0)
@@ -777,8 +813,8 @@ int main()
                     mvwprintw(stdscr, livroY+2,     livroX,"|Contagem Absoluta de|PLANAS               |");
                     mvwprintw(stdscr, livroY+3,     livroX,"|Elementos           |Calculo em figuras   |");
                     mvwprintw(stdscr, livroY+4,     livroX,"|O numero de itens em|vazadas:             |");
-                    mvwprintw(stdscr, livroY+5,     livroX,"|uma matriz é dado da|Seja um retangulo    |");
-                    mvwprintw(stdscr, livroY+6,     livroX,"|seguinte forma:     |que possui uma figura|");      
+                    mvwprintw(stdscr, livroY+5,     livroX,"|uma matriz eh dado  |Seja um retangulo    |");
+                    mvwprintw(stdscr, livroY+6,     livroX,"|da seguinte forma:  |que possui uma figura|");      
                     mvwprintw(stdscr, livroY+7,     livroX,"|                    |inscrita(FI), a area |");
                     mvwprintw(stdscr, livroY+8,     livroX,"|   N = i x j        |do retangulo externo |");
                     mvwprintw(stdscr, livroY+9,     livroX,"|Onde i eh o numero  |sera:                |");
@@ -804,7 +840,7 @@ int main()
                 }
             }
         //MOVIMENTAÇÃO DO GAROTO 
-        move(y, x); // move o cursor para a posição x e y, que é onde eu quero que ele fique
+
 
 
 
@@ -874,7 +910,7 @@ int main()
 
 
 
-
+move(save.y,save.x);
 
 
 
@@ -886,17 +922,17 @@ int main()
                                         if(vira%2==0)
                                         {
                                             if(pisca%2==1)
-                                                {mvprintw(y,x,"%s",faces[selecao_face]);mvprintw(y,x+1,"%s",olhos[selecao_olhos]);} 
-                                            else {mvprintw(y,x,"%s",faces[selecao_face]);mvprintw(y,x+1,"--");}                //printar o rosto
-                                            if(passo%2==0)mvprintw(y+1,x+1,"%s",pernas[selecao_pernas]);//perna no passo par
-                                            else          mvprintw(y+1,x+1,"%s",pernas[selecao_pernas+1]);//perna no passo impar
+                                                {mvprintw(save.y,save.x,"%s",faces[selecao_face]);mvprintw(save.y,save.x+1,"%s",olhos[selecao_olhos]);} 
+                                            else {mvprintw(save.y,save.x,"%s",faces[selecao_face]);mvprintw(save.y,save.x+1,"--");}                //printar o rosto
+                                            if(passo%2==0)mvprintw(save.y+1,save.x+1,"%s",pernas[selecao_pernas]);//perna no passo par
+                                            else          mvprintw(save.y+1,save.x+1,"%s",pernas[selecao_pernas+1]);//perna no passo impar
                                         }
                                     //-----------------------//OLHANDO PRA TRÁS:
                                         else if(vira%2==1)       
                                         {   
-                                            mvprintw(y,x,"%s",faces[selecao_face]);              //printar o rosto de costar
-                                            if(passo%2==0)mvprintw(y+1,x+1,"%s",pernas[selecao_pernas]);//perna no passo par
-                                            else          mvprintw(y+1,x+1,"%s",pernas[selecao_pernas+1]);
+                                            mvprintw(save.y,save.x,"%s",faces[selecao_face]);              //printar o rosto de costar
+                                            if(passo%2==0)mvprintw(save.y+1,save.x+1,"%s",pernas[selecao_pernas]);//perna no passo par
+                                            else          mvprintw(save.y+1,save.x+1,"%s",pernas[selecao_pernas+1]);
                                         }
 
 
@@ -905,17 +941,17 @@ int main()
                                         if(vira%2==0)
                                         {
                                             if(pisca%2==1)
-                                                {mvprintw(y,x,"%s[]",faces[selecao_face]);mvprintw(y,x+1,"%s",olhos[selecao_olhos]);} 
-                                            else {mvprintw(y,x,"%s[]",faces[selecao_face]);mvprintw(y,x+1,"--");}                //printar o rosto
-                                            if(passo%2==0)mvprintw(y+1,x+1,"%s",pernas[selecao_pernas]);//perna no passo par
-                                            else          mvprintw(y+1,x+1,"%s",pernas[selecao_pernas+1]);//perna no passo impar
+                                                {mvprintw(save.y,save.x,"%s[]",faces[selecao_face]);mvprintw(save.y,save.x+1,"%s",olhos[selecao_olhos]);} 
+                                            else {mvprintw(save.y,save.x,"%s[]",faces[selecao_face]);mvprintw(save.y,save.x+1,"--");}                //printar o rosto
+                                            if(passo%2==0)mvprintw(save.y+1,save.x+1,"%s",pernas[selecao_pernas]);//perna no passo par
+                                            else          mvprintw(save.y+1,save.x+1,"%s",pernas[selecao_pernas+1]);//perna no passo impar
                                         }
                                     //-----------------------//OLHANDO PRA TRÁS:
                                         else if(vira%2==1)       
                                         {   
-                                            mvprintw(y,x-2,"[]%s",faces[selecao_face]);                 //printar o rosto de costar
-                                            if(passo%2==0)mvprintw(y+1,x+1,"%s",pernas[selecao_pernas]);//perna no passo par
-                                            else          mvprintw(y+1,x+1,"%s",pernas[selecao_pernas+1]);
+                                            mvprintw(save.y,save.x-2,"[]%s",faces[selecao_face]);                 //printar o rosto de costar
+                                            if(passo%2==0)mvprintw(save.y+1,save.x+1,"%s",pernas[selecao_pernas]);//perna no passo par
+                                            else          mvprintw(save.y+1,save.x+1,"%s",pernas[selecao_pernas+1]);
                                         }
 
 
@@ -923,17 +959,17 @@ int main()
                                         if(vira%2==0)
                                         {
                                             if(pisca%2==1)
-                                                {mvprintw(y,x,"%s[I]",faces[selecao_face]);mvprintw(y,x+1,"%s",olhos[selecao_olhos]);} 
-                                            else {mvprintw(y,x,"%s[I]",faces[selecao_face]);mvprintw(y,x+1,"--");}                //printar o rosto
-                                            if(passo%2==0)mvprintw(y+1,x+1,"%s",pernas[selecao_pernas]);//perna no passo par
-                                            else          mvprintw(y+1,x+1,"%s",pernas[selecao_pernas+1]);//perna no passo impar
+                                                {mvprintw(save.y,save.x,"%s[I]",faces[selecao_face]);mvprintw(save.y,save.x+1,"%s",olhos[selecao_olhos]);} 
+                                            else {mvprintw(save.y,save.x,"%s[I]",faces[selecao_face]);mvprintw(save.y,save.x+1,"--");}                //printar o rosto
+                                            if(passo%2==0)mvprintw(save.y+1,save.x+1,"%s",pernas[selecao_pernas]);//perna no passo par
+                                            else          mvprintw(save.y+1,save.x+1,"%s",pernas[selecao_pernas+1]);//perna no passo impar
                                         }
                                     //-----------------------//OLHANDO PRA TRÁS:
                                         else if(vira%2==1)       
                                         {   
-                                            mvprintw(y,x-3,"[I]%s",faces[selecao_face]);              //printar o rosto de costar
-                                            if(passo%2==0)mvprintw(y+1,x+1,"%s",pernas[selecao_pernas]);//perna no passo par
-                                            else          mvprintw(y+1,x+1,"%s",pernas[selecao_pernas+1]);
+                                            mvprintw(save.y,save.x-3,"[I]%s",faces[selecao_face]);              //printar o rosto de costar
+                                            if(passo%2==0)mvprintw(save.y+1,save.x+1,"%s",pernas[selecao_pernas]);//perna no passo par
+                                            else          mvprintw(save.y+1,save.x+1,"%s",pernas[selecao_pernas+1]);
                                         }
 
 
@@ -1034,8 +1070,8 @@ for(int i=camaX-2; i<=camaX+7;i++)
     {
         for(int j=camaY;j<=camaY+3;j++)
         {
-            if(xf==i&&yf==j&&(xf-x)!=0) {xf=x;} // se algum indice da matriz cama bater com as coordenadas do garoto por uma mudança no x, o x não altera
-            else if(xf==i&&yf==j&&(yf-y)!=0) {yf=y;} // se algum indice bater com a coordenada por uma mudança no y, o y não altera
+            if(xf==i&&yf==j&&(xf-save.x)!=0) {xf=save.x;} // se algum indice da matriz cama bater com as coordenadas do garoto por uma mudança no x, o x não altera
+            else if(xf==i&&yf==j&&(yf-save.y)!=0) {yf=save.y;} // se algum indice bater com a coordenada por uma mudança no y, o y não altera
         }       
     }
     //CAMA
@@ -1043,7 +1079,7 @@ for(int i=camaX-2; i<=camaX+7;i++)
     {
         for(int j=camaY;j<=camaY+3;j++)
         {
-            if(xf==i&&yf==j&&(xf-x)!=0) {xf=x;} 
+            if(xf==i&&yf==j&&(xf-save.x)!=0) {xf=save.x;} 
         }       
     }
     //ESTANTE
@@ -1051,8 +1087,8 @@ for(int i=camaX-2; i<=camaX+7;i++)
         {
             for(int j=estanteY;j<=estanteY+4;j++)
             {
-                if(xf==i&&yf==j&&(xf-x)!=0) {xf=x;} 
-                else if(xf==i&&yf==j&&(yf-y)!=0) {yf=y;} 
+                if(xf==i&&yf==j&&(xf-save.x)!=0) {xf=save.x;} 
+                else if(xf==i&&yf==j&&(yf-save.y)!=0) {yf=save.y;} 
             }       
         }
     //ARMARIO
@@ -1060,8 +1096,8 @@ for(int i=camaX-2; i<=camaX+7;i++)
         {
             for(int j=armarioY+5;j<=armarioY+7;j++)
             {
-                if(xf==i&&yf==j&&(xf-x)!=0) {xf=x;} 
-                else if(xf==i&&yf==j&&(yf-y)!=0) {yf=y;} 
+                if(xf==i&&yf==j&&(xf-save.x)!=0) {xf=save.x;} 
+                else if(xf==i&&yf==j&&(yf-save.y)!=0) {yf=save.y;} 
             }       
         }
     //MESA
@@ -1069,8 +1105,8 @@ for(int i=camaX-2; i<=camaX+7;i++)
         {
             for(int j=mesaY;j<=mesaY+1;j++)
             {
-                if(xf==i&&yf==j&&(xf-x)!=0) {xf=x;} 
-                else if(xf==i&&yf==j&&(yf-y)!=0) {yf=y;} 
+                if(xf==i&&yf==j&&(xf-save.x)!=0) {xf=save.x;} 
+                else if(xf==i&&yf==j&&(yf-save.y)!=0) {yf=save.y;} 
             }       
         }
     //LIXO
@@ -1078,11 +1114,11 @@ for(int i=camaX-2; i<=camaX+7;i++)
         {
             for(int j=lixoY+1;j<=lixoY+1;j++)
             {
-                if(xf==i&&yf==j&&(xf-x)!=0) {xf=x;} 
-                else if(xf==i&&yf==j&&(yf-y)!=0) {yf=y;} 
+                if(xf==i&&yf==j&&(xf-save.x)!=0) {xf=save.x;} 
+                else if(xf==i&&yf==j&&(yf-save.y)!=0) {yf=save.y;} 
             }       
         }
-    x=xf;y=yf;
+    save.x=xf;save.y=yf;
 
 
     check++;
@@ -1090,14 +1126,14 @@ for(int i=camaX-2; i<=camaX+7;i++)
 
 //++++++++++++++++++++++++++++++++++++++INTERAÇÃO COM OBJETOS IMOVEIS+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //ESPELHO
-        if(y>espelhoy&&y<espelhoy+8&&x>espelhox-2&&x<espelhox+9&&vira%2==1)
+        if(save.y>espelhoy&&save.y<espelhoy+8&&save.x>espelhox-2&&save.x<espelhox+9&&vira%2==1)
             {
                 mvprintw(Yall+33, Xall+27, "Encarar o espelho: E");
                 if(tecla=='e'||tecla=='E')
                     {espelho=1;}
             }
 //CAMA
-        if(y>camaY&&y<camaY+5&&x>camaX-4&&x<camaX+9)
+        if(save.y>camaY&&save.y<camaY+5&&save.x>camaX-4&&save.x<camaX+9)
             {
                 interagirCam=1;
                 mvprintw(Yall+33, Xall+65, "Dormir: F");
@@ -1108,8 +1144,8 @@ for(int i=camaX-2; i<=camaX+7;i++)
                 interagirCam=0;
 
 //ARMARIO
-        int pertodearmario = (x >= armarioX - 2 && x <= armarioX + 8) &&
-                            (y >= armarioY+2 && y <= armarioY + 9);
+        int pertodearmario = (save.x >= armarioX - 2 && save.x <= armarioX + 8) &&
+                            (save.y >= armarioY+2 && save.y <= armarioY + 9);
         if (pertodearmario) 
         {
             if(armarioaberto)
@@ -1133,8 +1169,8 @@ for(int i=camaX-2; i<=camaX+7;i++)
         }
 
 //JANELA
-    int pertoJanela = (x >= janelaX - 2 && x <= janelaX + 8) &&
-                            (y >= janelaY - 1 && y <= janelaY + 5);
+    int pertoJanela = (save.x >= janelaX - 2 && save.x <= janelaX + 8) &&
+                            (save.y >= janelaY - 1 && save.y <= janelaY + 5);
         if (pertoJanela) 
         {
             if(save.janelaaberta)
@@ -1161,7 +1197,7 @@ for(int i=camaX-2; i<=camaX+7;i++)
     char *jogar[3] = {"cobrinha", "2048", "batalha naval"};
     int escolha=0;
         
-        if (save.celularpickup == 0 && y>celularY -3 && y<celularY + 3 && x >= celularX - 4 && x <= celularX + 4 && save.revistapickup==0) 
+        if (save.celularpickup == 0 && save.y>celularY -3 && save.y<celularY + 3 && save.x >= celularX - 4 && save.x <= celularX + 4 && save.revistapickup==0) 
         {
             interagirCel=1;
             if(save.depoisprova==0)
@@ -1172,14 +1208,14 @@ for(int i=camaX-2; i<=camaX+7;i++)
             if ((tecla == 'e' || tecla == 'E')&&save.depoisprova==0)   
             {save.celularpickup = 1;}
         }
-            else if(save.celularpickup == 1 && y>celularY -3 && y<celularY + 3 && x >= celularX - 4 && x <= celularX + 4) 
+            else if(save.celularpickup == 1 && save.y>celularY -3 && save.y<celularY + 3 && save.x >= celularX - 4 && save.x <= celularX + 4) 
         {
             mvprintw(Yall+33, Xall+27, "Soltar celular: E");
             if (tecla == 'e' || tecla == 'E')   
             {save.celularpickup = 0;}
-            celularpos++;
-            if(celularpos>3)
-                {celularpos=1;}
+            save.celularpos++;
+            if(save.celularpos>3)
+                {save.celularpos=1;}
         }
         else
             interagirCel=0;
@@ -1227,7 +1263,7 @@ for(int i=camaX-2; i<=camaX+7;i++)
 //REVISTA
 
         
-        int pertoRevista = ((x >= armarioX - 3 && x <= armarioX + 7) && (y >= armarioY && y <= armarioY + 7));
+        int pertoRevista = ((save.x >= armarioX - 3 && save.x <= armarioX + 7) && (save.y >= armarioY && save.y <= armarioY + 7));
 
         if(armarioaberto)
         {
@@ -1323,7 +1359,7 @@ for(int i=camaX-2; i<=camaX+7;i++)
         ))))))))))))))))))))))))))))))))))))))))))))))))))))))))
         ))))))))))))))))))))))))))))))))))))))))))))))))))))))*/
 // ==================== MECÂNICA DOS LIVROS ====================
-int pertoestante = ((x >= estanteX - 2 && x <= estanteX + 14) && (y >= estanteY - 1 && y <= estanteY + 7));
+int pertoestante = ((save.x >= estanteX - 2 && save.x <= estanteX + 14) && (save.y >= estanteY - 1 && save.y <= estanteY + 7));
 
             if (pertoestante) 
             {
@@ -1332,7 +1368,7 @@ int pertoestante = ((x >= estanteX - 2 && x <= estanteX + 14) && (y >= estanteY 
                 if (save.livropickup == 0 && save.celularpickup == 0 && save.revistapickup == 0) 
                 {
                     // --- LIVRO 1 ---
-                    if (x >= estanteX - 2 && x <= estanteX + 2) 
+                    if (save.x >= estanteX - 2 && save.x <= estanteX + 2) 
                     {
                         mvprintw(Yall+33, Xall+27, " Pegar livro 1: E");
                         if (tecla == 'e' || tecla == 'E') 
@@ -1345,7 +1381,7 @@ int pertoestante = ((x >= estanteX - 2 && x <= estanteX + 14) && (y >= estanteY 
                         }
                     }
                     // --- LIVRO 2 ---
-                    else if (x >= estanteX + 3 && x <= estanteX + 8) 
+                    else if (save.x >= estanteX + 3 && save.x <= estanteX + 8) 
                     {
                         mvprintw(Yall+33, Xall+27, " Pegar livro 2: E");
                         if (tecla == 'e' || tecla == 'E') 
@@ -1358,7 +1394,7 @@ int pertoestante = ((x >= estanteX - 2 && x <= estanteX + 14) && (y >= estanteY 
                         }
                     }
                     // --- LIVRO 3 ---
-                    else if (x >= estanteX + 9 && x <= estanteX + 14) 
+                    else if (save.x >= estanteX + 9 && save.x <= estanteX + 14) 
                     {
                         mvprintw(Yall+33, Xall+27, " Pegar livro 3: E");
                         if (tecla == 'e' || tecla == 'E') 
@@ -1417,13 +1453,13 @@ int pertoestante = ((x >= estanteX - 2 && x <= estanteX + 14) && (y >= estanteY 
                     // A cada 300ms a gente muda o pontinho na tela sem travar o código
                     mvprintw(LINES-15, COLS-25, "Parar de estudar?: P");
                     if(cont>13000)
-                        mvprintw(LINES-15, COLS-27, "Liberta-lo do sofrimento?: P");
-                    if ((cont / 300) % 6 == 0)      mvprintw(y-2, x-8, "estudando... ");
-                    else if ((cont / 300) % 6 == 1) mvprintw(y-2, x-8, "estudando.. .");
-                    else if ((cont / 300) % 6 == 2) mvprintw(y-2, x-8, "estudando. ..");
-                    else if ((cont / 300) % 6 == 3) mvprintw(y-2, x-8, "estudando ...");
-                    else if ((cont / 300) % 6 == 4) mvprintw(y-2, x-8, "estudando. ..");
-                    else                            mvprintw(y-2, x-8, "estudando.. .");
+                        mvprintw(LINES-15, COLS-30, "Liberta-lo do sofrimento?: P");
+                    if ((cont / 300) % 6 == 0)      mvprintw(save.y-2, save.x-8, "estudando... ");
+                    else if ((cont / 300) % 6 == 1) mvprintw(save.y-2, save.x-8, "estudando.. .");
+                    else if ((cont / 300) % 6 == 2) mvprintw(save.y-2, save.x-8, "estudando. ..");
+                    else if ((cont / 300) % 6 == 3) mvprintw(save.y-2, save.x-8, "estudando ...");
+                    else if ((cont / 300) % 6 == 4) mvprintw(save.y-2, save.x-8, "estudando. ..");
+                    else                            mvprintw(save.y-2, save.x-8, "estudando.. .");
 
                     // ==================== DIÁLOGOS: LIVRO 1 ====================
                     if(livro1)
@@ -1537,7 +1573,7 @@ int pertoestante = ((x >= estanteX - 2 && x <= estanteX + 14) && (y >= estanteY 
                 mvprintw(5, 10, "                                                         ");
                 mvprintw(6, 10, "                                                         ");
                 mvprintw(7, 10, "                                                         ");
-                mvprintw(y-2, x-8, "              ");
+                mvprintw(save.y-2, save.x-8, "              ");
                 refresh();
             }
             
@@ -1567,123 +1603,178 @@ int pertoestante = ((x >= estanteX - 2 && x <= estanteX + 14) && (y >= estanteY 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    nodelay(stdscr, TRUE);
-    if(save.atividade_sono>5)
-    {
-        iniciar=0;
-        break;
-    }
-    if(dormindo==1)
-    {
-        iniciar=0;
-        break;
-    }
-    if(tecla=='q')
-    {
-        voltar_inicio=1;
-        break;
-    }
-    }//while jogo
+nodelay(stdscr, TRUE);
+                if(save.atividade_sono>5)
+                {
+                    iniciar=0;
+                    voltar_inicio=0;
+                    break;
+                }
+                if(dormindo==1)
+                {
+                    iniciar=0;
+                    dormindo=0;
+                    voltar_inicio=0;
+                    break;
+                }
+                if(tecla=='q')
+                {
+                    voltar_inicio=1;
+                    break;
+                }
 
-    if(voltar_inicio==1)
-    {
-        voltar_inicio=0;
-    if(iniciar==0)
-    {
-        break;
-    }
-    else
-    {
-
-        mvprintw(7, 7, "Fechando o jogo");
-        refresh();
-        iniciar=1;
-        napms(1000);
-    }
-        continue;
-    }
-
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            }//**WHILE JOGOOOOOOOOOOOOOOOOO**
 
 
+            if(voltar_inicio == 1) {//aqui volta pro menu se apertar q
+                break;
+            }
 
-    }//menu
-}
-if(save.depoisprova==0)
-{
-    if(save.atividade_sono>5&&estudo>=3)// se ele não dormiu mas estudou ele faz a prova cansado e sabendo (prova cansado simples)
-    {
+            // se ele n fez a prova ainda ele faz a prova
+            if(save.depoisprova == 0)
+            {
+                save.estagio++;//2
+                strcpy(save.momento,"Prova");
+                
+                save.celularpickup=0;
+                save.livropickup=0;
+                save.revistapickup=0;
+                int lugarattx=save.x, lugaratty=save.y;
+                save.x=COLS/2;save.y=LINES/2;
+
+                if(save.atividade_sono>5&&estudo>=3)// se ele não dormiu mas estudou ele faz a prova cansado e sabendo (prova cansado simples)
+                {
+                    //cair_no_sono();
+                    //dialogoprovacs();
+                    prova_cansado_simples(&cor,&acertos);
+                }
+                if (save.atividade_sono<=5&&estudo>=3)// se ele dormiu e estudou ele faz a prova descansado e sabendo (prova simples)
+                {
+                    //dormir();
+                    //dialogoprovas();
+                    prova_simples(&cor,&acertos);
+                }
+                if (save.atividade_sono>5&&estudo<3)//se ele nao dormiu e não estudou ele faz a prova descansado e burro  (prova cansado complexa)
+                {
+                    //cair_no_sono();
+                    //dialogoprovacc();
+                    prova_cansado_complexa(&cor,&acertos);
+                }
+                if (save.atividade_sono<=5&&estudo<3)// se ele dormiu mas não estudou ele faz a prova descansado e burro (prova complexa)
+                {
+                    //dormir();
+                    //dialogoprovac();
+                    prova_complexa(&cor,&acertos);
+                }
+                save.x=22+Xall;
+                save.y=10+Yall;
+
+                // prova feita
+                save.depoisprova = 1;
+
+                dialogodepoisprova(&acertos,&maexinga,&epilepsia);
+
+                //aqui ele loopa pro inicio do quarto, mas com o depoisprova habilitado( oq bloqueia o celular e revista e alem disso de ele fazer a prova dnv)
+            }
+            else
+            {
+
+                break;
+            }
+
+        }//antes e depois prova
+
+        if(voltar_inicio==1)
+        {
+            break;
+        }
+        if(acertos<5&&save.depoisprova==1)
+        {
+            save.depoisprova=1;
+        }
+        else
+        {
+            save.estagio++;//3
+            strcpy(save.momento,"Fim");
+        }
+
+        if(dialogofinal(&finais_alcancados,&acertos))// isso daqui que vai virar a struct que a gente rpecisa botar no arquivo binário do jogo, o save.
+        //int slot, SAVE *save_atual,int *selecao_olhos, int *selecao_face,int *selecao_pernas
+        // então, a gente bota tudo isso numa struct, da om ctrl +shift +l bota o nome da struct antes de todas essas variaveis do save. 
+        // tipo save.ativida_desono
+        //save.atividade_sono=0;
+        //save.celularpickup=0;
+        //save.livropickup=0;
+        //save.revistapickup=0;
+        //save.maepistola=0;
+        //save.maepistoladef=0;
+        //save.janelaaberta=0;
+        //save.depoisprova=0;
+        // e ai a gente só recarrega a struct com tudo, e a gente pode fazer 3 saves e salvar um sprite do momento tbm,
+        //um vetor de caracteres com uma imagem pequena ao redor do jogador que mostre o ponto do save que ele ta pra botar na pasta.
+        {
+            save.atividade_sono = 0;//(*save.atividade_sono = 0;
+            save.celularpickup = 0;
+            save.livropickup = 0;
+            save.revistapickup = 0;
+            save.maepistola = 0;
+            save.maepistoladef = 0;
+            save.janelaaberta = 0;
+            save.depoisprova = 0;
+            save.x=22+Xall;
+            save.y=10+Yall;
+            save.celularpos=2;
+            save.revistapickup=0;
+            save.estagio=0;
+
+            strcpy(save.momento, "Dialogo com a mae ");//SALVO
+
+            strcpy(save.imagem[0], "      \\/    ");
+            strcpy(save.imagem[1], "     (00)   ");
+            strcpy(save.imagem[2], "      ||    ");
+            strcpy(save.imagem[3], "            ");
+            strcpy(save.imagem[4], "            ");
+            strcpy(save.imagem[5], "            ");
+            save.quest=7;
+            //zerar todas as variáveis que precisam ser zeradas, voltar elas para o valor inicial( se voce achar mais alguma bota ela aqui)
+        }
         
-        cair_no_sono();
-        dialogoprovacs();
-        prova_cansado_simples(&cor,&acertos);
-    }
+    }//WHILE LOOP TEMPORAL
 
-    if (save.atividade_sono<=5&&estudo>=3)// se ele dormiu e estudou ele faz a prova descansado e sabendo (prova simples)
-    {
-        dormir();
-        dialogoprovas();
-        prova_simples(&cor,&acertos);
-    }
+}//while do menu
 
-    if (save.atividade_sono>5&&estudo<3)//se ele nao dormiu e não estudou ele faz a prova descansado e burro  (prova cansado complexa)
-    {
-        cair_no_sono();
-        dialogoprovacc();
-        prova_cansado_complexa(&cor,&acertos);
-    }
-    if (save.atividade_sono<=5&&estudo<3)// se ele dormiu mas não estudou ele faz a prova descansado e burro (prova complexa)
-    {
-        
-        dormir();
-        dialogoprovac();
-        prova_complexa(&cor,&acertos);
-    }
-}
-//ATO III?
-
-dialogodepoisprova(&acertos,&maexinga,&epilepsia);
-
-if(acertos<5&&save.depoisprova==0)
-{
-    save.depoisprova=1;
-}
-else
-{
-    if(dialogofinal(&finais_alcancados))// isso daqui que vai virar a struct que a gente rpecisa botar no arquivo binário do jogo, o save.
-    // então, a gente bota tudo isso numa struct, da om ctrl +shift +l bota o nome da struct antes de todas essas variaveis do save. 
-    // tipo save.ativida_desono
-    //save.atividade_sono=0;
-    //save.celularpickup=0;
-    //save.livropickup=0;
-    //save.revistapickup=0;
-    //save.maepistola=0;
-    //save.maepistoladef=0;
-    //save.janelaaberta=0;
-    //save.depoisprova=0;
-    // e ai a gente só recarrega a struct com tudo, e a gente pode fazer 3 saves e salvar um sprite do momento tbm,
-    //um vetor de caracteres com uma imagem pequena ao redor do jogador que mostre o ponto do save que ele ta pra botar na pasta.
-    {
-
-        save.atividade_sono=0;
-        save.celularpickup=0;
-        save.livropickup=0;
-        save.revistapickup=0;
-        save.maepistola=0;
-        save.maepistoladef=0;
-        save.janelaaberta=0;
-        save.depoisprova=0;
-        //zerar todas as variáveis que precisam ser zeradas, voltar elas para o valor inicial( se voce achar mais alguma bota ela aqui)
-    }
-}
-
-//while do menu
     demo();
     napms(3000);
     endwin();// fecha a janela
     return 0;
 }
+// CORRIGIR CAMA FICAR BRANCA DEPOIS DE SALVAR
+/*
+Main
+{
+    while menu
+    {
+        inicio;
+        os init e etc;
+        while loop
+        {
+            looptemporal;
+            while antesdepoisprova
+            {
+                seta o sono, quando era >=4 pra 3.
+                
+                while jogo
+                {
+                    jogo;
+                }
+                prova;
+                dialogodepoisprova;
+            }
+            if(dialogofinal;)
+            {
+                reseta td;
+            }
+        }loop
+    }menu
+}main
+*/

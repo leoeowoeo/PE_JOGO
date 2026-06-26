@@ -1,17 +1,17 @@
 #include<ncurses.h>
 #include "jogos.h"
-int dialogofinal(int *finais_alcancados)// autoexplicativo
+int dialogofinal(int *finais_alcancados,int *acertos)// autoexplicativo
 {
     //dialogo bom(caso ele tenha gabaritado)
     int Xall = (COLS / 2) - 57;
     int Yall = 3;
     int linha_atual;
     erase();
-    slow_mvwprintw(stdscr, "Voce entra no seu quarto e fecha a porta de vagar", linha_atual, Xall);
-    refresh(); napms(700);
 
-    erase();
-    slow_mvwprintw(stdscr, "Voce entra no seu quarto e fecha a porta de vagar", linha_atual, Xall);
+
+    //TEM QUE TER IF DE ACERTOS
+    if(*acertos==5)
+    {slow_mvwprintw(stdscr, "Voce entra no seu quarto e fecha a porta devagar", linha_atual, Xall);
     refresh(); napms(700);
 
     linha_atual++;
@@ -47,17 +47,19 @@ int dialogofinal(int *finais_alcancados)// autoexplicativo
     wattron(stdscr, A_BOLD);
     slow_mvwprintw(stdscr, "--- Final bom alcançado ---", linha_atual, Xall + 10);//kkkkkk tem q mudar// KKKKKKKKKKKKKKKKKKKKKKKKK vdd, q bosta
     wattroff(stdscr, A_BOLD);
-    refresh(); napms(4000);
+    refresh(); napms(4000);}
     
     
     //dialogo ruim(caso ele nao tenha gabaritado)
 
-    int opcao_retorno = 0;
+
+    //TEM QUE TER IF DE ACERTOS
+    else
+    {int opcao_retorno = 0;
     int tecla_cena = 0;
     linha_atual=Yall;
-
     erase();
-    slow_mvwprintw(stdscr, "Voce joga a cabeça no travesseiro, exausto e frustrado...", linha_atual, Xall);
+    slow_mvwprintw(stdscr, "Voce joga a cabeca no travesseiro, exausto e frustrado...", linha_atual, Xall);
     refresh(); napms(700);
 
     linha_atual++;
@@ -168,12 +170,15 @@ int dialogofinal(int *finais_alcancados)// autoexplicativo
     wattroff(stdscr, A_BOLD);
     refresh(); napms(700);
 
-    slow_mvwprintw(stdscr, "Pitagoras(o solitario)- E a sua nota atual eh um numero que... fere..", linha_atual, Xall);
+    napms(300);
+    wattron(stdscr, A_BOLD);
+    slow_mvwprintw(stdscr, "fere...", linha_atual, Xall+63);
     wattroff(stdscr, A_BOLD);
     refresh(); napms(700);
 
     linha_atual++;
-    slow_mvwprintw(stdscr, "Pitagoras(o solitario)- E a sua nota atual eh um numero que fere a minha existencia.", linha_atual, Xall);
+    wattron(stdscr, A_BOLD);
+    slow_mvwprintw(stdscr, "Pitagoras(o solitario)- Sua nota atual eh um numero que fere a minha existencia.", linha_atual, Xall);
     wattroff(stdscr, A_BOLD);
     refresh(); napms(700);
 
@@ -203,7 +208,10 @@ int dialogofinal(int *finais_alcancados)// autoexplicativo
 
         if (tecla_cena == KEY_UP || tecla_cena == KEY_DOWN)
         {
+           
             opcao_retorno = !opcao_retorno;
+
+
         }
         else if (tecla_cena == '\n' || tecla_cena == ' ')
         {
@@ -239,11 +247,13 @@ int dialogofinal(int *finais_alcancados)// autoexplicativo
         slow_mvwprintw(stdscr, "Pitagoras(o solitario)- Uma pena. A ignorancia eh uma bencao mesmo, mas ela se tornara a sua ruina... essa decisao eh apenas sua.", linha_atual, Xall);
         wattroff(stdscr, A_BOLD);
         refresh(); napms(700);
-
+        linha_atual++;
         wattron(stdscr, A_BOLD);
         slow_mvwprintw(stdscr, "Pitagoras(o solitario)- Entao, que assim seja, sinto muito, jovem...", linha_atual, Xall);
         wattroff(stdscr, A_BOLD);
         refresh(); napms(700);
+        exit(0);
         return 0; // Retorna 0 indicando fim de jogo definitivo
     }
+}
 }

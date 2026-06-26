@@ -1,13 +1,15 @@
 #include <ncurses.h>
 #include <stdlib.h>
 #include "jogos.h"
+#include <signal.h>
 #define COR_CIANO          18
 
-int inicio(int *selecao_olhos, int *selecao_face,int *selecao_pernas, int *cor, int *interage, int *selecaocor,int *iniciar,int *epilepsia,SAVE *save_atual,int *iniciado)
+int inicio(int *selecao_olhos, int *selecao_face,int *selecao_pernas, int *cor, int *interage, int *selecaocor,int *iniciar,int *epilepsia,SAVE *save_atual,int *iniciado,int *jogar,int *estanoquarto)
 // a função apresenta a tela inicial do jogo, com o botão de iniciar,opção,credito,customização e sair
 {//abriu main
     keypad(stdscr,TRUE);
     noecho();
+    raw();
     curs_set(0);
     start_color();
     use_default_colors();
@@ -23,17 +25,40 @@ int inicio(int *selecao_olhos, int *selecao_face,int *selecao_pernas, int *cor, 
     int tecla, selecao=1,selecao_opcoes=1,selecao_aparencia=0;
     int piscar=0;
     int indicacao=0;
-    int jogar=0,sair=0;
+    int sair=0;
     int x=2;
     char *olhos[10]={"##","@@", "**","$$","vv","><","XX","OO","00","oo"};
     char *faces[5] = {"(  )", "[  ]", "{  }", "<  >","d  b"};
     char *pernas[4] = {"/|","|\\","<v", "v>"};
-
+    int i; 
     *iniciar=0;
-
-    while(sair!=1)
+    *jogar=0;
+    estanoquarto=0;
+while(sair!=1)
     {//abriu while
-        
+
+        if (tecla == 3) { 
+            int i;
+            for(i = 1; i <= 25; i++) {
+                clear();
+                mvprintw(yselecao + 8, xselecao - 12, "%s", faces[*selecao_face]);
+                mvprintw(yselecao + 8, xselecao - 11, "xx");
+                mvprintw(yselecao + 5, xselecao - 14, "na");
+                int j;
+                for(j = 0; j < i; j++) {
+                    printw("o");
+                }
+                if(i == 25) {
+                    printw("!!!");
+                }
+                refresh();
+                napms(60);
+            }
+            napms(800);
+            endwin();
+            exit(0);
+        }
+
         erase();
         mvprintw(yselecao,xselecao-8,"JOGAR");
         mvprintw(yselecao+2,xselecao-8,"OPCOES");
@@ -160,8 +185,9 @@ int inicio(int *selecao_olhos, int *selecao_face,int *selecao_pernas, int *cor, 
             case '\n':
                 if(selecao==1)
                 {//abriu if 8
-                    jogar=1;
-                    menusave(cor,save_atual,&jogar, selecao_olhos, selecao_face, selecao_pernas,iniciado);
+                    *jogar=1;
+                    cbreak();
+                    menusave(cor,save_atual,jogar, selecao_olhos, selecao_face, selecao_pernas,iniciado,&estanoquarto);
                     nodelay(stdscr,FALSE);
                     timeout(200);
                     wattroff(stdscr,COLOR_PAIR(4));
@@ -248,6 +274,7 @@ int inicio(int *selecao_olhos, int *selecao_face,int *selecao_pernas, int *cor, 
                                 {//abriu if 14
                                     *cor=!(*cor);
                                     erase();
+                                    cbreak();
                                     break;
                                 }//fechou if14
                                 else if(selecao_opcoes==2)
@@ -258,6 +285,7 @@ int inicio(int *selecao_olhos, int *selecao_face,int *selecao_pernas, int *cor, 
                                         erase();
                                         break;
                                     }
+                                raw();
 /*O QUE TEM QUE MUDAR AINDA:
 
 ELE TA PISCANDO QUANDO CLICA RESOLVI
@@ -344,31 +372,38 @@ LOGO/NOME DO JOGO*/
                 }
                 break;
         }//fechou switch
-        if(jogar==1||sair==1)
+        if(*jogar==1||sair==1)
             break;
         napms(30);
     }
 
-    if(jogar==1)
+    if(*jogar==1)
     {
+        cbreak();
         return 0;
     }
 
     if (sair==1)
     {
-        mvprintw(yselecao+5,xselecao-14,"naooooooo!");
-        mvprintw(yselecao+8,xselecao-12,"%s",faces[*selecao_face]);
-        mvprintw(yselecao+8,xselecao-11,"xx");
-        wrefresh(stdscr);
-        napms(500);
-        werase(stdscr);
-        mvprintw(yselecao+5,xselecao-14,"naooooooo!");
-        mvprintw(yselecao+8,xselecao-12,"%s",faces[*selecao_face]);
-        mvprintw(yselecao+8,xselecao-11,"xx");
-        wrefresh(stdscr);
-        napms(1000);
-        endwin();
-        exit(0);
+            int i;
+            for(i = 1; i <= 25; i++) {
+                clear();
+                mvprintw(yselecao + 8, xselecao - 12, "%s", faces[*selecao_face]);
+                mvprintw(yselecao + 8, xselecao - 11, "xx");
+                mvprintw(yselecao + 5, xselecao - 14, "na");
+                int j;
+                for(j = 0; j < i; j++) {
+                    printw("o");
+                }
+                if(i == 25) {
+                    printw("!!!");
+                }
+                refresh();
+                napms(60);
+            }
+            napms(800);
+            endwin();
+            exit(0);
     }
     return 1;
 }

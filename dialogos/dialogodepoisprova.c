@@ -90,6 +90,7 @@ void dialogodepoisprova(int *acertos, int *maexinga, int *epilepsia)// autoexpli
     //----------------------------------------------------------------------------------------------
         int opcao_principal = 0;
         flushinp();
+        linha_atual++;
     while (1)
     {
         if (opcao_principal == 0) wattron(stdscr, A_REVERSE);
@@ -227,11 +228,11 @@ void dialogodepoisprova(int *acertos, int *maexinga, int *epilepsia)// autoexpli
     while (1)
     {
         if (opcao_principal == 0) wattron(stdscr, A_REVERSE);
-        mvprintw(linha_atual + 4, Xall + 2, "[ Meu deus, pra que isso de ter que gabaritar... nao vou estudar nao, vou dormir ]");
+        mvprintw(linha_atual + 8, Xall + 2, "[ Meu deus, pra que isso de ter que gabaritar... nao vou estudar nao, vou dormir ]");
         if (opcao_principal == 0) wattroff(stdscr, A_REVERSE);
 
         if (opcao_principal == 1) wattron(stdscr, A_REVERSE);
-        mvprintw(linha_atual + 6, Xall + 2, "[ Acho melhor eu estudar pra ir melhor da proxima vez. . . ]");
+        mvprintw(linha_atual + 10, Xall + 2, "[ Acho melhor eu estudar pra ir melhor da proxima vez. . . ]");
         if (opcao_principal == 1) wattroff(stdscr, A_REVERSE);
 
 
@@ -250,7 +251,7 @@ void dialogodepoisprova(int *acertos, int *maexinga, int *epilepsia)// autoexpli
         }
         else if (tecla_cena == '\n' || tecla_cena == ' ')
         {
-            if(opcao_principal==0)
+
             break;
         }
     //----------------------------------------------------------------------------------------------

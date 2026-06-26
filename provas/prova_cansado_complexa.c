@@ -11,12 +11,12 @@ int prova_cansado_complexa(int *cor,int *acertos)
     keypad(prova_cansado_complexa,TRUE);
     nodelay(prova_cansado_complexa,TRUE);
     start_color();
-    init_pair(1,COLOR_BLACK,COLOR_WHITE);
-    init_pair(2,COLOR_BLUE,COLOR_WHITE);
-    init_pair(3,COLOR_GREEN,COLOR_WHITE);
-    init_pair(4,COLOR_RED,COLOR_WHITE);
-    init_pair(5,COLOR_YELLOW,COLOR_WHITE);
-    init_pair(6,COLOR_BLACK,COLOR_WHITE);
+    init_pair(21,COLOR_BLACK,COLOR_WHITE);
+    init_pair(22,COLOR_BLUE,COLOR_WHITE);
+    init_pair(23,COLOR_GREEN,COLOR_WHITE);
+    init_pair(24,COLOR_RED,COLOR_WHITE);
+    init_pair(25,COLOR_YELLOW,COLOR_WHITE);
+    init_pair(26,COLOR_BLACK,COLOR_WHITE);
     
     int Xall = 40, Yall = 0;
     int tecla = 0, i, j;
@@ -85,7 +85,7 @@ int prova_cansado_complexa(int *cor,int *acertos)
     wrefresh(prova_cansado_complexa);
     napms(500);
 
-    mvwprintw(prova_cansado_complexa, Yall, Xall,"Eu não estudei e...");
+    mvwprintw(prova_cansado_complexa, Yall, Xall,"Eu nao estudei e...");
     wrefresh(prova_cansado_complexa);
     napms(1000);
 
@@ -111,7 +111,7 @@ flushinp();
         werase(prova_cansado_complexa); 
         
         // --- CABEÇALHO ---
-        if(*cor==1) wattron(prova_cansado_complexa, COLOR_PAIR(1));
+        if(*cor==1) wattron(prova_cansado_complexa, COLOR_PAIR(21));
         mvwprintw_cansado_complexa(prova_cansado_complexa, Yprova++, Xprova, "|=================================================================================|",cansando);     
         mvwprintw_cansado_complexa(prova_cansado_complexa, Yprova++, Xprova, "|                                     UFRRJ                                       |",cansando); 
         mvwprintw_cansado_complexa(prova_cansado_complexa, Yprova++, Xprova, "|                        PROVA DE MATEMATICA AVANCADA                             |",cansando); 
@@ -214,7 +214,7 @@ flushinp();
         mvwprintw_cansado_complexa(prova_cansado_complexa, Yprova++, Xprova, "|---------------------------------------------------------------------------------|",cansando); 
         mvwprintw_cansado_complexa(prova_cansado_complexa, Yprova++, Xprova, "|=================================================================================|",cansando); 
         
-        wattroff(prova_cansado_complexa, COLOR_PAIR(1));
+        wattroff(prova_cansado_complexa, COLOR_PAIR(21));
 
         // --- MOVIMENTAÇÃO DA PÁGINA (WASD) ---
         if (!confirmando) {
@@ -236,9 +236,9 @@ flushinp();
                 {
                     if(i == marcar)
                     {
-                        if(*cor==1) wattron(prova_cansado_complexa, COLOR_PAIR(2));
+                        if(*cor==1) wattron(prova_cansado_complexa, COLOR_PAIR(22));
                         mvwprintw(prova_cansado_complexa, Yall + 15 + i, Xall, "%s", questao1[i]);
-                        wattroff(prova_cansado_complexa, COLOR_PAIR(2));
+                        wattroff(prova_cansado_complexa, COLOR_PAIR(22));
                         
                     }
                 }
@@ -249,9 +249,9 @@ flushinp();
                 {
                     if(i == marcar)
                     {
-                        if(*cor==1) wattron(prova_cansado_complexa, COLOR_PAIR(2));
+                        if(*cor==1) wattron(prova_cansado_complexa, COLOR_PAIR(22));
                         mvwprintw(prova_cansado_complexa, Yall + 30 + i, Xall, "%s", questao2[i]);
-                        wattroff(prova_cansado_complexa, COLOR_PAIR(2));
+                        wattroff(prova_cansado_complexa, COLOR_PAIR(22));
                         
                     }
                 }
@@ -262,9 +262,9 @@ flushinp();
                 {
                     if(i == marcar)
                     {
-                        if(*cor==1) wattron(prova_cansado_complexa, COLOR_PAIR(2));
+                        if(*cor==1) wattron(prova_cansado_complexa, COLOR_PAIR(22));
                         mvwprintw(prova_cansado_complexa, Yall + 50 + i, Xall , "%s", questao3[i]);
-                        wattroff(prova_cansado_complexa, COLOR_PAIR(2));
+                        wattroff(prova_cansado_complexa, COLOR_PAIR(22));
                         
                     }
                 }
@@ -275,9 +275,9 @@ flushinp();
                 {
                     if(i == marcar)
                     {
-                        if(*cor==1) wattron(prova_cansado_complexa, COLOR_PAIR(2));
+                        if(*cor==1) wattron(prova_cansado_complexa, COLOR_PAIR(22));
                         mvwprintw(prova_cansado_complexa, Yall + 66 + i, Xall, "%s", questao4[i]);
-                        wattroff(prova_cansado_complexa, COLOR_PAIR(2));
+                        wattroff(prova_cansado_complexa, COLOR_PAIR(22));
                         
                     }
                 }
@@ -288,9 +288,9 @@ flushinp();
                 {
                     if(i == marcar)
                     {
-                        if(*cor==1) wattron(prova_cansado_complexa, COLOR_PAIR(2));
+                        if(*cor==1) wattron(prova_cansado_complexa, COLOR_PAIR(22));
                         mvwprintw(prova_cansado_complexa, Yall + 84 + i, Xall, "%s", questao5[i]);
-                        wattroff(prova_cansado_complexa, COLOR_PAIR(2));
+                        wattroff(prova_cansado_complexa, COLOR_PAIR(22));
                         /* REMOVIDO EM CAIXA ALTA: O BLOCO IF(MARCAR==0&&TECLA=='\n') QUE INCREMENTAVA ACERTO FOI RETIRADO DAQUI */
                     }
                 }
@@ -326,14 +326,14 @@ flushinp();
         wrefresh(prova_cansado_complexa); 
         napms(30);
 
-        // --- TELA  ---
+        
         int confirmacaoDEF = 2;
         if (confirmando == 1)
         {
             confirmacaoDEF = 2;
             int Ycentro = Yall + 35; 
             int Xcentro = Xall + 5;
-            mvwprintw_cansado_complexa(prova_cansado_complexa, Ycentro,     Xcentro, "/====================================================\\",cansando);
+            /*mvwprintw_cansado_complexa(prova_cansado_complexa, Ycentro,     Xcentro, "/====================================================\\",cansando);
             mvwprintw_cansado_complexa(prova_cansado_complexa, Ycentro + 1, Xcentro, "|      Tem certeza? Vai entregar a prova?            | ",cansando);
             mvwprintw_cansado_complexa(prova_cansado_complexa, Ycentro + 2, Xcentro, "|                                                    | ",cansando);
             mvwprintw_cansado_complexa(prova_cansado_complexa, Ycentro + 4, Xcentro, "\\====================================================/",cansando);
@@ -351,7 +351,7 @@ flushinp();
                 mvwprintw_cansado_complexa(prova_cansado_complexa, Ycentro + 3, Xcentro + 30, confirmacao[1], cansando);
             if (marcar_confirmacao == 1) wattroff(prova_cansado_complexa, A_REVERSE);
 
-            mvwprintw_cansado_complexa(prova_cansado_complexa, Ycentro + 3, Xcentro + 53, "|",cansando);
+            mvwprintw_cansado_complexa(prova_cansado_complexa, Ycentro + 3, Xcentro + 53, "|",cansando);*/
             wrefresh(prova_cansado_complexa);
 
             switch(tecla)
@@ -386,16 +386,15 @@ flushinp();
             (*acertos)++;
         }
     }
-    
-    werase(prova_cansado_complexa);
-    mvwprintw(prova_cansado_complexa, 7, 5, "Acertos: %d", *acertos);
+    //DEIXAR ISSO HABILITADO PRA MOSTRAR OS ACERTOS DEPOIS DE FAZER UMA PROVA ( NORMALMENTE DEVE ESTAR DESATIVADO)
+    /*werase(prova_cansado_complexa);
+    mvwprintw(prova_cansado_complexa, 7, 5, "Acertos: %d", *acertos);*/
     wrefresh(prova_cansado_complexa);
     
-    // ALTERADO EM CAIXA ALTA: MUDADO DE FALSE PARA DESATIVAR O MODO NODELAY DA JANELA PROVA_CANSADO_COMPLEXA ESPECIFICAMENTE ANTES DE TRAVAR A TELA
-    nodelay(prova_cansado_complexa, FALSE); /* ALTERADO: AGORA DESATIVA O NODELAY DIRETAMENTE NA JANELA QUE ESTÁ SENDO USADA */
     
-    // ALTERADO EM CAIXA ALTA: MUDADO DE GETCH() PARA WGETCH(PROVA_CANSADO_COMPLEXA) PARA GARANTIR QUE O TERMINAL PARE DE VERDADE NESSA TELA E SÓ FECHE QUANDO UMA TECLA FOR PRESSIONADA
-    wgetch(prova_cansado_complexa); /* ALTERADO: TRAVA A TELA DE ACERTOS E SÓ FECHA QUANDO O JOGADOR APERTAR QUALQUER TECLA */
+    nodelay(prova_cansado_complexa, FALSE);
+    
+        wgetch(prova_cansado_complexa);
 
     delwin(prova_cansado_complexa);
     endwin();
