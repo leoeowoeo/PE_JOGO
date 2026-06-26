@@ -379,6 +379,7 @@ LOGO/NOME DO JOGO*/
 
     if(*jogar==1)
     {
+        noraw();
         cbreak();
         return 0;
     }

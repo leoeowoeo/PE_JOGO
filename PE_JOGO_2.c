@@ -126,7 +126,12 @@ int Xall=(COLS/2)-57, Yall=3;
     while(1)//menu
     {
         estanoquarto=0;
-        if(save.depoisprova==0) inicio(&selecao_olhos,&selecao_face,&selecao_pernas,&cor, &interage, &selecaocor,&iniciar,&epilepsia,&save,&save.iniciado,&jogar,estanoquarto);
+        if(save.depoisprova==0) 
+        {
+        inicio(&selecao_olhos,&selecao_face,&selecao_pernas,&cor, &interage, &selecaocor,&iniciar,&epilepsia,&save,&save.iniciado,&jogar,estanoquarto);
+        noraw();
+        cbreak();
+        }
         if(epilepsia==1){
             mvprintw(LINES-5,5,"MODO DE EPILEPSIA");
         }
@@ -199,7 +204,7 @@ int Xall=(COLS/2)-57, Yall=3;
     napms(30);
     if((iniciar==0||save.depoisprova==0)&&save.estagio==0)
     {
-        //DIALOGO INICIAL
+       //DIALOGO INICIAL
     keypad(stdscr, FALSE);
     mvprintw(Yall,Xall,"Mova-se com \"WASD\" - saia com a tecla q");
     refresh();
@@ -422,8 +427,11 @@ while(1)
             mvprintw(ybarra+1,xbarra,"|");
             mvprintw(ybarra+1,xbarra+12,"|");
             if((jogarcelular5!=5||encararespelho!=1||dormircama!=1||jogartodosjogos!=6||ler1jogar3!=4||ler3jogatodos!=4||ler3dormir!=3)&&save.depoisprova==0)
+            {
+                wattron(stdscr, A_BOLD);   
                 mvprintw(ybarra,xbarra+30,"Quest: %s",quests[save.quest]);
-
+                wattroff(stdscr, A_BOLD);
+            }
             int espelhoy = 3+Yall, espelhox = 63+Xall;
             
             if (espelho==1)
@@ -593,8 +601,8 @@ while(1)
                     }
                     if(save.celularpickup==0 && save.revistapickup==1 && save.y>celularY -3 && save.y<celularY + 3 && save.x >= celularX - 4 && save.x <= celularX + 4||save.celularpickup==0 && save.livropickup==1 && save.y>celularY -3 && save.y<celularY + 3 && save.x >= celularX - 4 && save.x <= celularX + 4)
                     {
-                        mvprintw(Yall+33, Xall+27, "Mao ocupada");
-                        mvprintw(Yall+35, Xall+27, "Devolva o item da mao");
+                        mvprintw(Yall+33, Xall+65, "Mao ocupada");
+                        mvprintw(Yall+34, Xall+65, "Devolva o item da mao");
                         save.celularpickup=0;
                     }
 
@@ -1130,8 +1138,9 @@ for(int i=camaX-2; i<=camaX+7;i++)
 //++++++++++++++++++++++++++++++++++++++INTERAÇÃO COM OBJETOS IMOVEIS+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //ESPELHO
         if(save.y>espelhoy&&save.y<espelhoy+8&&save.x>espelhox-2&&save.x<espelhox+9&&vira%2==1)
-            {
+            {wattron(stdscr, A_BOLD);
                 mvprintw(Yall+33, Xall+27, "Encarar o espelho: E");
+            wattroff(stdscr, A_BOLD);
                 if(tecla=='e'||tecla=='E')
                     {espelho=1;}
             }
@@ -1139,7 +1148,7 @@ for(int i=camaX-2; i<=camaX+7;i++)
         if(save.y>camaY&&save.y<camaY+5&&save.x>camaX-4&&save.x<camaX+9)
             {
                 interagirCam=1;
-                mvprintw(Yall+33, Xall+65, "Dormir: F");
+                mvprintw(camaY-2,camaX, "Dormir: F");
                 if(tecla=='f'||tecla=='F')
                     {dormindo=1;}
             }
@@ -1152,13 +1161,15 @@ for(int i=camaX-2; i<=camaX+7;i++)
         if (pertodearmario) 
         {
             if(armarioaberto)
-            {
-            mvprintw(Yall+33, Xall+26, "Fechar armario: E");
+            {   wattron(stdscr, A_BOLD);
+                mvprintw(Yall+33, Xall+26, "Fechar armario: E");
+                wattroff(stdscr, A_BOLD);
             interagirArm=1;
             }
             else
-            {
+            {   wattron(stdscr, A_BOLD);
                 mvprintw(Yall+33, Xall+27, "Abrir armario: E");
+                wattroff(stdscr, A_BOLD);
                 interagirArm=1;
             }
 
@@ -1179,11 +1190,15 @@ for(int i=camaX-2; i<=camaX+7;i++)
             if(save.janelaaberta)
             {
                 interagirJan=1;
+                wattron(stdscr, A_BOLD);
             mvprintw(Yall+33, Xall+27, " Abrir janela: E");
+            wattroff(stdscr, A_BOLD);
             }
             else{
             interagirJan=1;
+            wattron(stdscr, A_BOLD);
             mvprintw(Yall+33, Xall+27, " Fechar janela: E");
+            wattroff(stdscr, A_BOLD);
             }
 
             if (tecla == 'e' || tecla == 'E') {
@@ -1200,11 +1215,15 @@ for(int i=camaX-2; i<=camaX+7;i++)
     char *jogar[3] = {"cobrinha", "2048", "batalha naval"};
     int escolha=0;
         
-        if (save.celularpickup == 0 && save.y>celularY -3 && save.y<celularY + 3 && save.x >= celularX - 4 && save.x <= celularX + 4 && save.revistapickup==0) 
+        if (save.celularpickup == 0 && save.y>celularY -3 && save.y<celularY + 3 && save.x >= celularX - 4 && save.x <= celularX + 4 && save.revistapickup==0&&save.livropickup==0) 
         {
             interagirCel=1;
             if(save.depoisprova==0)
+            {
+            wattron(stdscr, A_BOLD);
             mvprintw(Yall+33, Xall+27, "Pegar celular: E");
+            wattroff(stdscr, A_BOLD);
+            }
             else
             mvprintw(Yall+33, Xall+27,"Caramba, ela tirou o celular daqui...");
             
@@ -1212,8 +1231,10 @@ for(int i=camaX-2; i<=camaX+7;i++)
             {save.celularpickup = 1;}
         }
             else if(save.celularpickup == 1 && save.y>celularY -3 && save.y<celularY + 3 && save.x >= celularX - 4 && save.x <= celularX + 4) 
-        {
+        {   
+            wattron(stdscr, A_BOLD);
             mvprintw(Yall+33, Xall+27, "Soltar celular: E");
+            wattroff(stdscr, A_BOLD);
             if (tecla == 'e' || tecla == 'E')   
             {save.celularpickup = 0;}
             save.celularpos++;
@@ -1275,7 +1296,9 @@ for(int i=camaX-2; i<=camaX+7;i++)
                 interagirArm=1;
                 if(save.depoisprova==0)
                 {
+                    wattron(stdscr, A_BOLD);
                     mvprintw(Yall+33, Xall+47, " Pegar revista: R");
+                    wattroff(stdscr, A_BOLD);
                 }
                 else
                 mvprintw(Yall+33, Xall+47,"Caramba, ela tirou o revista daqui...");
@@ -1285,15 +1308,19 @@ for(int i=camaX-2; i<=camaX+7;i++)
             }
             else if(save.revistapickup && pertoRevista&&save.celularpickup==0&&save.livropickup==0)
             {
+                wattron(stdscr, A_BOLD);
                 mvprintw(Yall+33, Xall+47, "Soltar revista: R");
+                wattroff(stdscr, A_BOLD);
                 if (tecla == 'r' || tecla == 'R')   
                 {save.revistapickup = !save.revistapickup;}
             }
             else if ((save.celularpickup==1 || save.livropickup==1)&&pertoRevista)
             {
                 interagirArm=0;
-                mvprintw(Yall+35, Xall+27, "Mao ocupada");
-                mvprintw(Yall+37, Xall+27, "Devolva o item da mao");
+                wattron(stdscr, A_BOLD);
+                mvprintw(Yall+33, Xall+65, "Mao ocupada");
+                mvprintw(Yall+34, Xall+65, "Devolva o item da mao");
+                wattroff(stdscr, A_BOLD);
             }
 
 
@@ -1373,7 +1400,9 @@ int pertoestante = ((save.x >= estanteX - 2 && save.x <= estanteX + 14) && (save
                     // --- LIVRO 1 ---
                     if (save.x >= estanteX - 2 && save.x <= estanteX + 2) 
                     {
+                        wattron(stdscr, A_BOLD);
                         mvprintw(Yall+33, Xall+27, " Pegar livro 1: E");
+                        wattroff(stdscr, A_BOLD);
                         if (tecla == 'e' || tecla == 'E') 
                         {
                             save.livropickup = 1;
@@ -1386,7 +1415,9 @@ int pertoestante = ((save.x >= estanteX - 2 && save.x <= estanteX + 14) && (save
                     // --- LIVRO 2 ---
                     else if (save.x >= estanteX + 3 && save.x <= estanteX + 8) 
                     {
+                        wattron(stdscr, A_BOLD);
                         mvprintw(Yall+33, Xall+27, " Pegar livro 2: E");
+                        wattroff(stdscr, A_BOLD);
                         if (tecla == 'e' || tecla == 'E') 
                         {
                             save.livropickup = 1;
@@ -1399,7 +1430,9 @@ int pertoestante = ((save.x >= estanteX - 2 && save.x <= estanteX + 14) && (save
                     // --- LIVRO 3 ---
                     else if (save.x >= estanteX + 9 && save.x <= estanteX + 14) 
                     {
+                        wattron(stdscr, A_BOLD);
                         mvprintw(Yall+33, Xall+27, " Pegar livro 3: E");
+                        wattroff(stdscr, A_BOLD);
                         if (tecla == 'e' || tecla == 'E') 
                         {
                             save.livropickup = 1;
@@ -1413,7 +1446,9 @@ int pertoestante = ((save.x >= estanteX - 2 && save.x <= estanteX + 14) && (save
                 // Se o jogador JÁ ESTÁ segurando um livro, o menu muda para SOLTAR
                 else if (save.livropickup == 1) 
                 {
+                    wattron(stdscr, A_BOLD);
                     mvprintw(Yall+33, Xall+27, "Soltar livro: E");
+                    wattroff(stdscr, A_BOLD);
                     if (tecla == 'e' || tecla == 'E') 
                     {
                         save.livropickup = 0;
@@ -1426,9 +1461,11 @@ int pertoestante = ((save.x >= estanteX - 2 && save.x <= estanteX + 14) && (save
             
             else if(pertoRevista&&(save.celularpickup==1||save.livropickup==1||save.revistapickup==1))
             {
+                wattron(stdscr, A_BOLD);
                 mvprintw(Yall+33, Xall+27, "Pegar livro:");
-                mvprintw(Yall+33, Xall+35, "Mao ocupada");
-                mvprintw(Yall+35, Xall+27, "Devolva o item da mao");
+                mvprintw(Yall+33, Xall+65, "Mao ocupada");
+                mvprintw(Yall+34, Xall+65, "Devolva o item da mao");
+                wattroff(stdscr, A_BOLD);
                 save.livropickup=0;
             }
         }
@@ -1439,7 +1476,9 @@ int pertoestante = ((save.x >= estanteX - 2 && save.x <= estanteX + 14) && (save
 
         if(livro1||livro2||livro3)
         {
-            mvprintw(Yall+35, Xall+27, "Estudar livro?:R");
+            wattron(stdscr, A_BOLD);
+            mvprintw(Yall+33, Xall+47, "Estudar livro?:R");
+            wattroff(stdscr, A_BOLD);
             if (tecla == 'r' || tecla == 'R') 
             {
                 estudando = 1;
@@ -1454,9 +1493,15 @@ int pertoestante = ((save.x >= estanteX - 2 && save.x <= estanteX + 14) && (save
                     
                     // --- ANIMAÇÃO DO "ESTUDANDO..." BASEADA NO TEMPO REAL ---
                     // A cada 300ms a gente muda o pontinho na tela sem travar o código
-                    mvprintw(LINES-15, COLS-25, "Parar de estudar?: P");
+                    wattron(stdscr, A_BOLD);
+                    mvprintw(LINES-10, COLS-25, "Parar de estudar?: P");
+                    wattroff(stdscr, A_BOLD);
                     if(cont>13000)
-                        mvprintw(LINES-15, COLS-30, "Liberta-lo do sofrimento?: P");
+                    {
+                    wattron(stdscr, A_BOLD);
+                        mvprintw(LINES-10, COLS-30, "Liberta-lo do sofrimento?: P");
+                        wattroff(stdscr, A_BOLD);
+                    }
                     if ((cont / 300) % 6 == 0)      mvprintw(save.y-2, save.x-8, "estudando... ");
                     else if ((cont / 300) % 6 == 1) mvprintw(save.y-2, save.x-8, "estudando.. .");
                     else if ((cont / 300) % 6 == 2) mvprintw(save.y-2, save.x-8, "estudando. ..");
@@ -1525,7 +1570,7 @@ int pertoestante = ((save.x >= estanteX - 2 && save.x <= estanteX + 14) && (save
                         if(cont > 5000 && cont <= 15000)
                         {
                             mvprintw(7, 7, "Garoto- Ah nao, algebra linear...                        ");
-                            mvprintw(8, 7, "Matrizes 5x5 cheias de zeros e uns. Que tédio.           ");
+                            mvprintw(8, 7, "Matrizes 5x5 cheias de zeros e uns. Que tedio.           ");
                         }
                         else if(cont > 15000 && cont <= 30000)
                         {
@@ -1566,9 +1611,9 @@ int pertoestante = ((save.x >= estanteX - 2 && save.x <= estanteX + 14) && (save
                     }
 
                     refresh();
-                    napms(50);
+                    napms(100);
 
-                    cont += 1000; // O que faz o tempo do estudo rodar, se deixar mais rapido ele estuda mais rápido ( padrao 50)
+                    cont += 50; // O que faz o tempo do estudo rodar, se deixar mais rapido ele estuda mais rápido ( padrao 50)
 
                 }
 
@@ -1669,8 +1714,8 @@ nodelay(stdscr, TRUE);
                     dialogoprovac();
                     prova_complexa(&cor,&acertos);
                 }
-                save.x=22+Xall;
-                save.y=10+Yall;
+                /*save.x=22+Xall;
+                save.y=10+Yall;*/
 
                 // prova feita
                 save.depoisprova = 1;
