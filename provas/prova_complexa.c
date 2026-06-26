@@ -80,7 +80,7 @@ flushinp();
     wrefresh(prova_complexa);
     napms(400);
 
-        mvwprintw(prova_complexa, Yall-1, Xall+11,",Droga!");
+        mvwprintw(prova_complexa, Yall-1, Xall+12,",Droga!");
     wrefresh(prova_complexa);
     napms(1500);
 

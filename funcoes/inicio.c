@@ -4,7 +4,7 @@
 #include <signal.h>
 #define COR_CIANO          18
 
-int inicio(int *selecao_olhos, int *selecao_face,int *selecao_pernas, int *cor, int *interage, int *selecaocor,int *iniciar,int *epilepsia,SAVE *save_atual,int *iniciado,int *jogar,int *estanoquarto)
+int inicio(int *selecao_olhos, int *selecao_face,int *selecao_pernas, int *cor, int *interage, int *selecaocor,int *iniciar,int *epilepsia,SAVE *save_atual,int *iniciado,int *jogar,int estanoquarto)
 // a função apresenta a tela inicial do jogo, com o botão de iniciar,opção,credito,customização e sair
 {//abriu main
     keypad(stdscr,TRUE);
@@ -187,7 +187,7 @@ while(sair!=1)
                 {//abriu if 8
                     *jogar=1;
                     cbreak();
-                    menusave(cor,save_atual,jogar, selecao_olhos, selecao_face, selecao_pernas,iniciado,&estanoquarto);
+                    menusave(cor,save_atual,jogar, selecao_olhos, selecao_face, selecao_pernas,iniciado,estanoquarto);
                     nodelay(stdscr,FALSE);
                     timeout(200);
                     wattroff(stdscr,COLOR_PAIR(4));

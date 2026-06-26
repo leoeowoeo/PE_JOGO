@@ -41,7 +41,7 @@ int Xall=(COLS/2)-57, Yall=3;
         save.maepistola;
         save.maepistoladef;
         save.janelaaberta;
-        save.depoisprova;
+        save.depoisprova=0;
         save.iniciado;
         save.x;
         save.y;
@@ -100,6 +100,7 @@ int Xall=(COLS/2)-57, Yall=3;
     int linhaatual=Yall;
     int maexinga=0;
     int epilepsia=0;
+    int mensagemprimeiravez=0;//so pra nao ficar mostrando aquela "move-se com blablabla toda hora";
     // condições de inicio do ato2 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     int estudo=0;
             //CONDIÇÕES DO ATO 3--------------------------------------------------------------------------------------------------------
@@ -125,7 +126,7 @@ int Xall=(COLS/2)-57, Yall=3;
     while(1)//menu
     {
         estanoquarto=0;
-        if(save.depoisprova==0) inicio(&selecao_olhos,&selecao_face,&selecao_pernas,&cor, &interage, &selecaocor,&iniciar,&epilepsia,&save,&save.iniciado,&jogar,&estanoquarto);
+        if(save.depoisprova==0) inicio(&selecao_olhos,&selecao_face,&selecao_pernas,&cor, &interage, &selecaocor,&iniciar,&epilepsia,&save,&save.iniciado,&jogar,estanoquarto);
         if(epilepsia==1){
             mvprintw(LINES-5,5,"MODO DE EPILEPSIA");
         }
@@ -196,10 +197,10 @@ int Xall=(COLS/2)-57, Yall=3;
         }
     }
     napms(30);
-    if(iniciar==0||save.depoisprova==0)
+    if((iniciar==0||save.depoisprova==0)&&save.estagio==0)
     {
         //DIALOGO INICIAL
-    /*keypad(stdscr, FALSE);
+    keypad(stdscr, FALSE);
     mvprintw(Yall,Xall,"Mova-se com \"WASD\" - saia com a tecla q");
     refresh();
     napms(4000);
@@ -218,11 +219,11 @@ int Xall=(COLS/2)-57, Yall=3;
     erase();
     mvprintw(Yall,Xall,"Bom jogo!");
     refresh();
-    napms(4000);*/
+    napms(4000);
                                                                                 save.estagio++;//1
     erase();
     transicao(&epilepsia);
-    //save.quest=dialogoMae(&maexinga);
+    save.quest=dialogoMae(&maexinga);
     keypad(stdscr, TRUE);
 
     }
@@ -232,10 +233,12 @@ int Xall=(COLS/2)-57, Yall=3;
     int chuvax = 53+Xall, chuvay = 5+Yall, pos=0, pos2=1, pos3=2;
 while(1)
 {//while dialogo final
-
+    if(save.depoisprova==1){
+    save.x=22+Xall;
+    save.y=10+Yall;}
     while(1)
     {//antes/save.depoisprova
-    if(save.atividade_sono>=4){save.atividade_sono=3;}
+    if(save.atividade_sono>=0&save.depoisprova==1){save.atividade_sono=3;}
     dormindo=0;
     while(1)//jogo
     {   
@@ -245,7 +248,7 @@ while(1)
 
         if(tecla=='m')
         {
-            menusave(&cor,&save,&jogar,&selecao_olhos,&selecao_face,&selecao_pernas,&save.iniciado,&estanoquarto);
+            menusave(&cor,&save,&jogar,&selecao_olhos,&selecao_face,&selecao_pernas,&save.iniciado,estanoquarto);
         }
 
         if(save.depoisprova==1&&validador==1){save.maepistola=0;save.maepistoladef=0;validador=0;}
@@ -288,8 +291,8 @@ while(1)
             erase();
            if(cor==1) wattron(stdscr, COLOR_PAIR(1));
            if(cor==1) wattron(stdscr, COLOR_PAIR(4));
-        int camaY = 8+Yall, camaX = 80+Xall;
-                    if(interagirCam==1)
+            int camaY = 8+Yall, camaX = 80+Xall;
+                if(interagirCam==1)
                 {
                    if(cor==1) wattron(stdscr, COLOR_PAIR(par));
                 }
@@ -1644,26 +1647,26 @@ nodelay(stdscr, TRUE);
 
                 if(save.atividade_sono>5&&estudo>=3)// se ele não dormiu mas estudou ele faz a prova cansado e sabendo (prova cansado simples)
                 {
-                    //cair_no_sono();
-                    //dialogoprovacs();
+                    cair_no_sono();
+                    dialogoprovacs();
                     prova_cansado_simples(&cor,&acertos);
                 }
                 if (save.atividade_sono<=5&&estudo>=3)// se ele dormiu e estudou ele faz a prova descansado e sabendo (prova simples)
                 {
-                    //dormir();
-                    //dialogoprovas();
+                    dormir();
+                    dialogoprovas();
                     prova_simples(&cor,&acertos);
                 }
                 if (save.atividade_sono>5&&estudo<3)//se ele nao dormiu e não estudou ele faz a prova descansado e burro  (prova cansado complexa)
                 {
-                    //cair_no_sono();
-                    //dialogoprovacc();
+                    cair_no_sono();
+                    dialogoprovacc();
                     prova_cansado_complexa(&cor,&acertos);
                 }
                 if (save.atividade_sono<=5&&estudo<3)// se ele dormiu mas não estudou ele faz a prova descansado e burro (prova complexa)
                 {
-                    //dormir();
-                    //dialogoprovac();
+                    dormir();
+                    dialogoprovac();
                     prova_complexa(&cor,&acertos);
                 }
                 save.x=22+Xall;

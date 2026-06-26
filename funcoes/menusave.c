@@ -2,7 +2,7 @@
     
 #define COR_JANELA         9
 
-void menusave(int *cor,SAVE *save_atual, int *jogar,int *selecao_olhos, int *selecao_face,int *selecao_pernas,int *iniciado,int *estanoquarto)
+void menusave(int *cor,SAVE *save_atual, int *jogar,int *selecao_olhos, int *selecao_face,int *selecao_pernas,int *iniciado,int estanoquarto)
 // a função mostra o menu de save e torna possivel a escolha de salvar e dar load para jogar em cada save ( salvar sobreescreve )
 {
     initscr();
@@ -17,7 +17,7 @@ void menusave(int *cor,SAVE *save_atual, int *jogar,int *selecao_olhos, int *sel
     int savey=15,savex=60;
     int salvo=0;
     int carregoOUsalvo=0;
-    if(*estanoquarto==0) selecao_salvar=2;
+    if(estanoquarto==0) selecao_salvar=2;
     SAVE slots[3] = {0}; // esse aqui não é o save atual e não vai pro save atual... deveria né? //kkkkkkkkkkkk deveria?
     for(i = 0; i < 3; i++)
     {
@@ -103,7 +103,7 @@ void menusave(int *cor,SAVE *save_atual, int *jogar,int *selecao_olhos, int *sel
                 mvprintw(yselecao,xselecao-8,"SLOT %d",selecao+1);
                 desenha_borda(xselecao-8,yselecao+1);
                 if(*cor==1) wattron(stdscr, COLOR_PAIR(2));
-                printar_imagem_do_momento(yselecao+2,xselecao-7,slots[0].imagem);
+                printar_imagem_do_momento(yselecao+2,xselecao-7,slots[selecao].imagem);
                 if(*cor==1) wattroff(stdscr, COLOR_PAIR(2));
                 if(salvo)
                 {
@@ -116,11 +116,11 @@ void menusave(int *cor,SAVE *save_atual, int *jogar,int *selecao_olhos, int *sel
                     salvo=0;
                 }
                 mvwprintw(stdscr,yselecao+7+10,xselecao-8,"%s",slots[selecao].momento);
-                if(*estanoquarto==1)
+                if(estanoquarto==1)
                 mvprintw(yselecao+7+2,xselecao-8," SALVAR");
                 
                 mvprintw(yselecao+7+4,xselecao-8," INICIAR");
-                if(selecao_salvar==1&&*estanoquarto==1)
+                if(selecao_salvar==1&&estanoquarto==1)
                 {
                 
                 wattron(stdscr,COLOR_PAIR(4)|A_BOLD);
@@ -137,16 +137,16 @@ void menusave(int *cor,SAVE *save_atual, int *jogar,int *selecao_olhos, int *sel
                 {
                     case KEY_UP:
                     selecao_salvar--;
-                    if(*estanoquarto&&selecao_salvar<1)
+                    if(estanoquarto&&selecao_salvar<1)
                         selecao_salvar=2;
-                    if(*estanoquarto==0&&selecao_salvar<2)
+                    if(estanoquarto==0&&selecao_salvar<2)
                         selecao_salvar=2;
                     break;
                     case KEY_DOWN:
                     selecao_salvar++;
-                    if(*estanoquarto&&selecao_salvar>2)
+                    if(estanoquarto&&selecao_salvar>2)
                         selecao_salvar=1;
-                    if(*estanoquarto==0&&selecao_salvar>2)
+                    if(estanoquarto==0&&selecao_salvar>2)
                         selecao_salvar=2;
                     break;
                     case '\n':
