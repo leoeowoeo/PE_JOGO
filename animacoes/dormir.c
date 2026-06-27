@@ -10,7 +10,7 @@ void cair_no_sono();
     WINDOW *dormindu = newwin(LINES, COLS, 0, 0);
 
     box(dormindu, 0, 0);
-    werase(dormindu);// Limpa a janela para desenhar o olho
+    werase(dormindu);
     mvwprintw(dormindu, olhosonoY,     olhosonoX, "       _....,_            _,...._");
     mvwprintw(dormindu, olhosonoY + 1, olhosonoX, "   _.-` _,..,_'.        .'_,..,_ `-._");
     mvwprintw(dormindu, olhosonoY + 2, olhosonoX, "    _,-`/ o \\ '.        .' / o \\`-,_");
@@ -19,7 +19,7 @@ void cair_no_sono();
     wrefresh(dormindu);
     napms(1100);
         box(dormindu, 0, 0);
-    werase(dormindu);// Limpa a janela para desenhar o olho fechando
+    werase(dormindu);
     mvwprintw(dormindu, olhosonoY,     olhosonoX,   "       _....,_            _,...._");
     mvwprintw(dormindu, olhosonoY + 1, olhosonoX, "   _.-`       '.        .'       `-._");
     mvwprintw(dormindu, olhosonoY + 2, olhosonoX, "    _,--_,..,_'.        .'_,..,_--,_");
@@ -28,7 +28,7 @@ void cair_no_sono();
     wrefresh(dormindu);
     napms(1000);
         box(dormindu, 0, 0);
-    werase(dormindu);// Limpa a janela para desenhar o olho fechado
+    werase(dormindu);
     mvwprintw(dormindu, olhosonoY,     olhosonoX, "       _....,_            _,...._");
     mvwprintw(dormindu, olhosonoY + 1, olhosonoX, "   _.-`       '.        .'       `-._");
     mvwprintw(dormindu, olhosonoY + 2, olhosonoX, "    _,-,.____ ,.-      -., ____.,-,_");

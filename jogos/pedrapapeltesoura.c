@@ -27,7 +27,7 @@ void pedrapapeltesoura(int *cor,int *encararespelho)
     {
 
     box(espelho, 0, 0);
-    werase(espelho);// Limpa a janela para desenhar o olho
+    werase(espelho);
     mvwprintw(espelho, olhoY,     olhoX, "       _....,_            _,...._");
     mvwprintw(espelho, olhoY + 1, olhoX, "   _.-` _,..,_'.        .'_,..,_ `-._");
     mvwprintw(espelho, olhoY + 2, olhoX, "    _,-`/ o \\ '.        .' / o \\`-,_");
@@ -37,7 +37,7 @@ void pedrapapeltesoura(int *cor,int *encararespelho)
     wrefresh(espelho);
     napms(110+v+vo);
         box(espelho, 0, 0);
-    werase(espelho);// Limpa a janela para desenhar o olho fechando
+    werase(espelho); 
     mvwprintw(espelho, olhoY,     olhoX,   "       _....,_            _,...._");
     mvwprintw(espelho, olhoY + 1, olhoX, "   _.-`       '.        .'       `-._");
     mvwprintw(espelho, olhoY + 2, olhoX, "    _,--_,..,_'.        .'_,..,_--,_");
@@ -47,7 +47,7 @@ void pedrapapeltesoura(int *cor,int *encararespelho)
     wrefresh(espelho);
     napms(210+v+vo);
         box(espelho, 0, 0);
-    werase(espelho);// Limpa a janela para desenhar o olho fechado
+    werase(espelho); 
     mvwprintw(espelho, olhoY,     olhoX, "       _....,_            _,...._");
     mvwprintw(espelho, olhoY + 1, olhoX, "   _.-`       '.        .'       `-._");
     mvwprintw(espelho, olhoY + 2, olhoX, "    _,-,.____ ,.-      -., ____.,-,_");
@@ -56,7 +56,7 @@ void pedrapapeltesoura(int *cor,int *encararespelho)
     mvwprintw(espelho, olhoY + 5, olhoX + 5, "Voce encara seu reflexo...");
     mvwprintw(espelho, olhoY + 6, olhoX + 5, "Ele quer jogar algo...");
     wrefresh(espelho);
-    napms(210+v+vo); // Espera 2 segundos
+    napms(210+v+vo);
         box(espelho, 0, 0);
         werase(espelho);
     mvwprintw(espelho, olhoY,     olhoX,   "       _....,_            _,...._");
@@ -68,7 +68,7 @@ void pedrapapeltesoura(int *cor,int *encararespelho)
     wrefresh(espelho);
     napms(210+v+vo);
         box(espelho, 0, 0);
-        werase(espelho);// Limpa a janela para desenhar o olho
+        werase(espelho);
     mvwprintw(espelho, olhoY,     olhoX, "       _....,_            _,...._");
     mvwprintw(espelho, olhoY + 1, olhoX, "   _.-` _,..,_'.        .'_,..,_ `-._");
     mvwprintw(espelho, olhoY + 2, olhoX, "    _,-`/ o \\ '.        .' / o \\`-,_");
@@ -79,14 +79,14 @@ void pedrapapeltesoura(int *cor,int *encararespelho)
     napms(110+v+vo);
     }
         int turno=0;
-        box(espelho, 0, 0);// Desenha uma borda na janela, o tamanho da borda é definido pelos caracteres 0, que são os caracteres padrão para bordas. O primeiro 0 é para as bordas horizontais e o segundo 0 é para as bordas verticais.
+        box(espelho, 0, 0);
         wrefresh(espelho);
-        char *escolher[3] = {"Pedra", "Papel", "Tesoura"};// Opções do jogo, armazenadas em um array de strings. O jogador vai escolher uma dessas opções e o computador vai escolher aleatoriamente uma delas também.
+        char *escolher[3] = {"Pedra", "Papel", "Tesoura"};
         int escolha=0;
-        int reflexo; //Nos primeiros jogos, por ser um espelho, o jogador vai escolher a opção que o computador escolheu, ou seja, a mesma opção que ele escolheu. Por exemplo, se o jogador escolher Pedra, o computador vai escolher Pedra, e assim por diante. Depois, nos próximos jogos, o jogador vai escolher a opção que ele quiser, e o computador vai escolher aleatoriamente uma opção também.
-        int marcar=0; // Variável para marcar a escolha do jogador
+        int reflexo;
+        int marcar=0;
 
-    while ((ganhou!=1)&&tecla!='p')// Loop para esperar o usuário
+    while ((ganhou!=1)&&tecla!='p')
     {
         mvwprintw(espelho, LINES-2, 5, "nao aperte varios botoes de uma vez");
         
@@ -100,7 +100,7 @@ void pedrapapeltesoura(int *cor,int *encararespelho)
         for(int i = 0; i < 3; i++) 
         {
             if(i==marcar)
-                wattron(espelho, A_REVERSE); // Destaca a opção selecionada. wattron ativa o destaque, wattroff desativa. A_REVERSE é o destaque de inversão de cores.
+                wattron(espelho, A_REVERSE); 
             mvwprintw(espelho, 10 + i, 10,"%s", escolher[i]);
             wattroff(espelho,A_REVERSE);
         }

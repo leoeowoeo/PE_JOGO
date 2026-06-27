@@ -71,7 +71,6 @@ flushinp();
 
     if (marcar_arrumar == 0)
     {
-        //SE ARRUMAR RÁPIDO
         slow_mvwprintw(stdscr, "Voce se arruma correndo, sai jogando as roupas para o alto", linha_atual, Xall);
         refresh(); napms(700);
         
@@ -91,7 +90,6 @@ flushinp();
         slow_mvwprintw(stdscr, "ta com duas meias diferentes e sem cinto?", linha_atual, Xall + 5);
         refresh(); napms(700);
 flushinp();
-        // RESPOSTA PARA A MÃE
         linha_atual += 2;
         while (1)
         {
@@ -147,7 +145,6 @@ flushinp();
     }
     else
     {
-        //SE ARRUMAR DEVAGAR (Efeito de digitação manual simulado pelo slow_mvwprintw elimina a necessidade dos múltiplos erases manuais)
         slow_mvwprintw(stdscr, "Voce se arruma lentamente", linha_atual, Xall);
         refresh(); napms(700);
         
@@ -183,17 +180,15 @@ flushinp();
     erase();
     linha_atual = Yall;
 
-    // Frase da mãe montada dinamicamente com digitação lenta
     slow_mvwprintw(stdscr, "Mae- Voce vai se atrasar ", linha_atual, Xall);
     
     wattron(stdscr, A_BOLD);
-    slow_mvwprintw(stdscr, "P0&&@", linha_atual, Xall + 25); // Alinhado após "Mae- Voce vai se atrasar " (25 caracteres)
+    slow_mvwprintw(stdscr, "P0&&@", linha_atual, Xall + 25);
     wattroff(stdscr, A_BOLD);
     
-    slow_mvwprintw(stdscr, ", acelera O ", linha_atual, Xall + 30); // Alinhado após o primeiro xingamento
-    
+    slow_mvwprintw(stdscr, ", acelera O ", linha_atual, Xall + 30);
     wattron(stdscr, A_BOLD);
-    slow_mvwprintw(stdscr, "C@%%@l#0 !", linha_atual, Xall + 42); // Alinhado após o ", acelera O "
+    slow_mvwprintw(stdscr, "C@%%@l#0 !", linha_atual, Xall + 42);
     wattroff(stdscr, A_BOLD);
 
     refresh(); 

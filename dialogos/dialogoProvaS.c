@@ -99,10 +99,10 @@ flushinp();
         slow_mvwprintw(stdscr, "Mae- vou ficar de ", linha_atual, Xall);
         
         wattron(stdscr, A_BOLD);
-        slow_mvwprintw(stdscr, "olho em voce ", linha_atual, Xall + 18); // 18 caracteres de recuo para alinhar após "Mae- vou ficar de "
+        slow_mvwprintw(stdscr, "olho em voce ", linha_atual, Xall + 18);
         wattroff(stdscr, A_BOLD);
         
-        slow_mvwprintw(stdscr, "em", linha_atual, Xall + 31); // 18 + 13 de "olho em voce "
+        slow_mvwprintw(stdscr, "em", linha_atual, Xall + 31);
         refresh(); napms(800);
     }
 

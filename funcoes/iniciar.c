@@ -10,7 +10,7 @@ void iniciar(int slot, SAVE *save_atual,int *selecao_olhos, int *selecao_face,in
     char *faces[5] = {"(  )", "[  ]", "{  }", "<  >", "d  b"};
     char *pernas[4] = {"/|", "|\\", "<v", "v>"};
 
-    save_atual->atividade_sono = 0;//(*save_atual).atividade_sono = 0;
+    save_atual->atividade_sono = 0;
     save_atual->celularpickup = 0;
     save_atual->livropickup = 0;
     save_atual->revistapickup = 0;
@@ -26,7 +26,7 @@ void iniciar(int slot, SAVE *save_atual,int *selecao_olhos, int *selecao_face,in
     save_atual->quest=0;
 
     
-    strcpy(save_atual->momento, "Dialogo com a mae ");//SALVO
+    strcpy(save_atual->momento, "Dialogo com a mae ");
 
     strcpy(save_atual->imagem[0], "      \\/    ");
     strcpy(save_atual->imagem[1], "     (00)   ");

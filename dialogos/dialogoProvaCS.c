@@ -92,7 +92,6 @@ flushinp();
         slow_mvwprintw(stdscr, "ta com duas meias diferentes e sem cinto?", linha_atual, Xall + 5);
         refresh(); napms(800);
 flushinp();
-        // RESPOSTA PARA A MÃE
         linha_atual += 2;
         while (1)
         {

@@ -293,14 +293,12 @@ int dialogoMae(int *maexinga)// autoexplicativo
         }
     }
 
-    // --- SEGUNDA ETAPA: ROTEAMENTO PARA OS IF / ELSE PRÓPRIOS COM VALORES FIXOS DE RETURN ---
     erase();
     linha_atual = Yall;
     int sub_opcao = 0;
 
     if (opcao_principal == 0)
     {
-        // --- if opção1: ---
         slow_mvwprintw(stdscr, "Pensamento do garoto-", linha_atual, Xall);
         linha_atual += 2;
         
@@ -340,7 +338,6 @@ int dialogoMae(int *maexinga)// autoexplicativo
     }
     else if (opcao_principal == 1)
     {
-        // --- if opção2: ---
         slow_mvwprintw(stdscr, "Pensamento do garoto-", linha_atual, Xall);
         linha_atual += 2;
         
@@ -380,7 +377,6 @@ int dialogoMae(int *maexinga)// autoexplicativo
     }
     else if (opcao_principal == 2)
     {
-        // --- if opção3: ---
         slow_mvwprintw(stdscr, "Pensamento do garoto-", linha_atual, Xall);
         linha_atual += 2;
         *maexinga=1;

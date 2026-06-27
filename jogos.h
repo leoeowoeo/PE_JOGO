@@ -67,6 +67,6 @@ void menusave(int*cor,SAVE *save_atual,int *jogar,int *selecao_olhos, int *selec
 void gravar_imagem_do_momento(int xdogaroto, int ydogaroto,char imagem_do_momento[6][13]);
 void printar_imagem_do_momento(int x, int y, char imagem_do_momento[6][13]);
 void desenha_borda(int x, int y);
-
+void animacaomenu(int yselecao,int xselecao);
 
 #endif

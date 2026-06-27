@@ -40,7 +40,7 @@ int cobra(int *cor,int *jogarcelular)
     int trofeux=Xallcobra,trofeuy=Yallcobra+22;
     
 //cobra
-    // Ajustado para nascer no meio do mapa em função de Xallcobra e Yallcobra
+
     int cobrax=Xallcobra+30, cobray=Yallcobra+12, cobraX[100], cobraY[100],velocidade=5;
     cobraX[0] = cobrax;
     cobraY[0] = cobray;
@@ -52,7 +52,6 @@ int cobra(int *cor,int *jogarcelular)
     int altura=30, largura=30;
 
     
-    // Ajustado para nascer em função de Xallcobra e Yallcobra
     int maçãx = Xallcobra + 2 + ((rand() % 28) * 2);
     int maçãy = Yallcobra + 1 + (rand() % 22);
     int maçãpegar=0;
@@ -151,13 +150,13 @@ int cobra(int *cor,int *jogarcelular)
         }
 
         if(maçãpegar==1) {
-            // Ajustado para reposicionar em função de Xallcobra e Yallcobra
+
             maçãx = Xallcobra + 2 + ((rand() % 28) * 2);
             maçãy = Yallcobra + 1 + (rand() % 22);
             maçãpegar=0;
         }
 
-        // Colisão com as paredes ajustada para os limites de Xallcobra e Yallcobra
+
         if(cobray <= Yallcobra || cobray >= Yallcobra+25 || cobrax <= Xallcobra || cobrax >= Xallcobra+60) 
             derrota=1;
 

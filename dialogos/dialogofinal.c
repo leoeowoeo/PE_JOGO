@@ -9,7 +9,7 @@ int dialogofinal(int *finais_alcancados,int *acertos)// autoexplicativo
     erase();
 
 
-    //TEM QUE TER IF DE ACERTOS
+    //TEM QUE TER IF DE ACERTOSKKKKKKKK
     if(*acertos==5)
     {slow_mvwprintw(stdscr, "Voce entra no seu quarto e fecha a porta devagar", linha_atual, Xall);
     refresh(); napms(700);
@@ -53,7 +53,7 @@ int dialogofinal(int *finais_alcancados,int *acertos)// autoexplicativo
     //dialogo ruim(caso ele nao tenha gabaritado)
 
 
-    //TEM QUE TER IF DE ACERTOS
+    //TEM QUE TER IF DE ACERTOSKKKKKKKKK
     else
     {int opcao_retorno = 0;
     int tecla_cena = 0;
@@ -237,7 +237,7 @@ int dialogofinal(int *finais_alcancados,int *acertos)// autoexplicativo
         flash();
         napms(100);
         flash();
-        return 1; // Retorna 1 indicando que ele QUER voltar pro jogo
+        return 1;
     }
     else
     {
@@ -253,7 +253,7 @@ int dialogofinal(int *finais_alcancados,int *acertos)// autoexplicativo
         wattroff(stdscr, A_BOLD);
         refresh(); napms(700);
         exit(0);
-        return 0; // Retorna 0 indicando fim de jogo definitivo
+        return 0;
     }
 }
 }
