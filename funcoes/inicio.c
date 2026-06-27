@@ -32,6 +32,7 @@ int inicio(int *selecao_olhos, int *selecao_face,int *selecao_pernas, int *cor, 
     char *pernas[4] = {"/|","|\\","<v", "v>"};
     int i; 
     int validador=0;
+    int e=0;
     *iniciar=0;
     *jogar=0;
     estanoquarto=0;
@@ -62,7 +63,8 @@ while(sair!=1)// tem q verificar esses ifs, ta dando erro nas chaves, tem algo n
               erase();
 
 if(validador==0){animacaomenu(yselecao,xselecao); validador=1;}
-
+if(tecla=='e'||tecla=='E') {e++;}
+if(e==100){e=0;validador=0;}
 mvprintw(yselecao-5, xselecao - 39, "                        ,,         ,,   ,,              ..           ,,                      ,,                     ..      ");
 mvprintw(yselecao-4, xselecao - 39, "`7MMF'     A     `7MF'`7MM         db `7MM            pd'`7MM\"\"\"Mq.`7MM                      db                      `bq    ");
 mvprintw(yselecao-3, xselecao - 39, "  `MA     ,MA     ,V    MM              MM           6P    MM   `MM. MM                                                YA   ");

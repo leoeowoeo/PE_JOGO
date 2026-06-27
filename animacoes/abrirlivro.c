@@ -102,10 +102,7 @@ if(*livro1==1&&*livro2==0&&*livro3==0){
             mvwprintw(stdscr, livroY++,     livroX-20,"|    ''---..,_,.-=:;|");   
             mvwprintw(stdscr, livroY++,     livroX-20,"|            ||||||||");
             mvwprintw(stdscr, livroY++,     livroX-20,"|            ||||||||");
-            mvwprintw(stdscr, livroY++,     livroX-20,"|     ,      ||||||||");            mvwprintw(stdscr, livroY++,     livroX-20,"     ______ ");
-            mvwprintw(stdscr, livroY++,     livroX-20,"    /     /|");
-            mvwprintw(stdscr, livroY++,     livroX-20,"   /     / |");
-            mvwprintw(stdscr, livroY++,     livroX-20,"  /     /  |"); 
+            mvwprintw(stdscr, livroY++,     livroX-20,"|     ,      ||||||||");            
             mvwprintw(stdscr, livroY++,     livroX-20,"|    /|      ||||||||");
             mvwprintw(stdscr, livroY++,     livroX-20,"|     |      ||||||||");                 
             mvwprintw(stdscr, livroY++,     livroX-20,"|     |      ||||||||");       
