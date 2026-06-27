@@ -68,5 +68,6 @@ void gravar_imagem_do_momento(int xdogaroto, int ydogaroto,char imagem_do_moment
 void printar_imagem_do_momento(int x, int y, char imagem_do_momento[6][13]);
 void desenha_borda(int x, int y);
 void animacaomenu(int yselecao,int xselecao);
+void animacaopequenina(int yselecao,int xselecao);
 
 #endif

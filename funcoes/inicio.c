@@ -3,7 +3,7 @@
 #include "jogos.h"
 #include <signal.h>
 #define COR_CIANO          18
-
+void XeYselecaoLUGAR(int *yselecao, int *xselecao);
 int inicio(int *selecao_olhos, int *selecao_face,int *selecao_pernas, int *cor, int *interage, int *selecaocor,int *iniciar,int *epilepsia,SAVE *save_atual,int *iniciado,int *jogar,int estanoquarto)
 // a função apresenta a tela inicial do jogo, com o botão de iniciar,opção,credito,customização e sair
 {//abriu main
@@ -21,7 +21,8 @@ int inicio(int *selecao_olhos, int *selecao_face,int *selecao_pernas, int *cor, 
     init_pair(4,COLOR_WHITE,-1);
     init_pair(3,-1 ,COR_CIANO );
     wattron(stdscr,COLOR_PAIR(4));
-    int xselecao=60,yselecao=10;
+    int xselecao=COLS-120,yselecao=10;
+    XeYselecaoLUGAR(&yselecao,&xselecao);
     int tecla, selecao=1,selecao_opcoes=1,selecao_aparencia=0;
     int piscar=0;
     int indicacao=0;
@@ -60,81 +61,76 @@ while(sair!=1)// tem q verificar esses ifs, ta dando erro nas chaves, tem algo n
             endwin();
             exit(0);
         }
-              erase();
+            erase();
 
-if(validador==0){animacaomenu(yselecao,xselecao); validador=1;}
-if(tecla=='e'||tecla=='E') {e++;}
-if(e==100){e=0;validador=0;}
-mvprintw(yselecao-5, xselecao - 39, "                        ,,         ,,   ,,              ..           ,,                      ,,                     ..      ");
-mvprintw(yselecao-4, xselecao - 39, "`7MMF'     A     `7MF'`7MM         db `7MM            pd'`7MM\"\"\"Mq.`7MM                      db                      `bq    ");
-mvprintw(yselecao-3, xselecao - 39, "  `MA     ,MA     ,V    MM              MM           6P    MM   `MM. MM                                                YA   ");
-mvprintw(yselecao-2, xselecao - 39, "   VM:   ,VVM:   ,V     MMpMMMb. `7MM   MM  .gP\"Ya  6M'    MM   ,M9  MM   ,6\"Yb.`7M'   `MF'`7MM `7MMpMMMb.  .P\"Ybmmm   `Mb    ");
-mvprintw(yselecao-1, xselecao - 39, "    MM.  M' MM.  M'     MM    MM   MM   MM ,M'   Yb MN     MMmmdM9   MM  8)   MM  VA   ,V    MM   MM    MM :MI  I8      8M       ");
-mvprintw(yselecao, xselecao - 39, "    `MM A'  `MM A'      MM    MM   MM   MM 8M\"\"\"\"\"\" MN     MM        MM   ,pm9MM   VA ,V     MM   MM    MM  WmmmP\"      8M ");
-mvprintw(yselecao+1, xselecao - 39, "     :MM;    :MM;       MM    MM   MM   MM YM.    , YM.    MM        MM  8M   MM    VVV      MM   MM    MM 8M          ,M9  ");
-mvprintw(yselecao+2, xselecao - 39, "      VF      VF      .JMML  JMML.JMML.JMML.`Mbmmd'  Mb  .JMML.    .JMML.`Moo9^Yo.  ,V     .JMML.JMML  JMML.YMMMMMb    dM   ");
-mvprintw(yselecao+3, xselecao - 39, "                                                      Yq.                          ,V                      6'     dP .pY    ");
-mvprintw(yselecao+4, xselecao - 39, "                                                        ``                      OOb\"                       Ybmmmd'  ''      ");
-mvprintw(yselecao+5, xselecao - 39, "    ,pm                                       ,,              ,,                          ..                     ..      mq.    ");
-mvprintw(yselecao+6, xselecao - 39, "   6M   OO             mm                   `7MM              db                        pd' .g8\"\"8q.     .g8\"\"8q. `bq      Mb   ");
-mvprintw(yselecao+7, xselecao - 39, "   MM   88             MM                     MM                                       6P .dP'    `YM. .dP'    `YM. YA     MM   ");
-mvprintw(yselecao+8, xselecao - 39, "   M9   ||   ,pP\"Ybd mmMMmm `7MM  `7MM   ,M\"\"bMM `7M'   `MF'`7MM `7MMpMMMb.  .P\"Ybmmm 6M' dM'      `MM dM'      `MM `Mb gp YM   ");
-mvprintw(yselecao+9, xselecao - 39, "_.d\"'   ||   8I   `\"   MM     MM    MM ,AP    MM   VA   ,V    MM   MM    MM :MI  I8   MN  MM        MM MM        MM  8M \"\" `\"b._");
-mvprintw(yselecao+10, xselecao - 39, "`\"bp.   `'   `YMMMa.   MM     MM    MM 8MI    MM    VA ,V     MM   MM    MM  WmmmP\"   MN  MM.      ,MP MM.      ,MP  8M    ,qd\"'");
-mvprintw(yselecao+11, xselecao - 39, "   Mb   ,,   L.   I8   MM     MM    MM `Mb    MM     VVV      MM   MM    MM 8M        YM. `Mb.    ,dP' `Mb.    ,dP' ,M9 ,, 6M   ");
-mvprintw(yselecao+12, xselecao - 39, "   MM   db   M9mmmP'   `Mbmo  `Mbod\"YML.`Wbmd\"MML.   ,V     .JMML.JMML  JMML.YMMMMMb   Mb   `\"bmmd\"'     `\"bmmd\"'   dM  dg MM   ");
-mvprintw(yselecao+13, xselecao - 39, "   YM                                               ,V                      6'     dP   Yq.                       .pY   ,j M9   ");
-mvprintw(yselecao+14, xselecao - 39, "    `bm                                          OOb\"                       Ybmmmd'       ``                     ''    ,'md'    ");
-wrefresh(stdscr);
+        if(validador==0&&COLS>=170)
+        {
+            animacaomenu(yselecao,xselecao);
+            validador=1;
+            flushinp();
+        }
+        else if(validador==0)
+        {
+            animacaopequenina(yselecao,xselecao);
+            validador=1;
+            flushinp();
+        }
+        if(tecla=='e'||tecla=='E')
+        {e++;}
+        
+        if(e==100)
+        {e=0;validador=0;}
+        else
+        {validador=1;}
+        
+        if(COLS>=170)
+        {
+        mvprintw(yselecao-5, xselecao - 39, "                        ,,         ,,   ,,              ..           ,,                      ,,                     ..      ");
+        mvprintw(yselecao-4, xselecao - 39, "`7MMF'     A     `7MF'`7MM         db `7MM            pd'`7MM\"\"\"Mq.`7MM                      db                      `bq    ");
+        mvprintw(yselecao-3, xselecao - 39, "  `MA     ,MA     ,V    MM              MM           6P    MM   `MM. MM                                                YA   ");
+        mvprintw(yselecao-2, xselecao - 39, "   VM:   ,VVM:   ,V     MMpMMMb. `7MM   MM  .gP\"Ya  6M'    MM   ,M9  MM   ,6\"Yb.`7M'   `MF'`7MM `7MMpMMMb.  .P\"Ybmmm   `Mb    ");
+        mvprintw(yselecao-1, xselecao - 39, "    MM.  M' MM.  M'     MM    MM   MM   MM ,M'   Yb MN     MMmmdM9   MM  8)   MM  VA   ,V    MM   MM    MM :MI  I8      8M       ");
+        mvprintw(yselecao, xselecao - 39, "    `MM A'  `MM A'      MM    MM   MM   MM 8M\"\"\"\"\"\" MN     MM        MM   ,pm9MM   VA ,V     MM   MM    MM  WmmmP\"      8M ");
+        mvprintw(yselecao+1, xselecao - 39, "     :MM;    :MM;       MM    MM   MM   MM YM.    , YM.    MM        MM  8M   MM    VVV      MM   MM    MM 8M          ,M9  ");
+        mvprintw(yselecao+2, xselecao - 39, "      VF      VF      .JMML  JMML.JMML.JMML.`Mbmmd'  Mb  .JMML.    .JMML.`Moo9^Yo.  ,V     .JMML.JMML  JMML.YMMMMMb    dM   ");
+        mvprintw(yselecao+3, xselecao - 39, "                                                      Yq.                          ,V                      6'     dP .pY    ");
+        mvprintw(yselecao+4, xselecao - 39, "                                                        ``                      OOb\"                       Ybmmmd'  ''      ");
+        mvprintw(yselecao+5, xselecao - 39, "    ,pm                                       ,,              ,,                          ..                     ..      mq.    ");
+        mvprintw(yselecao+6, xselecao - 39, "   6M   OO             mm                   `7MM              db                        pd' .g8\"\"8q.     .g8\"\"8q. `bq      Mb   ");
+        mvprintw(yselecao+7, xselecao - 39, "   MM   88             MM                     MM                                       6P .dP'    `YM. .dP'    `YM. YA     MM   ");
+        mvprintw(yselecao+8, xselecao - 39, "   M9   ||   ,pP\"Ybd mmMMmm `7MM  `7MM   ,M\"\"bMM `7M'   `MF'`7MM `7MMpMMMb.  .P\"Ybmmm 6M' dM'      `MM dM'      `MM `Mb gp YM   ");
+        mvprintw(yselecao+9, xselecao - 39, "_.d\"'   ||   8I   `\"   MM     MM    MM ,AP    MM   VA   ,V    MM   MM    MM :MI  I8   MN  MM        MM MM        MM  8M \"\" `\"b._");
+        mvprintw(yselecao+10, xselecao - 39, "`\"bp.   `'   `YMMMa.   MM     MM    MM 8MI    MM    VA ,V     MM   MM    MM  WmmmP\"   MN  MM.      ,MP MM.      ,MP  8M    ,qd\"'");
+        mvprintw(yselecao+11, xselecao - 39, "   Mb   ,,   L.   I8   MM     MM    MM `Mb    MM     VVV      MM   MM    MM 8M        YM. `Mb.    ,dP' `Mb.    ,dP' ,M9 ,, 6M   ");
+        mvprintw(yselecao+12, xselecao - 39, "   MM   db   M9mmmP'   `Mbmo  `Mbod\"YML.`Wbmd\"MML.   ,V     .JMML.JMML  JMML.YMMMMMb   Mb   `\"bmmd\"'     `\"bmmd\"'   dM  dg MM   ");
+        mvprintw(yselecao+13, xselecao - 39, "   YM                                               ,V                      6'     dP   Yq.                       .pY   ,j M9   ");
+        mvprintw(yselecao+14, xselecao - 39, "    `bm                                          OOb\"                       Ybmmmd'       ``                     ''    ,'md'    ");
+        }
+        else
+        {
+            int altura=1;
+            int lugar=-3;
+            int espacamento=0;
+                        altura=lugar;
+                    mvprintw(yselecao+5+altura++, xselecao+espacamento+4, "    ..                     ..     ");
+                    mvprintw(yselecao+5+altura++, xselecao+espacamento+4, "  pd' .g8\"\"8q.     .g8\"\"8q. `bq   ");
+                    mvprintw(yselecao+5+altura++, xselecao+espacamento+4, " 6P .dP'    `YM. .dP'    `YM. YA  ");
+                    mvprintw(yselecao+5+altura++, xselecao+espacamento+4, "6M' dM'      `MM dM'      `MM `Mb ");
+                    mvprintw(yselecao+5+altura++, xselecao+espacamento+4, "MN  MM        MM MM        MM  8M ");
+                    mvprintw(yselecao+5+altura++, xselecao+espacamento+4, "MN  MM.      ,MP MM.      ,MP  8M ");
+                    mvprintw(yselecao+5+altura++, xselecao+espacamento+4, "YM. `Mb.    ,dP' `Mb.    ,dP' ,M9 ");
+                    mvprintw(yselecao+5+altura++, xselecao+espacamento+4, " Mb   `\"bmmd\"'     `\"bmmd\"'   dM  ");
+                    mvprintw(yselecao+5+altura++, xselecao+espacamento+4, "  Yq.                       .pY   ");
+                    mvprintw(yselecao+5+altura++, xselecao+espacamento+4, "    ``                     ''     "); 
 
+        mvprintw(yselecao+16,xselecao-8,"While(playing)");
+        mvprintw(yselecao+17,xselecao-8,"{!studying(OO);}");
 
+        }
+        
+        wrefresh(stdscr);
 
-
-
-/*
-    ..                     ..     
-  pd' .g8""8q.     .g8""8q. `bq   
- 6P .dP'    `YM. .dP'    `YM. YA  
-6M' dM'      `MM dM'      `MM `Mb 
-MN  MM        MM MM        MM  8M 
-MN  MM.      ,MP MM.      ,MP  8M 
-YM. `Mb.    ,dP' `Mb.    ,dP' ,M9 
- Mb   `"bmmd"'     `"bmmd"'   dM  
-  Yq.                       .pY   
-    ``                     ''
-
-    MM    VM                      
-    MM     MA                     
-    MM     `M.                    
-    MM      VM                    
-    MM       MA                   
-    MM       `M.                  
-    MM        VM                  
-    MM         MA                 
-    MM         `M.                
-    MM          VM  
-
-    
-          AW    MM                
-         ,M'    MM                
-         MV     MM                
-        AW      MM                
-       ,M'      MM                
-       MV       MM                
-      AW        MM                
-     ,M'        MM                
-     MV         MM                
-    AW          MM  
-
-
-*/
-
-
-
-
-
-
-
+        
         mvprintw(yselecao+20,xselecao-8,"JOGAR");
         mvprintw(yselecao+20+2,xselecao-8,"OPCOES");
         mvprintw(yselecao+20+4,xselecao-8,"CREDITOS");
@@ -483,4 +479,13 @@ LOGO/NOME DO JOGO N TEM AINDAAAA
             exit(0);
     }
     return 1;
+}
+
+
+void XeYselecaoLUGAR(int *yselecao, int *xselecao) {
+    *yselecao = (LINES / 2) - 10;
+    int centro_horizontal = COLS / 2;
+    *xselecao = centro_horizontal - 45; 
+    if (*yselecao < 5) *yselecao = 5;
+    if (*xselecao < 20) *xselecao = 20;
 }
