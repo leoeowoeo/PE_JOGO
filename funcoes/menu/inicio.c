@@ -278,49 +278,49 @@ while(sair!=1)// tem q verificar esses ifs, ta dando erro nas chaves, tem algo n
                             erase();
                         }
 
-                        mvprintw(yselecao+20+6,xselecao+10,"Aperte 'P' para voltar");
+                        mvprintw(yselecao+20-10+6,xselecao+10,"Aperte 'P' para voltar");
                         
                         if(*epilepsia==1)
                         {
-                            mvprintw(yselecao+20+5,xselecao+10,"MODO DE EPILEPSIA ATIVO");
+                            mvprintw(yselecao+20-10+5,xselecao+10,"MODO DE EPILEPSIA ATIVO");
                         }
 
-                        mvprintw(yselecao+20+2,xselecao,"HABILITAR INDICADORES DE INTERACAO");
-                        mvprintw(yselecao+20,xselecao,"ATIVAR/DESATIVAR CORES");
-                        mvprintw(yselecao+20+4,xselecao,"MODO EPILEPSIA");
+                        mvprintw(yselecao+20-10+2,xselecao,"HABILITAR INDICADORES DE INTERACAO");
+                        mvprintw(yselecao+20-10,xselecao,"ATIVAR/DESATIVAR CORES");
+                        mvprintw(yselecao+20-10+4,xselecao,"MODO EPILEPSIA");
                     
                         mvprintw(LINES-3,5,"As cores e os indicadores não afetam a gameplay");
                         if(*cor==1 && *interage==1)
                         {   
                             wattron(stdscr,COLOR_PAIR(x));
-                            mvprintw(yselecao+20+2,xselecao+36,"  ");
+                            mvprintw(yselecao+20-10+2,xselecao+36,"  ");
                             wattroff(stdscr,COLOR_PAIR(x));
                         }
                         
                         if(*cor==1)
                         {   
                             wattron(stdscr,COLOR_PAIR(1));
-                            mvprintw(yselecao+20,xselecao+23,"  ");
+                            mvprintw(yselecao+20-10,xselecao+23,"  ");
                             wattroff(stdscr,COLOR_PAIR(1));
                         }
                         
                         if(selecao_opcoes==1)
                         {//abriu if10
                             wattron(stdscr,COLOR_PAIR(4)|A_BOLD);
-                            mvprintw(yselecao+20,xselecao,"ATIVAR/DESATIVAR CORES");
+                            mvprintw(yselecao+20-10,xselecao,"ATIVAR/DESATIVAR CORES");
                             wattroff(stdscr,COLOR_PAIR(4)|A_BOLD);
                         }//fechou if10
                         else if(selecao_opcoes==2)
                         {//abriu if11
                             wattron(stdscr,COLOR_PAIR(4)|A_BOLD);
-                            mvprintw(yselecao+20+2,xselecao,"HABILITAR INDICADORES DE INTERACAO");
+                            mvprintw(yselecao+20-10+2,xselecao,"HABILITAR INDICADORES DE INTERACAO");
                             wattroff(stdscr,COLOR_PAIR(4)|A_BOLD);
                             indicacao=1;
                         }
                         else if(selecao_opcoes==3)
                         {
                             wattron(stdscr,COLOR_PAIR(4)|A_BOLD);
-                            mvprintw(yselecao+20+4,xselecao,"MODO EPILEPSIA");
+                            mvprintw(yselecao+20-10+4,xselecao,"MODO EPILEPSIA");
                             wattroff(stdscr,COLOR_PAIR(4)|A_BOLD);
                         }
 
@@ -374,10 +374,10 @@ LOGO/NOME DO JOGO N TEM AINDAAAA
                                         else if(x==3)
                                             *selecaocor=2;
                                         erase();
-                                        mvprintw(yselecao+20, xselecao, "Escolha a cor com as setas e selecione com ENTER:");
+                                        mvprintw(yselecao+20-10, xselecao, "Escolha a cor com as setas e selecione com ENTER:");
                                         
                                             wattron(stdscr,COLOR_PAIR(x));
-                                        mvprintw(yselecao+20+2, xselecao, "  ");
+                                        mvprintw(yselecao+20-10+2, xselecao, "  ");
                                             wattroff(stdscr,COLOR_PAIR(x));
                                         refresh();
 
@@ -423,9 +423,9 @@ LOGO/NOME DO JOGO N TEM AINDAAAA
                     {//abriu if16
                         erase();
                         timeout(-1);
-                        mvprintw(yselecao+20,xselecao,"KAIKE FROM ESPIRITO SANTO");
-                        mvprintw(yselecao+20+1,xselecao,"LEO FROM NILOPOLIS");
-                        mvprintw(yselecao+20+4,xselecao+10,"Aperte 'P' para voltar");
+                        mvprintw(yselecao+20-10,xselecao,"KAIKE FROM ESPIRITO SANTO");
+                        mvprintw(yselecao+20-10+1,xselecao,"LEO FROM NILOPOLIS");
+                        mvprintw(yselecao+20-10+4,xselecao+10,"Aperte 'P' para voltar");
                         refresh();
                         tecla=getch();
                     }
@@ -434,7 +434,7 @@ LOGO/NOME DO JOGO N TEM AINDAAAA
                 }//fechou if16 
                 else if(selecao==4)
                 {
-                personalizar(&*selecao_olhos,&*selecao_face,&*selecao_pernas, xselecao, yselecao+20);
+                personalizar(&*selecao_olhos,&*selecao_face,&*selecao_pernas, xselecao, yselecao+20-10);
                 }
                 else if(selecao==5)
                 {
