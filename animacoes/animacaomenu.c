@@ -2,6 +2,7 @@
 
 void animacaomenu(int yselecao,int xselecao)
 {
+    keypad(stdscr,TRUE);
 mvprintw(yselecao-5, xselecao - 39, "                        ,,         ,,   ,,              ..           ,,                      ,,                     ..      ");
 mvprintw(yselecao-4, xselecao - 39, "`7MMF'     A     `7MF'`7MM         db `7MM            pd'`7MM\"\"\"Mq.`7MM                      db                      `bq    ");
 mvprintw(yselecao-3, xselecao - 39, "  `MA     ,MA     ,V    MM              MM           6P    MM   `MM. MM                                                YA   ");
@@ -33,9 +34,13 @@ wrefresh(stdscr);
     int passo=0;
     int lugar=-3;
     int espacamento=0; 
+    int tecla;
+    int parar=0;
 
-for(int i=0;i<4;i++,passo++)
-{
+for(int i=0;i<4&&parar==0;i++,passo++)
+{   
+    tecla=getch();
+    if(tecla=='\n') parar=1;
     mvprintw(yselecao+5, xselecao+47, "                                  ");
     mvprintw(yselecao+5+1, xselecao+47, "                                  ");
     mvprintw(yselecao+5+2, xselecao+47, "                                  ");
@@ -47,7 +52,7 @@ for(int i=0;i<4;i++,passo++)
     mvprintw(yselecao+5+8, xselecao+47, "                                  ");
     mvprintw(yselecao+5+9, xselecao+47, "                                  ");
     
-    if(passo%2==0)
+    if(passo%2==0&&parar==0)
     {
         lugar+=3;
         altura=lugar;
@@ -71,7 +76,7 @@ for(int i=0;i<4;i++,passo++)
     mvprintw(yselecao+5+altura++, xselecao+47, "            MM         `M.        ");        
     mvprintw(yselecao+5+altura++, xselecao+47, "            MM          VM        "); 
     }
-    else
+    else if(passo%2!=0&&parar==0)
     {
         lugar+=3;
         altura=lugar;
@@ -97,17 +102,19 @@ for(int i=0;i<4;i++,passo++)
     mvprintw(yselecao+5+altura++, xselecao+47, "       AW          MM             ");
     }
     refresh();
-    napms(500);
+    napms(250);
 }            
 
-for(int i=0;i<10;i++,passo++)
-{
+for(int i=0;i<10&&parar==0;i++,passo++)
+
+{   tecla=getch(); 
+    if(tecla=='\n') parar=1;
     for(int apaga = 0; apaga < 20; apaga++) {
         mvprintw(yselecao + 5 + lugar + apaga, xselecao + espacamento + 47, "                                      ");
     }
     if(i==9)
     {altura++;}
-    if(passo%2==0)
+    if(passo%2==0&&parar==0)
     {
         espacamento+=10; 
         altura=lugar;
@@ -132,7 +139,7 @@ for(int i=0;i<10;i++,passo++)
     mvprintw(yselecao+5+altura++, xselecao+espacamento+47, "            MM         `M.        ");        
     mvprintw(yselecao+5+altura++, xselecao+espacamento+47, "            MM          VM        "); 
     }
-    else
+    else if(passo%2!=0&&parar==0)
     {
         espacamento+=10; 
         altura=lugar;
@@ -187,7 +194,7 @@ for(int i=0;i<10;i++,passo++)
     mvprintw(yselecao+12+24, COLS-34, "                                  ");
     mvprintw(yselecao+12+25, COLS-34, "                                  ");
     mvprintw(yselecao+12+26, COLS-34, "                                  ");
-    if(espacamento>=COLS-34)
+    if(espacamento>=COLS-34&&parar==0)
     {espacamento=COLS-64;}
 
     mvprintw(yselecao+12+3, 0, "                                  ");
@@ -246,18 +253,19 @@ for(int i=0;i<10;i++,passo++)
     mvprintw(yselecao+5+8, xselecao+47, "                                  ");
     mvprintw(yselecao+5+9, xselecao+47, "                                  ");
     refresh();
-    napms(500);
+    napms(250);
 }            
 int andar=0;
-for(int i=0;i<xselecao-13;i++,passo++)
-{
+for(int i=0;i<xselecao-13&&parar==0;i++,passo++)
+{   tecla=getch();
+       if(tecla=='\n') parar=1;
     andar++;
-    if(passo%2==0)
+    if(passo%2==0&&parar==0)
     {
         mvprintw(yselecao+20,andar, " (oo)");
         mvprintw(yselecao+21,andar, "  |\\");
     }
-    else
+    else if(passo%2!=0&&parar==0)
     {
         mvprintw(yselecao+20,andar, " (oo)");
         mvprintw(yselecao+21,andar, "  /|");

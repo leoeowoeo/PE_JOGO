@@ -1,12 +1,17 @@
 #include"jogos.h"
     void animacaopequenina(int yselecao,int xselecao)
     {
+        keypad(stdscr,TRUE);
         int altura=1;
         int passo=0;
         int lugar=-3;
-for(int i=0;i<7;i++,passo++)
+        int parar=0;
+        int tecla;
+for(int i=0;i<7&&parar==0;i++,passo++)
     {
-        if(passo%2==0)
+        tecla=getch();
+        if(tecla=='\n') parar=1;
+        if(passo%2==0&&parar==0)
         {
             altura=lugar;
             mvprintw(yselecao+5+altura++, xselecao+4, "    ..                     ..     ");
@@ -20,7 +25,7 @@ for(int i=0;i<7;i++,passo++)
             mvprintw(yselecao+5+altura++, xselecao+4, "  Yq.                       .pY   ");
             mvprintw(yselecao+5+altura++, xselecao+4, "    ``                     ''     "); 
         }
-        else
+        else if(passo%2!=0&&parar==0)
         {
             altura=lugar;
             mvprintw(yselecao+5+altura++, xselecao+4, "    ..                    ..      "); 
@@ -46,18 +51,19 @@ for(int i=0;i<7;i++,passo++)
     }
 int andar=xselecao;
 int descer=0;
-for(int i=0;i<3;i++,passo++)
-    {
+for(int i=0;i<3&&parar==0;i++,passo++)
+    {   tecla=getch();
+        if(tecla=='\n') parar=1;
         mvprintw(yselecao+descer+17,andar, "     ");
         mvprintw(yselecao+descer+18,andar, "     ");
 
         descer++;
-        if(passo%2==0)
+        if(passo%2==0&&parar==0)
         {
             mvprintw(yselecao+descer+17,andar, " (oo)");
             mvprintw(yselecao+descer+18,andar, "  |\\");
         }
-        else
+        else if(passo%2!=0&&parar==0)
         {
             mvprintw(yselecao+descer+17,andar, " (oo)");
             mvprintw(yselecao+descer+18,andar, "  /|");
@@ -74,8 +80,9 @@ for(int i=0;i<3;i++,passo++)
                 mvprintw(yselecao+20+4,xselecao-8,"CREDITOS");
                 mvprintw(yselecao+20+6,xselecao-8,"CUSTOMIZACAO");
                 mvprintw(yselecao+20+8,xselecao-8,"SAIR");
-for(int i=0;i<=COLS+3;i++,passo++)
-    {
+for(int i=0;i<=COLS+3&&parar==0;i++,passo++)
+    {   tecla=getch();
+        if(tecla=='\n') parar=1;
         if (andar + 6 >= COLS)
         {
             mvprintw(yselecao+descer+17,andar, "     ");
@@ -87,29 +94,29 @@ for(int i=0;i<=COLS+3;i++,passo++)
         mvprintw(yselecao+descer+18,andar, "     ");
 
         andar++;    
-        if(passo%2==0)
+        if(passo%2==0&&parar==0)
         {
             mvprintw(yselecao+descer+17,andar, " (oo)");
             mvprintw(yselecao+descer+18,andar, "  |\\");
         }
-        else
+        else if(passo%2!=0&&parar==0)
         {
             mvprintw(yselecao+descer+17,andar, " (oo)");
             mvprintw(yselecao+descer+18,andar, "  /|");
         }
         wrefresh(stdscr);
-        if(i<=1.5*(COLS/3))
+
         napms(25);
-        else
-        napms(50);
     }
 
 mvprintw(yselecao+descer+17,andar, "     ");
 mvprintw(yselecao+descer+18,andar, "     ");
 
 andar=0;
-for(int i=0;i<xselecao-13;i++,passo++)
-    {
+for(int i=0;i<xselecao-13&&parar==0;i++,passo++)
+    {   
+        tecla=getch();
+        if(tecla=='\n') parar=1;
         if (andar + 6 >= COLS)
         {
             mvprintw(yselecao+20,andar, "     ");
@@ -121,19 +128,19 @@ for(int i=0;i<xselecao-13;i++,passo++)
         mvprintw(yselecao+21,andar, "     ");
 
         andar++;
-        if(passo%2==0)
+        if(passo%2==0&&parar==0)
         {
             mvprintw(yselecao+20,andar, " (oo)");
             mvprintw(yselecao+21,andar, "  |\\");
         }
-        else
+        else if(passo%2!=0&&parar==0)
         {
             mvprintw(yselecao+20,andar, " (oo)");
             mvprintw(yselecao+21,andar, "  /|");
         }
         
         wrefresh(stdscr);
-        napms(50);
+        napms(25);
     }
 mvprintw(yselecao+20,andar, "     ");
 mvprintw(yselecao+21,andar, "     ");

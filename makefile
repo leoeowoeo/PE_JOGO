@@ -1,10 +1,9 @@
 CC = gcc
-
+CFLAGS = -O2
 LIBS = -lncursesw -I.
 OUT = /tmp/game
 DELETE = rm -f
 CLEAR = && clear
-
 SRC = dialogos/dialogofinal.c \
       funcoes/demo.c \
       animacoes/transicao.c \
@@ -27,22 +26,24 @@ SRC = dialogos/dialogofinal.c \
       dialogos/dialogoProvaC.c \
       dialogos/dialogoMae.c \
       dialogos/dialogodepoisprova.c \
-	funcoes/iniciar.c \
-	funcoes/recarregar.c \
-	funcoes/gravar.c \
+      funcoes/iniciar.c \
+      funcoes/recarregar.c \
+      funcoes/gravar.c \
       funcoes/menusave.c \
       funcoes/gravar_imagem_do_momento.c \
       funcoes/printar_imagem_do_momento.c \
       funcoes/desenha_borda.c \
       animacoes/animacaomenu.c \
-      animacoes/animacaopequenina.c 
-      
+      animacoes/animacaopequenina.c
 
 all:
-	$(CC) $(SRC) -o $(OUT) $(LIBS)
+	$(CC) $(CFLAGS) $(SRC) -o $(OUT) $(LIBS)
 
 run:
 	$(OUT)
+
+run-ext:
+	gnome-terminal -- $(OUT)
 
 clean:
 	$(DELETE) $(OUT) $(CLEAR)

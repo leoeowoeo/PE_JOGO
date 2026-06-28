@@ -26,6 +26,9 @@ typedef struct SAVE_
         int y;
         int estagio;
         int quest;
+        char *faces[5];
+        char *olhos[10];
+        char *pernas[4];
 
 
         /*

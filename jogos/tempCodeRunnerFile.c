@@ -1,12 +1,3 @@
-#include <ncurses.h>
-#include <stdlib.h>
-#include "jogos.h"
-    #define COR_CIANO          1
-    #define COR_CINZAESCURO    2
-    #define COR_VERDEFOLHA     3
-    #define COR_VERDECOBRA    10
-
-
 int cobra(int *cor,int *jogarcelular)
 // a função implementa o jogo da cobirnha
 {
@@ -194,49 +185,38 @@ int cobra(int *cor,int *jogarcelular)
     }
     else if(derrota==0 && quit==0) 
     {   
-        while(trofeuy!=4)
+        while(trofeuy!=-1)
         {
-        werase(cobra);
+        erase();
         mvwprintw(cobra, trofeuy,Xallcobra,  "    _____ _          ");
         mvwprintw(cobra, trofeuy+1,Xallcobra,"   '.=====.'         "); 
-        mvwprintw(cobra, trofeuy+2,Xallcobra," .-\\:     /-.,     ");
-        mvwprintw(cobra, trofeuy+3,Xallcobra," | (|:.     |)|     ");
+        mvwprintw(cobra, trofeuy+2,Xallcobra," .-\\:      /-.      ");
+        mvwprintw(cobra, trofeuy+3,Xallcobra," | (|:.     |) |     ");
         mvwprintw(cobra, trofeuy+4,Xallcobra,"  '-|:.     |-'      ");
-        mvwprintw(cobra, trofeuy+5,Xallcobra,"   \\::.   /        ");
+        mvwprintw(cobra, trofeuy+5,Xallcobra,"   \\::.    /        ");
         mvwprintw(cobra, trofeuy+6,Xallcobra,"    '::. .'          ");
         mvwprintw(cobra, trofeuy+7,Xallcobra,"      ) (            ");
         mvwprintw(cobra, trofeuy+8,Xallcobra,"     .' '.           ");
         mvwprintw(cobra, trofeuy+9,Xallcobra,"    -------          ");
         
-        mvwprintw(cobra, Yallcobra+10,Xallcobra+1,"VOCE GANHOU!");
-        mvwprintw(cobra,Yallcobra+11,Xallcobra+1,"                                 ");
-        mvwprintw(cobra,Yallcobra+12,Xallcobra+1,"                                 ");
-        mvwprintw(cobra,Yallcobra+13,Xallcobra+1,"                                 ");
-        mvwprintw(cobra,Yallcobra+14,Xallcobra+1,"                                 ");
-        mvwprintw(cobra,Yallcobra+15,Xallcobra+1,"                                 ");
-        mvwprintw(cobra,Yallcobra+16,Xallcobra+1,"                                 ");
-        mvwprintw(cobra,Yallcobra+17,Xallcobra+1,"                                 ");
-        mvwprintw(cobra,Yallcobra+18,Xallcobra+1,"                                 ");
-        mvwprintw(cobra,Yallcobra+19,Xallcobra+1,"                                 ");
-        mvwprintw(cobra,Yallcobra+20,Xallcobra+1,"                                 ");
-        mvwprintw(cobra,Yallcobra+21,Xallcobra+1,"                                 ");
-        mvwprintw(cobra,Yallcobra+22,Xallcobra+1,"                                 ");
-        mvwprintw(cobra,Yallcobra+23,Xallcobra+1,"                                 ");
-        mvwprintw(cobra,Yallcobra+24,Xallcobra+1,"                                 ");
-        mvwprintw(cobra,Yallcobra+25,Xallcobra+1,"                                 ");
-        mvwprintw(cobra,Yallcobra+26,Xallcobra+1,"                                 ");
-        mvwprintw(cobra,Yallcobra+27,Xallcobra+1,"                                 ");
-        mvwprintw(cobra,Yallcobra+28,Xallcobra+1,"                                 ");
-        mvwprintw(cobra,Yallcobra+29,Xallcobra+1,"                                 ");
-        mvwprintw(cobra,Yallcobra+30,Xallcobra+1,"                                 ");
-        mvwprintw(cobra,Yallcobra+31,Xallcobra+1,"                                 ");
-        mvwprintw(cobra,Yallcobra+32,Xallcobra+1,"                                 ");
+        mvwprintw(cobra, Yallcobra+10,Xallcobra,"VOCE GANHOU!");
+        mvwprintw(cobra,Yallcobra+11,Xallcobra,"                                 ");
+        mvwprintw(cobra,Yallcobra+12,Xallcobra,"                                 ");
+        mvwprintw(cobra,Yallcobra+13,Xallcobra,"                                 ");
+        mvwprintw(cobra,Yallcobra+14,Xallcobra,"                                 ");
+        mvwprintw(cobra,Yallcobra+15,Xallcobra,"                                 ");
+        mvwprintw(cobra,Yallcobra+16,Xallcobra,"                                 ");
+        mvwprintw(cobra,Yallcobra+17,Xallcobra,"                                 ");
+        mvwprintw(cobra,Yallcobra+18,Xallcobra,"                                 ");
+        mvwprintw(cobra,Yallcobra+19,Xallcobra,"                                 ");
+        mvwprintw(cobra,Yallcobra+20,Xallcobra,"                                 ");
+        mvwprintw(cobra,Yallcobra+21,Xallcobra,"                                 ");
+        mvwprintw(cobra,Yallcobra+22,Xallcobra,"                                 ");
         trofeuy--;
-        wrefresh(cobra);
+        wrefresh(stdscr);
         teste++;
-        napms(100);
         }
-
+    napms(2000);
         wrefresh(cobra);
         (*jogarcelular)++;
         napms(3000);
