@@ -1,6 +1,7 @@
 #include"jogos.h"
     void animacaopequenina(int yselecao,int xselecao)
     {
+        nodelay(stdscr,TRUE);
         keypad(stdscr,TRUE);
         int altura=1;
         int passo=0;
@@ -10,7 +11,7 @@
 for(int i=0;i<7&&parar==0;i++,passo++)
     {
         tecla=getch();
-        if(tecla=='\n') parar=1;
+        if(tecla=='\n'){ nodelay(stdscr, FALSE); parar=1;}
         if(passo%2==0&&parar==0)
         {
             altura=lugar;
@@ -47,13 +48,14 @@ for(int i=0;i<7&&parar==0;i++,passo++)
         mvprintw(yselecao+20+6,xselecao-8,"CUSTOMIZACAO");
         mvprintw(yselecao+20+8,xselecao-8,"SAIR");
         refresh();
-        napms(300);
+        napms(250);
     }
 int andar=xselecao;
 int descer=0;
+
 for(int i=0;i<3&&parar==0;i++,passo++)
     {   tecla=getch();
-        if(tecla=='\n') parar=1;
+        if(tecla=='\n') { nodelay(stdscr, FALSE); parar=1;}
         mvprintw(yselecao+descer+17,andar, "     ");
         mvprintw(yselecao+descer+18,andar, "     ");
 
@@ -73,6 +75,7 @@ for(int i=0;i<3&&parar==0;i++,passo++)
         wrefresh(stdscr);
         napms(50);
     }
+
                 mvprintw(yselecao+16,xselecao-8,"While(playing)");
                 mvprintw(yselecao+17,xselecao-8,"{!studying    ;}");
                 mvprintw(yselecao+20,xselecao-8,"JOGAR");
@@ -82,7 +85,7 @@ for(int i=0;i<3&&parar==0;i++,passo++)
                 mvprintw(yselecao+20+8,xselecao-8,"SAIR");
 for(int i=0;i<=COLS+3&&parar==0;i++,passo++)
     {   tecla=getch();
-        if(tecla=='\n') parar=1;
+        if(tecla=='\n') { nodelay(stdscr, FALSE); parar=1;}
         if (andar + 6 >= COLS)
         {
             mvprintw(yselecao+descer+17,andar, "     ");
@@ -116,7 +119,7 @@ andar=0;
 for(int i=0;i<xselecao-13&&parar==0;i++,passo++)
     {   
         tecla=getch();
-        if(tecla=='\n') parar=1;
+        if(tecla=='\n') { nodelay(stdscr, FALSE); parar=1;}
         if (andar + 6 >= COLS)
         {
             mvprintw(yselecao+20,andar, "     ");
@@ -145,4 +148,5 @@ for(int i=0;i<xselecao-13&&parar==0;i++,passo++)
 mvprintw(yselecao+20,andar, "     ");
 mvprintw(yselecao+21,andar, "     ");
 wrefresh(stdscr);
+nodelay(stdscr, FALSE);
 }

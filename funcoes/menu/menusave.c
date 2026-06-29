@@ -5,7 +5,6 @@
 void menusave(SAVE *save, int *jogar,int estanoquarto)
 // a função mostra o menu de save e torna possivel a escolha de salvar e dar load para jogar em cada save ( salvar sobreescreve )
 {
-    initscr();
     nodelay(stdscr,TRUE);
     keypad(stdscr,TRUE);
     init_pair(4,COLOR_WHITE,-1);
@@ -23,7 +22,7 @@ void menusave(SAVE *save, int *jogar,int estanoquarto)
     {
         if (!recarregar(i + 1, &slots[i]))
         {
-            iniciar(i + 1, &slots[i], save.selecao_olhos, save.selecao_face, save.selecao_pernas); // aqui eu inicio todos os saves com o momento e a imagem
+            iniciar(i + 1, &slots[i], &save->selecao_olhos, &save->selecao_face, &save->selecao_pernas); // aqui eu inicio todos os saves com o momento e a imagem
         }
     }
     save->iniciado = 1;

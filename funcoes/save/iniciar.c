@@ -6,7 +6,7 @@ void iniciar(int slot, SAVE *save_atual,int *selecao_olhos, int *selecao_face,in
 //a função inicia o struct atual quando o struct ainda não foi rodado
 {
     int Xall=(COLS/2)-57, Yall=3;
-    char *olhos[10] = {"##", "@@", "**", "$$", "vv", "><", "XX", "OO", "00", "oo"};
+    char *olhos[10] = {"oo", "@@", "**", "$$", "vv", "><", "XX", "OO", "00", "##"};
     char *faces[5] = {"(  )", "[  ]", "{  }", "<  >", "d  b"};
     char *pernas[4] = {"/|", "|\\", "<v", "v>"};
 
@@ -25,9 +25,10 @@ void iniciar(int slot, SAVE *save_atual,int *selecao_olhos, int *selecao_face,in
     save_atual->estagio=0;
     save_atual->quest=0;
     save_atual->selecao_face=0;
-    save_atual->selecao_olhos=10;
+    save_atual->selecao_olhos=9;
     save_atual->selecao_pernas=0;
     save_atual->selecao_cor=4;
+    save_atual->cor=1;
     
     strcpy(save_atual->momento, "Dialogo com a mae ");
 

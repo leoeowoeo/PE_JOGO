@@ -68,12 +68,14 @@ while(sair!=1)// tem q verificar esses ifs, ta dando erro nas chaves, tem algo n
             animacaomenu(yselecao,xselecao);
             validador=1;
             flushinp();
+                timeout(200);
         }
         else if(validador==0)
         {
             animacaopequenina(yselecao,xselecao);
             validador=1;
             flushinp();
+                timeout(200);
         }
         if(tecla=='e'||tecla=='E')
         {e++;}

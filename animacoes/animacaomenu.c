@@ -2,6 +2,7 @@
 
 void animacaomenu(int yselecao,int xselecao)
 {
+    nodelay(stdscr,TRUE);
     keypad(stdscr,TRUE);
 mvprintw(yselecao-5, xselecao - 39, "                        ,,         ,,   ,,              ..           ,,                      ,,                     ..      ");
 mvprintw(yselecao-4, xselecao - 39, "`7MMF'     A     `7MF'`7MM         db `7MM            pd'`7MM\"\"\"Mq.`7MM                      db                      `bq    ");
@@ -40,7 +41,7 @@ wrefresh(stdscr);
 for(int i=0;i<4&&parar==0;i++,passo++)
 {   
     tecla=getch();
-    if(tecla=='\n') parar=1;
+    if(tecla=='\n') { nodelay(stdscr, FALSE); parar=1;}
     mvprintw(yselecao+5, xselecao+47, "                                  ");
     mvprintw(yselecao+5+1, xselecao+47, "                                  ");
     mvprintw(yselecao+5+2, xselecao+47, "                                  ");
@@ -102,13 +103,13 @@ for(int i=0;i<4&&parar==0;i++,passo++)
     mvprintw(yselecao+5+altura++, xselecao+47, "       AW          MM             ");
     }
     refresh();
-    napms(250);
+    napms(200);
 }            
 
 for(int i=0;i<10&&parar==0;i++,passo++)
 
 {   tecla=getch(); 
-    if(tecla=='\n') parar=1;
+    if(tecla=='\n') { nodelay(stdscr, FALSE); parar=1;}
     for(int apaga = 0; apaga < 20; apaga++) {
         mvprintw(yselecao + 5 + lugar + apaga, xselecao + espacamento + 47, "                                      ");
     }
@@ -253,12 +254,12 @@ for(int i=0;i<10&&parar==0;i++,passo++)
     mvprintw(yselecao+5+8, xselecao+47, "                                  ");
     mvprintw(yselecao+5+9, xselecao+47, "                                  ");
     refresh();
-    napms(250);
+    napms(200);
 }            
 int andar=0;
 for(int i=0;i<xselecao-13&&parar==0;i++,passo++)
 {   tecla=getch();
-       if(tecla=='\n') parar=1;
+       if(tecla=='\n') { nodelay(stdscr, FALSE); parar=1;}
     andar++;
     if(passo%2==0&&parar==0)
     {
@@ -273,7 +274,7 @@ for(int i=0;i<xselecao-13&&parar==0;i++,passo++)
     
     
     wrefresh(stdscr);
-    napms(50);
+    napms(25);
 }
-    
+nodelay(stdscr,FALSE);
 }
