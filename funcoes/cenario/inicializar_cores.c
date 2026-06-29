@@ -12,9 +12,9 @@
 #define COR_ESPELHO        17
 #define COR_CIANO          18
 #define COR_CINZAESCURO    19
-void inicializar_cores(int cor, int interage, int selecaocor, int *par)
+void inicializar_cores(SAVE save, int interage, int selecaocor, int *par)
 {
-    if (cor == 1)
+    if (save.cor == 1)
     {
         start_color();
         use_default_colors();

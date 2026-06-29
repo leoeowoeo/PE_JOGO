@@ -111,7 +111,7 @@ int Xall=(COLS/2)-57, Yall=3;
 
     int jogar=0;
     int debug=1;
-
+Isso são ~60 linhas duplicadas. Na versão modularizada, o desenhar_armario() é chamado uma vez só, na ordem correta.
 
     int revista_coluna=0;
     int revista_linha=0;
@@ -953,10 +953,6 @@ move(save.y,save.x);
             mvprintw (armarioY+4, armarioX, " |    |]");
             mvprintw (armarioY+5, armarioX, " |\"\"\"\"|");
             mvprintw (armarioY+6, armarioX+7, "]");
-
-
-
-
         }
         wattroff(stdscr, COLOR_PAIR(par));
         wattroff(stdscr, COLOR_PAIR(6));

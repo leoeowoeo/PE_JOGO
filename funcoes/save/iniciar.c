@@ -24,7 +24,10 @@ void iniciar(int slot, SAVE *save_atual,int *selecao_olhos, int *selecao_face,in
     save_atual->revistapickup=0;
     save_atual->estagio=0;
     save_atual->quest=0;
-
+    save_atual->selecao_face=0;
+    save_atual->selecao_olhos=10;
+    save_atual->selecao_pernas=0;
+    save_atual->selecao_cor=4;
     
     strcpy(save_atual->momento, "Dialogo com a mae ");
 
@@ -35,6 +38,13 @@ void iniciar(int slot, SAVE *save_atual,int *selecao_olhos, int *selecao_face,in
     strcpy(save_atual->imagem[4], "            ");
     strcpy(save_atual->imagem[5], "            ");
     
+    const char *olhos_[10] = {"##", "@@", "**", "$$", "vv", "><", "XX", "OO", "00", "oo"};
+    const char *faces_[5]  = {"(  )", "[  ]", "{  }", "<  >", "d  b"};
+    const char *pernas_[4] = {"/|", "|\\", "<v", "v>"};
+
+    for (int i = 0; i < 10; i++) strcpy(save_atual->olhos[i], olhos_[i]);
+    for (int i = 0; i < 5;  i++) strcpy(save_atual->faces[i], faces_[i]);
+    for (int i = 0; i < 4;  i++) strcpy(save_atual->pernas[i], pernas_[i]);
 
 
     gravar(slot, save_atual);

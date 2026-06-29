@@ -4,7 +4,7 @@
 #include <signal.h>
 #define COR_CIANO          18
 void XeYselecaoLUGAR(int *yselecao, int *xselecao);
-int inicio(int *selecao_olhos, int *selecao_face,int *selecao_pernas, int *cor, int *interage, int *selecaocor,int *iniciar,int *epilepsia,SAVE *save_atual,int *iniciado,int *jogar,int estanoquarto)
+int inicio(int *interage,int *iniciar,int *epilepsia,SAVE *save,int *jogar,int estanoquarto)
 // a função apresenta a tela inicial do jogo, com o botão de iniciar,opção,credito,customização e sair
 {//abriu main
     keypad(stdscr,TRUE);
@@ -44,7 +44,7 @@ while(sair!=1)// tem q verificar esses ifs, ta dando erro nas chaves, tem algo n
             int i;
             for(i = 1; i <= 25; i++) {
                 clear();
-                mvprintw(yselecao+20 + 8, xselecao - 12, "%s", faces[*selecao_face]);
+                mvprintw(yselecao+20 + 8, xselecao - 12, "%s", faces[save->selecao_face]);
                 mvprintw(yselecao+20 + 8, xselecao - 11, "xx");
                 mvprintw(yselecao+20 + 5, xselecao - 14, "na");
                 int j;
@@ -147,15 +147,15 @@ while(sair!=1)// tem q verificar esses ifs, ta dando erro nas chaves, tem algo n
         {//abriu if 1 e fechou
             if(piscar<=25)
             {//aif2 e fechou
-                    if(*cor==0)
+                    if(save->cor==0)
                     {mvprintw(3,7,"Voce pode ativar as cores nas opcoes");}
-                mvprintw(yselecao+20,xselecao-12,"%s",faces[*selecao_face]);
-                mvprintw(yselecao+20,xselecao-11,"%s",olhos[*selecao_olhos]);
+                mvprintw(yselecao+20,xselecao-12,"%s",faces[save->selecao_face]);
+                mvprintw(yselecao+20,xselecao-11,"%s",olhos[save->selecao_olhos]);
             }//fechou if2
             else{
-                if(*cor==0)
+                if(save->cor==0)
                         {mvprintw(3,7,"Voce pode ativar as cores nas opcoes");}
-                    mvprintw(yselecao+20,xselecao-12,"%s",faces[*selecao_face]);
+                    mvprintw(yselecao+20,xselecao-12,"%s",faces[save->selecao_face]);
                     mvprintw(yselecao+20,xselecao-11,"--");
                     piscar=0;
             }
@@ -169,13 +169,13 @@ while(sair!=1)// tem q verificar esses ifs, ta dando erro nas chaves, tem algo n
         {//abriu if5
             if(piscar>25)
             {//abriu if6
-                mvprintw(yselecao+20+2,xselecao-14,"%s",faces[*selecao_face]);
+                mvprintw(yselecao+20+2,xselecao-14,"%s",faces[save->selecao_face]);
                 mvprintw(yselecao+20+2,xselecao-13,"--");
                 piscar=0;
             }//fechou if6
             else
-                {mvprintw(yselecao+20+2,xselecao-14,"%s",faces[*selecao_face]);
-                mvprintw(yselecao+20+2,xselecao-13,"%s",olhos[*selecao_olhos]);}
+                {mvprintw(yselecao+20+2,xselecao-14,"%s",faces[save->selecao_face]);
+                mvprintw(yselecao+20+2,xselecao-13,"%s",olhos[save->selecao_olhos]);}
             wattron(stdscr,COLOR_PAIR(4)|A_BOLD);
             mvprintw(yselecao+20+2,xselecao-8,"OPCOES");
             wattroff(stdscr,COLOR_PAIR(4)|A_BOLD);
@@ -184,16 +184,16 @@ while(sair!=1)// tem q verificar esses ifs, ta dando erro nas chaves, tem algo n
         if(selecao==3)
         {//abriu if3
             if(piscar>25)
-            {    mvprintw(yselecao+20+4,xselecao-14,"%s",faces[*selecao_face]);
-                mvprintw(yselecao+20+4,xselecao-13,"%s",olhos[*selecao_olhos]);
+            {    mvprintw(yselecao+20+4,xselecao-14,"%s",faces[save->selecao_face]);
+                mvprintw(yselecao+20+4,xselecao-13,"%s",olhos[save->selecao_olhos]);
             //æbriu if4
-                mvprintw(yselecao+20+4,xselecao-14,"%s",faces[*selecao_face]);
+                mvprintw(yselecao+20+4,xselecao-14,"%s",faces[save->selecao_face]);
                 mvprintw(yselecao+20+4,xselecao-13,"--");
                 piscar=0;
             }//fechou if4
             else
-                {mvprintw(yselecao+20+4,xselecao-14,"%s",faces[*selecao_face]);
-                mvprintw(yselecao+20+4,xselecao-13,"%s",olhos[*selecao_olhos]);}
+                {mvprintw(yselecao+20+4,xselecao-14,"%s",faces[save->selecao_face]);
+                mvprintw(yselecao+20+4,xselecao-13,"%s",olhos[save->selecao_olhos]);}
             wattron(stdscr,COLOR_PAIR(4)|A_BOLD);
             mvprintw(yselecao+20+4,xselecao-8,"CREDITOS");
             wattroff(stdscr,COLOR_PAIR(4)|A_BOLD);
@@ -203,14 +203,14 @@ while(sair!=1)// tem q verificar esses ifs, ta dando erro nas chaves, tem algo n
         {
             if(piscar>25)
             {
-                mvprintw(yselecao+20+6,xselecao-14,"%s",faces[*selecao_face]);
+                mvprintw(yselecao+20+6,xselecao-14,"%s",faces[save->selecao_face]);
                 mvprintw(yselecao+20+6,xselecao-13,"--");
                 piscar=0;
             }
             else
             {
-                mvprintw(yselecao+20+6,xselecao-14,"%s",faces[*selecao_face]);
-                mvprintw(yselecao+20+6,xselecao-13,"%s",olhos[*selecao_olhos]);
+                mvprintw(yselecao+20+6,xselecao-14,"%s",faces[save->selecao_face]);
+                mvprintw(yselecao+20+6,xselecao-13,"%s",olhos[save->selecao_olhos]);
             }
             wattron(stdscr,COLOR_PAIR(4)|A_BOLD);
             mvprintw(yselecao+20+6,xselecao-8,"CUSTOMIZACAO");
@@ -221,14 +221,14 @@ while(sair!=1)// tem q verificar esses ifs, ta dando erro nas chaves, tem algo n
         {//abriu if7
             if(piscar>25)
             {//abru if8
-                mvprintw(yselecao+20+8,xselecao-12,"%s",faces[*selecao_face]);
+                mvprintw(yselecao+20+8,xselecao-12,"%s",faces[save->selecao_face]);
                 mvprintw(yselecao+20+8,xselecao-11,"xx");
                 piscar=0;
             }//fechou if8
             else
             {
-                mvprintw(yselecao+20+8,xselecao-12,"%s",faces[*selecao_face]);
-                mvprintw(yselecao+20+8,xselecao-11,"%s",olhos[*selecao_olhos]);
+                mvprintw(yselecao+20+8,xselecao-12,"%s",faces[save->selecao_face]);
+                mvprintw(yselecao+20+8,xselecao-11,"%s",olhos[save->selecao_olhos]);
             }
             wattron(stdscr,COLOR_PAIR(4)|A_BOLD);
             mvprintw(yselecao+20+8,xselecao-8,"SAIR");
@@ -258,7 +258,7 @@ while(sair!=1)// tem q verificar esses ifs, ta dando erro nas chaves, tem algo n
                 {//abriu if 8
                     *jogar=1;
                     cbreak();
-                    menusave(cor,save_atual,jogar, selecao_olhos, selecao_face, selecao_pernas,iniciado,estanoquarto);
+                    menusave(save,jogar,estanoquarto);
                     nodelay(stdscr,FALSE);
                     timeout(200);
                     wattroff(stdscr,COLOR_PAIR(4));
@@ -290,14 +290,14 @@ while(sair!=1)// tem q verificar esses ifs, ta dando erro nas chaves, tem algo n
                         mvprintw(yselecao+20-10+4,xselecao,"MODO EPILEPSIA");
                     
                         mvprintw(LINES-3,5,"As cores e os indicadores não afetam a gameplay");
-                        if(*cor==1 && *interage==1)
+                        if(save->cor==1 && *interage==1)
                         {   
                             wattron(stdscr,COLOR_PAIR(x));
                             mvprintw(yselecao+20-10+2,xselecao+36,"  ");
                             wattroff(stdscr,COLOR_PAIR(x));
                         }
                         
-                        if(*cor==1)
+                        if(save->cor==1)
                         {   
                             wattron(stdscr,COLOR_PAIR(1));
                             mvprintw(yselecao+20-10,xselecao+23,"  ");
@@ -343,7 +343,7 @@ while(sair!=1)// tem q verificar esses ifs, ta dando erro nas chaves, tem algo n
                             case '\n':
                                 if(selecao_opcoes==1)
                                 {//abriu if 14
-                                    *cor=!(*cor);
+                                    save->cor=!(save->cor);
                                     erase();
                                     cbreak();
                                     break;
@@ -368,11 +368,11 @@ LOGO/NOME DO JOGO N TEM AINDAAAA
                                     int tecla_cor = 0;
                                     while(tecla_cor!='\n'){
                                         if(x==1)
-                                            *selecaocor=1;
+                                            save->selecao_cor=1;
                                         else if(x==2)
-                                            *selecaocor=0;
+                                            save->selecao_cor=0;
                                         else if(x==3)
-                                            *selecaocor=2;
+                                            save->selecao_cor=2;
                                         erase();
                                         mvprintw(yselecao+20-10, xselecao, "Escolha a cor com as setas e selecione com ENTER:");
                                         
@@ -434,7 +434,7 @@ LOGO/NOME DO JOGO N TEM AINDAAAA
                 }//fechou if16 
                 else if(selecao==4)
                 {
-                personalizar(&*selecao_olhos,&*selecao_face,&*selecao_pernas, xselecao, yselecao+20-10);
+                personalizar(&save->selecao_olhos,&save->selecao_face,&save->selecao_pernas, xselecao, yselecao+20-10);
                 }
                 else if(selecao==5)
                 {
@@ -461,7 +461,7 @@ LOGO/NOME DO JOGO N TEM AINDAAAA
             int i;
             for(i = 1; i <= 25; i++) {
                 clear();
-                mvprintw(yselecao+20 + 8, xselecao - 12, "%s", faces[*selecao_face]);
+                mvprintw(yselecao+20 + 8, xselecao - 12, "%s", faces[save->selecao_face]);
                 mvprintw(yselecao+20 + 8, xselecao - 11, "xx");
                 mvprintw(yselecao+20 + 5, xselecao - 14, "na");
                 int j;

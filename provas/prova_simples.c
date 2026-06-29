@@ -1,6 +1,7 @@
+#include "jogos.h"
 #include <ncurses.h>
 
-int prova_simples(int *cor, int *acertos){
+int prova_simples(SAVE *save, int *acertos){
     initscr();
     curs_set(0);
     WINDOW *prova_simples = newwin(LINES, COLS, 0, 0);
@@ -55,7 +56,7 @@ int prova_simples(int *cor, int *acertos){
         werase(prova_simples); 
         
         // --- CABEÇALHO ---
-        if(*cor==1) wattron(prova_simples, COLOR_PAIR(21));
+        if(save->cor==1) wattron(prova_simples, COLOR_PAIR(21));
         mvwprintw(prova_simples, Yprova++, Xprova, "|=================================================================================|");     
         mvwprintw(prova_simples, Yprova++, Xprova, "|                                     UFRRJ                                       |"); 
         mvwprintw(prova_simples, Yprova++, Xprova, "|                              PROVA DE MATEMATICA                                |"); 
@@ -179,7 +180,7 @@ int prova_simples(int *cor, int *acertos){
                 {
                     if(i == marcar)
                     {
-                        if(*cor==1) wattron(prova_simples, COLOR_PAIR(22));
+                        if(save->cor==1) wattron(prova_simples, COLOR_PAIR(22));
                         mvwprintw(prova_simples, Yall + 10 + i, Xall + 2, "%s", questao1[i]);
                         wattroff(prova_simples, COLOR_PAIR(22));
                     }
@@ -191,7 +192,7 @@ int prova_simples(int *cor, int *acertos){
                 {
                     if(i == marcar)
                     {
-                        if(*cor==1) wattron(prova_simples, COLOR_PAIR(22));
+                        if(save->cor==1) wattron(prova_simples, COLOR_PAIR(22));
                         mvwprintw(prova_simples, Yall + 28 + i, Xall + 2, "%s", questao2[i]);
                         wattroff(prova_simples, COLOR_PAIR(22));
                     }
@@ -203,7 +204,7 @@ int prova_simples(int *cor, int *acertos){
                 {
                     if(i == marcar)
                     {
-                        if(*cor==1) wattron(prova_simples, COLOR_PAIR(22));
+                        if(save->cor==1) wattron(prova_simples, COLOR_PAIR(22));
                         mvwprintw(prova_simples, Yall + 40 + i, Xall + 2, "%s", questao3[i]);
                         wattroff(prova_simples, COLOR_PAIR(22));
                     }
@@ -215,7 +216,7 @@ int prova_simples(int *cor, int *acertos){
                 {
                     if(i == marcar)
                     {
-                        if(*cor==1) wattron(prova_simples, COLOR_PAIR(22));
+                        if(save->cor==1) wattron(prova_simples, COLOR_PAIR(22));
                         mvwprintw(prova_simples, Yall + 52 + i, Xall + 2, "%s", questao4[i]);
                         wattroff(prova_simples, COLOR_PAIR(22));
                     }
@@ -227,7 +228,7 @@ int prova_simples(int *cor, int *acertos){
                 {
                     if(i == marcar)
                     {
-                        if(*cor==1) wattron(prova_simples, COLOR_PAIR(22));
+                        if(save->cor==1) wattron(prova_simples, COLOR_PAIR(22));
                         mvwprintw(prova_simples, Yall + 69 + i, Xall + 2, "%s", questao5[i]);
                         wattroff(prova_simples, COLOR_PAIR(22));
                     }
@@ -278,14 +279,14 @@ int prova_simples(int *cor, int *acertos){
             mvwprintw(prova_simples, Ycentro + 3, Xcentro, "|   ");
             
             wmove(prova_simples, Ycentro + 3, Xcentro + 4);
-            if (marcar_confirmacao == 0) if(*cor==1) wattron(prova_simples, A_REVERSE);
+            if (marcar_confirmacao == 0) if(save->cor==1) wattron(prova_simples, A_REVERSE);
             wprintw(prova_simples, "%s", confirmacao[0]);
             if (marcar_confirmacao == 0) wattroff(prova_simples, A_REVERSE);
             
             wprintw(prova_simples, "   ");
 
             wmove(prova_simples, Ycentro + 3, Xcentro + 30);
-            if (marcar_confirmacao == 1) if(*cor==1) wattron(prova_simples, A_REVERSE);
+            if (marcar_confirmacao == 1) if(save->cor==1) wattron(prova_simples, A_REVERSE);
             wprintw(prova_simples, "%s", confirmacao[1]);
             if (marcar_confirmacao == 1) wattroff(prova_simples, A_REVERSE);
 

@@ -19,6 +19,8 @@ SRC = funcoes/demo.c \
       provas/prova_cansado_simples.c \
       provas/prova_complexa.c \
       provas/prova_cansado_complexa.c \
+      provas/mvprintw_cansado_complexo.c \
+      provas/mvprintw_cansado.c \
       dialogos/dialogoProvaCC.c \
       dialogos/dialogoProvaCS.c \
       dialogos/dialogoProvaS.c \

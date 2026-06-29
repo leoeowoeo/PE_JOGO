@@ -2,7 +2,7 @@
     
 #define COR_JANELA         9
 
-void menusave(int *cor,SAVE *save_atual, int *jogar,int *selecao_olhos, int *selecao_face,int *selecao_pernas,int *iniciado,int estanoquarto)
+void menusave(SAVE *save, int *jogar,int estanoquarto)
 // a função mostra o menu de save e torna possivel a escolha de salvar e dar load para jogar em cada save ( salvar sobreescreve )
 {
     initscr();
@@ -23,12 +23,12 @@ void menusave(int *cor,SAVE *save_atual, int *jogar,int *selecao_olhos, int *sel
     {
         if (!recarregar(i + 1, &slots[i]))
         {
-            iniciar(i + 1, &slots[i], selecao_olhos, selecao_face, selecao_pernas); // aqui eu inicio todos os saves com o momento e a imagem
+            iniciar(i + 1, &slots[i], save.selecao_olhos, save.selecao_face, save.selecao_pernas); // aqui eu inicio todos os saves com o momento e a imagem
         }
     }
-    *iniciado = 1;
+    save->iniciado = 1;
 
-    if(*cor==1)
+    if(save->cor==1)
     {
         init_color(COR_JANELA, 400, 450, 500);
     }
@@ -55,9 +55,9 @@ void menusave(int *cor,SAVE *save_atual, int *jogar,int *selecao_olhos, int *sel
             wattron(stdscr,COLOR_PAIR(4)|A_BOLD);
             mvprintw(yselecao,xselecao-22,">SLOT 1");
             desenha_borda(xselecao-23,yselecao+1);
-                        if(*cor==1) wattron(stdscr, COLOR_PAIR(2));
+                        if(save->cor==1) wattron(stdscr, COLOR_PAIR(2));
             printar_imagem_do_momento(yselecao+2,xselecao-22,slots[0].imagem);
-                        if(*cor==1) wattroff(stdscr, COLOR_PAIR(2));
+                        if(save->cor==1) wattroff(stdscr, COLOR_PAIR(2));
             mvprintw(yselecao+21,xselecao-22,"%s",slots[0].momento);
             wattroff(stdscr,COLOR_PAIR(4)|A_BOLD);
         }
@@ -65,9 +65,9 @@ void menusave(int *cor,SAVE *save_atual, int *jogar,int *selecao_olhos, int *sel
             wattron(stdscr,COLOR_PAIR(4)|A_BOLD);
             mvprintw(yselecao,xselecao,">SLOT 2");
             desenha_borda(xselecao-1,yselecao+1);
-                        if(*cor==1) wattron(stdscr, COLOR_PAIR(2));
+                        if(save->cor==1) wattron(stdscr, COLOR_PAIR(2));
             printar_imagem_do_momento(yselecao+2,xselecao,slots[1].imagem);
-                        if(*cor==1) wattroff(stdscr, COLOR_PAIR(2));
+                        if(save->cor==1) wattroff(stdscr, COLOR_PAIR(2));
             mvprintw(yselecao+21,xselecao,"%s",slots[1].momento);
             wattroff(stdscr,COLOR_PAIR(4)|A_BOLD);
         }
@@ -75,9 +75,9 @@ void menusave(int *cor,SAVE *save_atual, int *jogar,int *selecao_olhos, int *sel
             wattron(stdscr,COLOR_PAIR(4)|A_BOLD);
             mvprintw(yselecao,xselecao+22,">SLOT 3");
             desenha_borda(xselecao+21,yselecao+1);
-                        if(*cor==1) wattron(stdscr, COLOR_PAIR(2));
+                        if(save->cor==1) wattron(stdscr, COLOR_PAIR(2));
             printar_imagem_do_momento(yselecao+2,xselecao+22,slots[2].imagem);
-                        if(*cor==1) wattroff(stdscr, COLOR_PAIR(2));
+                        if(save->cor==1) wattroff(stdscr, COLOR_PAIR(2));
             mvprintw(yselecao+21,xselecao+22,"%s",slots[2].momento);
             wattroff(stdscr,COLOR_PAIR(4)|A_BOLD);
         }
@@ -102,9 +102,9 @@ void menusave(int *cor,SAVE *save_atual, int *jogar,int *selecao_olhos, int *sel
                 erase();
                 mvprintw(yselecao,xselecao-8,"SLOT %d",selecao+1);
                 desenha_borda(xselecao-8,yselecao+1);
-                if(*cor==1) wattron(stdscr, COLOR_PAIR(2));
+                if(save->cor==1) wattron(stdscr, COLOR_PAIR(2));
                 printar_imagem_do_momento(yselecao+2,xselecao-7,slots[selecao].imagem);
-                if(*cor==1) wattroff(stdscr, COLOR_PAIR(2));
+                if(save->cor==1) wattroff(stdscr, COLOR_PAIR(2));
                 if(salvo)
                 {
                     mvwprintw(stdscr,yselecao+9,xselecao-8," SALVOU!!!");
@@ -152,17 +152,17 @@ void menusave(int *cor,SAVE *save_atual, int *jogar,int *selecao_olhos, int *sel
                     case '\n':
                     if(selecao_salvar==1)
                     {
-                        slots[selecao] = *save_atual;
+                        slots[selecao] = *save;
                         selecao_salvar=2;
                         gravar(selecao + 1, &slots[selecao]);
-                        *save_atual=slots[selecao];
+                        *save=slots[selecao];
                         break;
                     }
                     if(selecao_salvar==2)
                     {
                         recarregar(selecao + 1, &slots[selecao]);
                         
-                        *save_atual = slots[selecao];
+                        *save = slots[selecao];
                         
                         
                         sair = 0; 

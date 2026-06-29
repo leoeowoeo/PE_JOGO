@@ -1,6 +1,6 @@
 #include <ncurses.h>
-
-int prova_complexa(int *cor,int *acertos) 
+#include "jogos.h"
+int prova_complexa(SAVE *save,int *acertos) 
 {
     initscr();
     curs_set(0);
@@ -97,7 +97,7 @@ flushinp();
         werase(prova_complexa); 
         
         // --- CABEÇALHO ---
-        if(*cor==1) wattron(prova_complexa, COLOR_PAIR(21));
+        if(save->cor==1) wattron(prova_complexa, COLOR_PAIR(21));
         mvwprintw(prova_complexa, Yprova++, Xprova, "|=================================================================================|");     
         mvwprintw(prova_complexa, Yprova++, Xprova, "|                                     UFRRJ                                       |"); 
         mvwprintw(prova_complexa, Yprova++, Xprova, "|                        PROVA DE MATEMATICA AVANCADA                             |"); 
@@ -220,7 +220,7 @@ flushinp();
                 {
                     if(i == marcar)
                     {
-                        if(*cor==1) wattron(prova_complexa, COLOR_PAIR(22));
+                        if(save->cor==1) wattron(prova_complexa, COLOR_PAIR(22));
                         mvwprintw(prova_complexa, Yall + 15 + i, Xall + 1, "%s", questao1[i]);
                         wattroff(prova_complexa, COLOR_PAIR(22));
                     }
@@ -232,7 +232,7 @@ flushinp();
                 {
                     if(i == marcar)
                     {
-                        if(*cor==1) wattron(prova_complexa, COLOR_PAIR(22));
+                        if(save->cor==1) wattron(prova_complexa, COLOR_PAIR(22));
                         
                         
                         mvwprintw(prova_complexa, Yall + 30 + i, Xall + 1, "%s", questao2[i]);
@@ -246,7 +246,7 @@ flushinp();
                 {
                     if(i == marcar)
                     {
-                        if(*cor==1) wattron(prova_complexa, COLOR_PAIR(22));
+                        if(save->cor==1) wattron(prova_complexa, COLOR_PAIR(22));
                         
                         
                         mvwprintw(prova_complexa, Yall + 50 + i, Xall + 1, "%s", questao3[i]);
@@ -260,7 +260,7 @@ flushinp();
                 {
                     if(i == marcar)
                     {
-                        if(*cor==1) wattron(prova_complexa, COLOR_PAIR(22));
+                        if(save->cor==1) wattron(prova_complexa, COLOR_PAIR(22));
                         mvwprintw(prova_complexa, Yall + 66 + i, Xall + 1, "%s", questao4[i]);
                         wattroff(prova_complexa, COLOR_PAIR(22));
                     }
@@ -272,7 +272,7 @@ flushinp();
                 {
                     if(i == marcar)
                     {
-                        if(*cor==1) wattron(prova_complexa, COLOR_PAIR(22));
+                        if(save->cor==1) wattron(prova_complexa, COLOR_PAIR(22));
                         mvwprintw(prova_complexa, Yall + 84 + i, Xall + 1, "%s", questao5[i]);
                         wattroff(prova_complexa, COLOR_PAIR(22));
                     }
@@ -325,14 +325,14 @@ flushinp();
             mvwprintw(prova_complexa, Ycentro + 3, Xcentro, "|   ");
             
             wmove(prova_complexa, Ycentro + 3, Xcentro + 4);
-            if (marcar_confirmacao == 0) if(*cor==1) wattron(prova_complexa, A_REVERSE);
+            if (marcar_confirmacao == 0) if(save->cor==1) wattron(prova_complexa, A_REVERSE);
             wprintw(prova_complexa, "%s", confirmacao[0]);
             if (marcar_confirmacao == 0) wattroff(prova_complexa, A_REVERSE);
 
             wprintw(prova_complexa, "   ");
 
             wmove(prova_complexa, Ycentro + 3, Xcentro + 30);
-            if (marcar_confirmacao == 1) if(*cor==1) wattron(prova_complexa, A_REVERSE);
+            if (marcar_confirmacao == 1) if(save->cor==1) wattron(prova_complexa, A_REVERSE);
             wprintw(prova_complexa, "%s", confirmacao[1]);
             if (marcar_confirmacao == 1) wattroff(prova_complexa, A_REVERSE);
 

@@ -18,29 +18,6 @@
 #define COR_CINZAESCURO    19
 #include "jogos.h"
 
-// ==================== PROTÓTIPOS ====================
-/*void inicializar_cores(int cor, int interage, int selecaocor, int *par);
-void desenhar_cama(int Xall, int Yall, int cor, int interagirCam, int par);
-void desenhar_estante(int Xall, int Yall, int cor, int interagirEst, int par, SAVE *save, int celularX, int celularY);
-void desenhar_mesa(int Xall, int Yall, int cor);
-void desenhar_armario(int Xall, int Yall, int cor, int armarioaberto, int interagirArm, int par);
-void desenhar_espelho(int Xall, int Yall, int cor, int par);
-void desenhar_janela(int Xall, int Yall, int cor, int janelaaberta, int interagirJan, int par,int chuvax, int chuvay, int *pos, int *pos2, int *pos3, int check);
-void desenhar_porta(int Xall, int Yall, int cor, int depoisprova, int maepistoladef, int maexinga, int acertos);
-void desenhar_lixo(int Xall, int Yall, int cor);
-void desenhar_tapete(int Xall, int Yall, int cor);
-void desenhar_rodape(int Xall, int Yall, int cor);
-void desenhar_gato(int Xall, int Yall, int armarioX, int armarioY, int vontadedepisca, int depoisprova);
-void desenhar_celular_chao(int Xall, int Yall, int cor, SAVE *save, int celularX, int celularY, int interagirCel, int par);
-void desenhar_chuva(int Xall, int Yall, int cor, int chuvax, int chuvay, int *pos, int *pos2, int *pos3, int check);
-void desenhar_jogador(SAVE *save, int vira, int passo, int pisca, int cor, int selecao_face, int selecao_olhos, int selecao_pernas);
-void desenhar_hud(int ybarra, int xbarra, int cor, SAVE *save, int jogarcelular5, int encararespelho, int dormircama, int jogartodosjogos, int ler1jogar3, int ler3jogatodos, int ler3dormir, char *quests[]);
-void movimentar_jogador(int tecla, int *xf, int *yf, int *passo, int *lado, int *vira, int Xall, int Yall);
-void processar_colisoes(int *xf, int *yf, SAVE *save, int camaX, int camaY, int estanteX, int estanteY, int armarioX, int armarioY, int mesaX, int mesaY, int lixoX, int lixoY);
-void processar_interacoes(SAVE *save, int tecla, int Xall, int Yall, int espelhox, int espelhoy, int camaX, int camaY, int armarioX, int armarioY, int janelaX, int janelaY, int celularX, int celularY, int *espelho, int *dormindo, int *armarioaberto, int *interagirCam, int *interagirArm, int *interagirJan, int *interagirCel, int *interagirEst, int *marcar, int *jogarcelular5, int cor, int *revista_linha, int *revista_coluna, int *livro1, int *livro2, int *livro3, int *abrindolivro, int *estudo, int *estudando, int *acertos, int vira, int estanteX, int estanteY);
-void espelhaogaroto(SAVE save, int espelhox, int espelhoy, int pisca, char **faces, char **olhos, char **pernas,int selecao_face,int selecao_pernas, int selecao_olhos,int passo,int vira);
-void printar_celular(SAVE save,int celularX,int celularY);
-void printar_livro(int livropickup, int *abrindolivro, int livro1, int livro2, int livro3, int livroY, int livroX );*/
 // ==================== MAIN ====================
 
 int main()
@@ -66,6 +43,11 @@ int main()
     save.celularpos = 2;
     save.quest = 0;
     save.estagio = 0;
+    save.cor = 1; 
+    save.selecao_face =0;
+    save.selecao_olhos=0;
+    save.selecao_pernas=0;
+    save.selecao_cor=0;
 
     int tecla = 0;
     int xf = 22 + Xall, yf = 10 + Yall, lado = 0;
@@ -78,7 +60,7 @@ int main()
     int jogarcelular = 0;
     int acertos = 0;
     int interagirCel = 0, interagirEst = 0, interagirArm = 0, interagirJan = 0, interagirCam = 0;
-    int selecaocor = 4, tecla_selecao, interage = 0, cor = 1, par = 0;
+    int tecla_selecao, interage = 0,par = 0;
     int jogarcelular5 = 0, encararespelho = 0, dormircama = 0, jogartodosjogos = 0, ler1jogar3 = 0, ler3dormir = 0, ler3jogatodos = 0;
     char *quests[8] = {
         "Ganhar 5 jogos no celular",
@@ -91,11 +73,7 @@ int main()
         "Leia 3 livros e durma bem"
     };
     int finais_alcancados;
-    char *olhos[10] = {"##", "@@", "**", "$$", "vv", "><", "XX", "OO", "00", "oo"};
-    char *faces[5] = {"(  )", "[  ]", "{  }", "<  >", "d  b"};
-    char *pernas[4] = {"/|", "|\\", "<v", "v>"};
     char *revista[9] = {"1", "2", "3", "4", "5", "6"};
-    int selecao_olhos = 9, selecao_face = 0, selecao_pernas = 0;
     int passo = 0, vira = 0;
     int check = 0;
     int espelho = 0;
@@ -126,7 +104,8 @@ int main()
         estanoquarto = 0;
         if (save.depoisprova == 0)
         {
-            inicio(&selecao_olhos, &selecao_face, &selecao_pernas, &cor, &interage, &selecaocor, &iniciar, &epilepsia, &save, &save.iniciado, &jogar, estanoquarto);
+            inicio(&interage, &iniciar, &epilepsia, &save, &jogar, estanoquarto);
+            //inicio(&save.selecao_olhos, &save.selecao_face, &save.selecao_pernas, &save.cor, &interage, &save.selecao_cor, &iniciar, &epilepsia, &save, &save.iniciado, &jogar, estanoquarto);
             noraw();
             cbreak();
         }
@@ -134,7 +113,8 @@ int main()
 
         erase();
         refresh();
-        inicializar_cores(cor, interage, selecaocor, &par);
+        inicializar_cores(save, interage, save.selecao_cor, &par);
+        //void inicializar_cores(int cor, int interage, int selecaocor, int *par)
         napms(30);
 
         if ((iniciar == 0 || save.depoisprova == 0) && save.estagio == 0)
@@ -172,7 +152,7 @@ int main()
                 {
                     estanoquarto = 1;
                     gravar_imagem_do_momento(save.x, save.y, save.imagem);
-                    if (tecla == 'm') menusave(&cor, &save, &jogar, &selecao_olhos, &selecao_face, &selecao_pernas, &save.iniciado, estanoquarto);
+                    if (tecla == 'm') menusave(&save, &jogar,estanoquarto);
                     if (save.depoisprova == 1 && validador == 1) { save.maepistola = 0; save.maepistoladef = 0; validador = 0; }
                     fechar = 0;
                     clock_t frame_start = clock();
@@ -207,21 +187,23 @@ int main()
                     int portaY = 3 + Yall, portaX = 11 + Xall;
                     int gatoy = armarioY + 13, gatox = armarioX + 10;
                     //==========================DESENHA O QUARTO===========================
-                    desenhar_cama(Xall, Yall, cor, interagirCam, par);
-                    desenhar_estante(Xall, Yall, cor, interagirEst, par, &save, celularX, celularY);
-                    desenhar_mesa(Xall, Yall, cor);
-                    desenhar_armario(Xall, Yall, cor, armarioaberto, interagirArm, par);
-                    espelhaogaroto(save, espelhox, espelhoy, pisca, faces, olhos, pernas,selecao_face,selecao_pernas,selecao_olhos,passo,vira);
-                    desenhar_espelho(Xall, Yall, cor, par);
-                    desenhar_janela(Xall, Yall, cor, save.janelaaberta, interagirJan, par,chuvax, chuvay, &pos, &pos2, &pos3,check);
-                    desenhar_rodape(Xall, Yall, cor);
-                    desenhar_porta(Xall, Yall, cor, save.depoisprova, save.maepistoladef, maexinga, acertos);
-                    desenhar_lixo(Xall, Yall, cor);
-                    desenhar_tapete(Xall, Yall, cor);
+                    desenhar_cama(Xall, Yall,save.cor, interagirCam, par);
+                    desenhar_estante(Xall, Yall,save.cor, interagirEst, par, &save, celularX, celularY);
+                    desenhar_mesa(Xall, Yall,save.cor);
+                    desenhar_armario(Xall, Yall,save.cor, armarioaberto, interagirArm, par);
+                    espelhaogaroto(&save, espelhox, espelhoy, pisca,save.selecao_face,save.selecao_pernas,save.selecao_olhos,passo,vira);
+                    desenhar_espelho(Xall, Yall,save.cor, par);
+                    desenhar_janela(Xall, Yall,save.cor,save.janelaaberta, interagirJan, par,chuvax, chuvay, &pos, &pos2, &pos3,check);
+                    //void desenhar_janela(int Xall, int Yall, int cor, int janelaaberta, int interagirJan, int par,int chuvax, int chuvay, int *pos, int *pos2, int *pos3, int check)
+                    desenhar_rodape(Xall, Yall,save.cor);
+                    desenhar_porta(Xall, Yall,save.cor,save.depoisprova,save.maepistoladef,maexinga, acertos);
+                    //void desenhar_porta(int Xall, int Yall, int cor, int depoisprova, int maepistoladef, int maexinga, int acertos)
+                    desenhar_lixo(Xall, Yall,save.cor);
+                    desenhar_tapete(Xall, Yall,save.cor);
                     desenhar_gato(Xall, Yall, armarioX, armarioY, vontadedepisca, save.depoisprova);
-                    desenhar_celular_chao(Xall, Yall, cor, &save, celularX, celularY, interagirCel, par);
-                    desenhar_jogador(&save, vira, passo, pisca, cor, selecao_face, selecao_olhos, selecao_pernas);
-                    desenhar_hud(ybarra, xbarra, cor, &save, jogarcelular5, encararespelho, dormircama, jogartodosjogos, ler1jogar3, ler3jogatodos, ler3dormir, quests);
+                    desenhar_celular_mesa(Xall, Yall,&save, celularX, celularY, interagirCel, par);
+                    desenhar_jogador(&save, vira, passo, pisca,save.cor, save.selecao_face, save.selecao_olhos, save.selecao_pernas);
+                    desenhar_hud(ybarra, xbarra,save.cor, &save, jogarcelular5, encararespelho, dormircama, jogartodosjogos, ler1jogar3, ler3jogatodos, ler3dormir, quests);
                     if(save.celularpickup==1) printar_celular(save,celularX,celularY);
                     check++;//fazer chover
                     if(save.maepistola>150)
@@ -239,23 +221,18 @@ int main()
                     if (check > 100) { check = 0; passo = 0; }
 
                     // ===== INTERAÇÕES =====
-                    processar_interacoes(&save, tecla, Xall, Yall, espelhox, espelhoy, camaX, camaY, armarioX, armarioY, janelaX, janelaY, celularX, celularY, &espelho, &dormindo, &armarioaberto, &interagirCam, &interagirArm, &interagirJan, &interagirCel, &interagirEst, &marcar, &jogarcelular5, cor, &revista_linha, &revista_coluna, &livro1, &livro2, &livro3, &abrindolivro, &estudo, &estudando, &acertos, vira, estanteX, estanteY);
+                    processar_interacoes(&save, tecla, Xall, Yall, espelhox, espelhoy, camaX, camaY, armarioX, armarioY, janelaX, janelaY, celularX, celularY, &espelho, &dormindo, &armarioaberto, &interagirCam, &interagirArm, &interagirJan, &interagirCel, &interagirEst, &marcar, &jogarcelular5,save.cor, &revista_linha, &revista_coluna, &livro1, &livro2, &livro3, &abrindolivro, &estudo, &estudando, &acertos, vira, estanteX, estanteY);
 
                     // ===== ESPELHO MINIGAME =====
                     if (espelho == 1)
                     {
                         nodelay(stdscr, FALSE);
-                        pedrapapeltesoura(&cor, &encararespelho);
+                        pedrapapeltesoura(&save.cor, &encararespelho);
                         espelho = 0;
                         nodelay(stdscr, TRUE);
                         erase();
                         save.atividade_sono++;
                     }
-
-                    // ===== REFLEXO NO ESPELHO =====
-                    
-                    
-
                     // ===== LIVRO ABERTO =====
                     printar_livro(save.livropickup, &abrindolivro, livro1, livro2, livro3, livroY, livroX);
                     
@@ -275,7 +252,7 @@ int main()
                             case KEY_UP: marcar--; if (marcar == -1) marcar = 2; break;
                             case KEY_DOWN: marcar++; if (marcar > 2) marcar = 0; break;
                             case '\n':
-                                if (marcar == 0) { cobra(&cor, &jogarcelular5); save.atividade_sono++; marcar = 0; }
+                                if (marcar == 0) { cobra(&save.cor, &jogarcelular5); save.atividade_sono++; marcar = 0; }
                                 if (marcar == 1 || marcar == 2) { demo(); marcar = 0; }
                                 break;
                         }
@@ -382,10 +359,10 @@ int main()
                     strcpy(save.momento, "Prova");
                     save.celularpickup = 0; save.livropickup = 0; save.revistapickup = 0;
                     save.x = COLS/2; save.y = LINES/2;
-                    if (save.atividade_sono > 5 && estudo >= 3) { cair_no_sono(); dialogoprovacs(); prova_cansado_simples(&cor, &acertos); }
-                    if (save.atividade_sono <= 5 && estudo >= 3) { dormir(); dialogoprovas(); prova_simples(&cor, &acertos); }
-                    if (save.atividade_sono > 5 && estudo < 3) { cair_no_sono(); dialogoprovacc(); prova_cansado_complexa(&cor, &acertos); }
-                    if (save.atividade_sono <= 5 && estudo < 3) { dormir(); dialogoprovac(); prova_complexa(&cor, &acertos); }
+                    if (save.atividade_sono > 5 && estudo >= 3) { cair_no_sono(); dialogoprovacs(); prova_cansado_simples(&save, &acertos); }
+                    if (save.atividade_sono <= 5 && estudo >= 3) { dormir(); dialogoprovas(); prova_simples(&save, &acertos); }
+                    if (save.atividade_sono > 5 && estudo < 3) { cair_no_sono(); dialogoprovacc(); prova_cansado_complexa(&save, &acertos); }
+                    if (save.atividade_sono <= 5 && estudo < 3) { dormir(); dialogoprovac(); prova_complexa(&save, &acertos); }
                     save.depoisprova = 1;
                     dialogodepoisprova(&acertos, &maexinga, &epilepsia);
                 }
@@ -411,40 +388,6 @@ int main()
                 save.quest = 7;
             }
             
-            /*if (save.x >= espelhox - 6 && save.x <= espelhox + 20 && save.y < espelhoy + 13 && vira % 2 == 1)
-                    {
-                        int reflexx = save.x;
-                        int distancia = save.y - espelhoy;
-                        int reflexy = (espelhoy + 4) - (distancia / 3);
-                        if (reflexy < espelhoy + 1) reflexy = espelhoy + 1;
-                        if (reflexy > espelhoy + 4) reflexy = espelhoy + 4;
-                        if (reflexx < espelhox) reflexx = espelhox;
-                        if (reflexx > espelhox + 9) reflexx = espelhox + 9;
-                        if (vira % 2 == 1 && save.x >= espelhox && save.x <= espelhox + 7)
-                        {
-                            int borda1 = espelhox, borda2 = espelhox + 10;
-                            if (reflexx >= borda1 && reflexx <= borda2)
-                            {
-                                if (save.celularpickup == 1)
-                                {
-                                    if (pisca % 2 == 1) { mvprintw(reflexy, reflexx-2, "[]%s", faces[selecao_face]); mvprintw(reflexy, reflexx+1, "%s", olhos[selecao_olhos]); }
-                                    else { mvprintw(reflexy, reflexx-2, "[]%s", faces[selecao_face]); mvprintw(reflexy, reflexx+1, "--"); }
-                                }
-                                else if (save.revistapickup == 1 || save.livropickup == 1)
-                                {
-                                    if (pisca % 2 == 1) { mvprintw(reflexy, reflexx-3, "[I]%s", faces[selecao_face]); mvprintw(reflexy, reflexx+1, "%s", olhos[selecao_olhos]); }
-                                    else { mvprintw(reflexy, reflexx-3, "[I]%s", faces[selecao_face]); mvprintw(reflexy, reflexx+1, "--"); }
-                                }
-                                else
-                                {
-                                    if (pisca % 2 == 1) { mvprintw(reflexy, reflexx, "%s", faces[selecao_face]); mvprintw(reflexy, reflexx+1, "%s", olhos[selecao_olhos]); }
-                                    else { mvprintw(reflexy, reflexx, "%s", faces[selecao_face]); mvprintw(reflexy, reflexx+1, "--"); }
-                                }
-                                if (passo % 2 == 0) mvprintw(reflexy+1, reflexx+1, "%s", pernas[selecao_pernas]);
-                                else mvprintw(reflexy+1, reflexx+1, "%s", pernas[selecao_pernas+1]);
-                            }
-                        }
-                    }*/
         }
     }
     demo();
@@ -452,8 +395,6 @@ int main()
     endwin();
     return 0;
 }
-
-// ==================== FUNÇÕES ====================
 
 
 

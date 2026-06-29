@@ -29,7 +29,7 @@ void desenhar_porta(int Xall, int Yall, int cor, int depoisprova, int maepistola
             wattroff(stdscr, COLOR_PAIR(6));
             if (maexinga)
             {
-                mvprintw(portaY, portaX+1, " ________");
+                mvprintw(portaY, portaX+1,   " ________");
                 mvprintw(portaY+1, portaX+1, "|00&!@&@C|");
                 mvprintw(portaY+2, portaX+1, "|________|");
                 mvprintw(portaY+3, portaX+10, "\\  \\/");
@@ -38,7 +38,7 @@ void desenhar_porta(int Xall, int Yall, int cor, int depoisprova, int maepistola
             }
             else
             {
-                mvprintw(portaY, portaX-1, " __________");
+                mvprintw(portaY, portaX-1,   " __________");
                 mvprintw(portaY+1, portaX-1, "|vai dormir|");
                 mvprintw(portaY+2, portaX-1, "|__________|");
                 mvprintw(portaY+3, portaX+10, "\\| \\/");
@@ -76,7 +76,7 @@ void desenhar_porta(int Xall, int Yall, int cor, int depoisprova, int maepistola
             {
                 if (maexinga)
                 {
-                    mvprintw(portaY, portaX+1, " ________________");
+                    mvprintw(portaY, portaX+1,   " ________________");
                     mvprintw(portaY+1, portaX-3, "|SEU INCOMPETENTE|");
                     mvprintw(portaY+2, portaX-3, "|________________|");
                     mvprintw(portaY+3, portaX+10, "\\  \\/");
@@ -85,7 +85,7 @@ void desenhar_porta(int Xall, int Yall, int cor, int depoisprova, int maepistola
                 }
                 else
                 {
-                    mvprintw(portaY, portaX+1, " ________");
+                    mvprintw(portaY, portaX+1,   " ________");
                     mvprintw(portaY+1, portaX+1, "|00&!@&@C|");
                     mvprintw(portaY+2, portaX+1, "|________|");
                     mvprintw(portaY+3, portaX+10, "\\  \\/");
@@ -95,7 +95,7 @@ void desenhar_porta(int Xall, int Yall, int cor, int depoisprova, int maepistola
             }
             else
             {
-                mvprintw(portaY, portaX-1, " ___________");
+                mvprintw(portaY, portaX-1,   " ___________");
                 mvprintw(portaY+1, portaX-1, "|vai estudar|");
                 mvprintw(portaY+2, portaX-1, "|___________|");
                 mvprintw(portaY+3, portaX+10, "\\  \\/");

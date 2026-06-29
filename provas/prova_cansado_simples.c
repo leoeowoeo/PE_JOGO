@@ -1,11 +1,9 @@
 #include <ncurses.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include "jogos.h"
 // Função que substitui mvwprintw e gera o efeito de desmoronamento
-int mvwprintw_cansado(WINDOW *janela, int Yprova, int Xprova, const char *prova, int cansando);
-
-int prova_cansado_simples(int *cor,int *acertos)
+int prova_cansado_simples(SAVE *save,int *acertos)
 {
     initscr();
     start_color();
@@ -94,7 +92,7 @@ flushinp();
         tecla = wgetch(provacansado_simples);
         werase(provacansado_simples); 
         
-        if(*cor==1) wattron(provacansado_simples, COLOR_PAIR(21));
+        if(save->cor==1) wattron(provacansado_simples, COLOR_PAIR(21));
         mvwprintw_cansado(provacansado_simples, Yprova++, Xprova, "|=================================================================================|",cansando);     
         mvwprintw_cansado(provacansado_simples, Yprova++, Xprova, "|                                     RURJR                                       |",cansando); 
         mvwprintw_cansado(provacansado_simples, Yprova++, Xprova, "|                            PROOOVA DE MATETICA                                  |",cansando); 
@@ -124,24 +122,24 @@ flushinp();
         
         // Linha 1 do hachurado integrado ao mvwprintw_cansado
         mvwprintw_cansado(provacansado_simples, Yprova,   Xprova, "|                           |                       |                             |", cansando); 
-        if(*cor==1) wattron(provacansado_simples, COLOR_PAIR(24));
+        if(save->cor==1) wattron(provacansado_simples, COLOR_PAIR(24));
         mvwprintw_cansado(provacansado_simples, Yprova++, Xprova+33, "+---- ---  ---+", cansando); 
         wattroff(provacansado_simples, COLOR_PAIR(24));
-        if(*cor==1) wattron(provacansado_simples, COLOR_PAIR(21));
+        if(save->cor==1) wattron(provacansado_simples, COLOR_PAIR(21));
 
         // Linha 2 do hachurado: O texto central "A = 4" (ou corrompido!)
         mvwprintw_cansado(provacansado_simples, Yprova,   Xprova, "|                        |          |     |           |                           |", cansando); 
-        if(*cor==1) wattron(provacansado_simples, COLOR_PAIR(24));
+        if(save->cor==1) wattron(provacansado_simples, COLOR_PAIR(24));
         mvwprintw_cansado(provacansado_simples, Yprova++, Xprova+36, "    |       |", cansando); 
         wattroff(provacansado_simples, COLOR_PAIR(24));
-        if(*cor==1) wattron(provacansado_simples, COLOR_PAIR(21));
+        if(save->cor==1) wattron(provacansado_simples, COLOR_PAIR(21));
 
         // Linha 3 do hachurado: Fechamento da caixinha interna
         mvwprintw_cansado(provacansado_simples, Yprova,   Xprova, "|                           |       +-------+     |                               |", cansando); 
-        if(*cor==1) wattron(provacansado_simples, COLOR_PAIR(24));
+        if(save->cor==1) wattron(provacansado_simples, COLOR_PAIR(24));
         mvwprintw_cansado(provacansado_simples, Yprova++, Xprova+36, "+- --    ---  -+", cansando); 
         wattroff(provacansado_simples, COLOR_PAIR(24));
-        if(*cor==1) wattron(provacansado_simples, COLOR_PAIR(21));
+        if(save->cor==1) wattron(provacansado_simples, COLOR_PAIR(21));
 
         mvwprintw_cansado(provacansado_simples, Yprova++, Xprova, "|                        +---   --------------------+                             |", cansando); 
         mvwprintw_cansado(provacansado_simples, Yprova++, Xprova, "|                                       10101010                                  |", cansando); 
@@ -234,7 +232,7 @@ flushinp();
                 {
                     if(i == marcar)
                     {
-                        if(*cor==1) wattron(provacansado_simples, COLOR_PAIR(22));
+                        if(save->cor==1) wattron(provacansado_simples, COLOR_PAIR(22));
                         mvwprintw_cansado(provacansado_simples, Yall + 10 + i, Xall + 1, questao1[i],cansando);
                         wattroff(provacansado_simples, COLOR_PAIR(22));
                     }
@@ -246,7 +244,7 @@ flushinp();
                 {
                     if(i == marcar)
                     {
-                        if(*cor==1) wattron(provacansado_simples, COLOR_PAIR(22));
+                        if(save->cor==1) wattron(provacansado_simples, COLOR_PAIR(22));
                         mvwprintw_cansado(provacansado_simples, Yall + 28 + i, Xall + 1, questao2[i],cansando);
                         wattroff(provacansado_simples, COLOR_PAIR(22));
                     }
@@ -258,7 +256,7 @@ flushinp();
                 {
                     if(i == marcar)
                     {
-                        if(*cor==1) wattron(provacansado_simples, COLOR_PAIR(22));
+                        if(save->cor==1) wattron(provacansado_simples, COLOR_PAIR(22));
                         mvwprintw_cansado(provacansado_simples, Yall + 42 + i, Xall + 1, questao3[i],cansando);
                         wattroff(provacansado_simples, COLOR_PAIR(22));
                     }
@@ -270,7 +268,7 @@ flushinp();
                 {
                     if(i == marcar)
                     {
-                        if(*cor==1) wattron(provacansado_simples, COLOR_PAIR(22));
+                        if(save->cor==1) wattron(provacansado_simples, COLOR_PAIR(22));
                         mvwprintw_cansado(provacansado_simples, Yall + 54 + i, Xall + 1, questao4[i],cansando);
                         wattroff(provacansado_simples, COLOR_PAIR(22));
                     }
@@ -282,7 +280,7 @@ flushinp();
                 {
                     if(i == marcar)
                     {
-                        if(*cor==1) wattron(provacansado_simples, COLOR_PAIR(22));
+                        if(save->cor==1) wattron(provacansado_simples, COLOR_PAIR(22));
                         mvwprintw_cansado(provacansado_simples, Yall + 71 + i, Xall + 1, questao5[i],cansando);
                         wattroff(provacansado_simples, COLOR_PAIR(22));
                     }
@@ -332,14 +330,14 @@ flushinp();
             mvwprintw(provacansado_simples, Ycentro + 3, Xcentro, "|   ");
             
             wmove(provacansado_simples, Ycentro + 3, Xcentro + 4);
-            if (marcar_confirmacao == 0) if(*cor==1) wattron(provacansado_simples, A_REVERSE);
+            if (marcar_confirmacao == 0) if(save->cor==1) wattron(provacansado_simples, A_REVERSE);
             mvwprintw_cansado(provacansado_simples, Ycentro + 3, Xcentro + 4, confirmacao[0],cansando/4);
             if (marcar_confirmacao == 0) wattroff(provacansado_simples, A_REVERSE);
             
             wprintw(provacansado_simples, "   ");
 
             wmove(provacansado_simples, Ycentro + 3, Xcentro + 30);
-            if (marcar_confirmacao == 1) if(*cor==1) wattron(provacansado_simples, A_REVERSE);
+            if (marcar_confirmacao == 1) if(save->cor==1) wattron(provacansado_simples, A_REVERSE);
             mvwprintw_cansado(provacansado_simples, Ycentro + 3, Xcentro + 30, confirmacao[1],cansando/4);
             if (marcar_confirmacao == 1) wattroff(provacansado_simples, A_REVERSE);
 

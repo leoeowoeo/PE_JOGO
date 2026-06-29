@@ -7,9 +7,9 @@ void desenhar_janela(int Xall, int Yall, int cor, int janelaaberta, int interagi
         
         if (cor == 1) wattron(stdscr, COLOR_PAIR(2));
         if (interagirJan == 1 && cor == 1) wattron(stdscr, COLOR_PAIR(par));
-        mvprintw(janelaY, janelaX, "|\\ _______ /| ");
-        mvprintw(janelaY+1, janelaX, "| |       | | ");
-        mvprintw(janelaY+2, janelaX, "| |       | | ");
+        mvprintw(janelaY, janelaX,   "|\\ _______ /| ");
+        mvprintw(janelaY+1, janelaX,  "| |       | | ");
+        mvprintw(janelaY+2, janelaX,  "| |       | | ");
         mvprintw(janelaY+3, janelaX, " \\|       |/  ");
         mvprintw(janelaY+4, janelaX, "  ---------   ");
         wattroff(stdscr, COLOR_PAIR(2));
@@ -20,7 +20,7 @@ void desenhar_janela(int Xall, int Yall, int cor, int janelaaberta, int interagi
     {
         if (cor == 1) wattron(stdscr, COLOR_PAIR(2));
         if (interagirJan == 1 && cor == 1) wattron(stdscr, COLOR_PAIR(par));
-        mvprintw(janelaY, janelaX, "   _______    ");
+        mvprintw(janelaY, janelaX,   "   _______    ");
         mvprintw(janelaY+1, janelaX, "  |   |   |   ");
         mvprintw(janelaY+2, janelaX, "  |   |   |   ");
         mvprintw(janelaY+3, janelaX, "  |   |   |   ");

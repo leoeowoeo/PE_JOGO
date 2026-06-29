@@ -2,8 +2,9 @@
 void desenhar_estante(int Xall, int Yall, int cor, int interagirEst, int par, SAVE *save, int celularX, int celularY)
 {
     int estanteY = 5 + Yall, estanteX = 34 + Xall;
-    if (interagirEst == 1 && cor == 1) wattron(stdscr, COLOR_PAIR(par));
-    mvprintw(estanteY, estanteX, " ____________ ");
+    if (interagirEst == 1 && cor == 1)
+    wattron(stdscr, COLOR_PAIR(par));
+    mvprintw(estanteY, estanteX,  " ____________ ");
     mvprintw(estanteY+1, estanteX, "[____!!__||__]");
     mvprintw(estanteY+2, estanteX, "[||____!!_!!_]");
     mvprintw(estanteY+3, estanteX, "[!!_!!__||_!!]");
