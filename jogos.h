@@ -57,7 +57,7 @@ void dialogoprovacc();
 int dialogofinal(int *finais_alcancados,int *acertos);
 int dialogoMae(int *maexinga);
 int personalizar(int *selecao_olhos, int *selecao_face,int *selecao_pernas, int xselecao, int yselecao);
-void slow_mvwprintw(WINDOW* win, char* fala, const int y, int x);
+int slow_mvwprintw(WINDOW *win, char *fala, const int y, const int x, int *skipado);
 void transicao(int *epilepsia);
 void dialogodepoisprova(int *acertos,int *maexinga,int *epilepsia);
 void demo();
@@ -92,5 +92,6 @@ void processar_interacoes(SAVE *save, int tecla, int Xall, int Yall, int espelho
 void espelhaogaroto(SAVE *save, int espelhox, int espelhoy, int pisca,int selecao_face,int selecao_pernas, int selecao_olhos,int passo,int vira);
 void printar_celular(SAVE save,int celularX,int celularY);
 void printar_livro(int livropickup, int *abrindolivro, int livro1, int livro2, int livro3, int livroY, int livroX );
+void desenhanafrente(int Xall, int Yall, int cor, int armarioaberto, int interagirArm, int par,int lixoY, int lixoX);
 
 #endif

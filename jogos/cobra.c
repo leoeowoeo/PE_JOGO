@@ -148,7 +148,7 @@ int cobra(int *cor,int *jogarcelular)
         
         if(cobrax == maçãx && cobray == maçãy) {   
             maçãpegar=1;
-            score+=10;
+            score+=1;
         }
 
         if(maçãpegar==1) {
@@ -166,7 +166,7 @@ int cobra(int *cor,int *jogarcelular)
             quit=1;
             break;
         }
-        if(score==10){
+        if(score==15){
             quit=0;
             derrota=0;
             break;

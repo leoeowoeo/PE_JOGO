@@ -17,9 +17,7 @@
 #define COR_CIANO          18
 #define COR_CINZAESCURO    19
 #include "jogos.h"
-
 // ==================== MAIN ====================
-
 int main()
 {
     FILE *entrada, *saida;
@@ -134,7 +132,7 @@ int main()
             save.estagio++;
             erase();
             transicao(&epilepsia);
-            save.quest =1;/* dialogoMae(&maexinga);*/
+            save.quest = dialogoMae(&maexinga);
             keypad(stdscr, TRUE);
         }
 
@@ -223,6 +221,7 @@ int main()
                     // ===== INTERAÇÕES =====
                     processar_interacoes(&save, tecla, Xall, Yall, espelhox, espelhoy, camaX, camaY, armarioX, armarioY, janelaX, janelaY, celularX, celularY, &espelho, &dormindo, &armarioaberto, &interagirCam, &interagirArm, &interagirJan, &interagirCel, &interagirEst, &marcar, &jogarcelular5,save.cor, &revista_linha, &revista_coluna, &livro1, &livro2, &livro3, &abrindolivro, &estudo, &estudando, &acertos, vira, estanteX, estanteY);
 
+                    desenhanafrente( Xall,  Yall,  save.cor,  armarioaberto,  interagirArm,  par, lixoY,  lixoX);
                     // ===== ESPELHO MINIGAME =====
                     if (espelho == 1)
                     {

@@ -109,6 +109,7 @@ for(int i=0;i<4&&parar==0;i++,passo++)
 for(int i=0;i<10&&parar==0;i++,passo++)
 
 {   tecla=getch(); 
+    
     if(tecla=='\n') { nodelay(stdscr, FALSE); parar=1;}
     for(int apaga = 0; apaga < 20; apaga++) {
         mvprintw(yselecao + 5 + lugar + apaga, xselecao + espacamento + 47, "                                      ");
